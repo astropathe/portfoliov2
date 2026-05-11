@@ -1,0 +1,409 @@
+/* 1. Reset et Fondamentaux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1b1b1e; /* Fond sombre comme sur tes screens */
+    color: #d1d1d1; /* Texte gris clair pour le contraste */
+    line-height: 1.6;
+}
+
+/* 2. Layout principal avec CSS Grid */
+.container {
+    display: grid;
+    /* On définit 3 colonnes : 260px (sidebar gauche), 1fr (centre flexible), 300px (sidebar droite) */
+    grid-template-columns: 260px 1fr 300px;
+    min-height: 100vh;
+}
+
+/* 3. Sidebar Gauche */
+.left-sidebar {
+    background-color: #1b1b1e;
+    border-right: 1px solid #2d2d30;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #3e3e42;
+    margin-bottom: 1rem;
+    object-fit: cover;
+}
+
+.profile-section h1 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ffffff;
+}
+
+.left-sidebar nav ul {
+    list-style: none;
+    width: 100%;
+}
+
+.left-sidebar nav ul li a {
+    text-decoration: none;
+    color: #9da5b4;
+    display: block;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.left-sidebar nav ul li a:hover {
+    background-color: #2d2d30;
+    color: #ffffff;
+}
+
+/* 4. Contenu Principal (Centre) */
+.content {
+    padding: 2rem 4rem;
+    max-width: 900px;
+    margin: 0 auto; /* Centre le contenu dans sa colonne */
+}
+
+.content header {
+    font-size: 0.85rem;
+    color: #6a737d; /* Gris moyen */
+    margin-bottom: 2.5rem;
+}
+
+.post-card {
+    background-color: #252529;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #3e3e42;
+    margin-bottom: 1.5rem;
+}
+
+.post-card h2 {
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+/* 5. Sidebar Droite */
+.right-sidebar {
+    padding: 2rem;
+    border-left: 1px solid #2d2d30;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.6rem;
+    background: #252529;
+    border: 1px solid #3e3e42;
+    border-radius: 20px;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.widget h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #6a737d;
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    margin-bottom: 10%;
+}
+
+/* On s'assure que la sidebar prend bien toute la hauteur et espace ses enfants */
+.left-sidebar {
+    background-color: #1b1b1e;
+    border-right: 1px solid #2d2d30;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    /* Aligne les éléments au centre horizontalement */
+    align-items: center; 
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+/* LA MAGIE EST ICI */
+.social-links {
+    margin-top: auto; /* Pousse ce bloc tout en bas */
+    display: flex;
+    gap: 1.5rem; /* Espace entre les icônes */
+    padding-bottom: 1rem;
+}
+
+.social-links a {
+    color: #9da5b4;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: #ffffff;
+    transform: translateY(-3px); /* Petit effet de survol sympa */
+}
+
+.social-links {
+    margin-top: auto;
+    display: flex;
+    gap: 1.2rem; /* Espace entre les icônes */
+    padding-bottom: 1rem;
+    justify-content: center; /* Centre les icônes horizontalement */
+    width: 100%;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;  /* Largeur de la zone de clic */
+    height: 24px; /* Hauteur de la zone de clic */
+    transition: transform 0.2s ease;
+}
+
+/* C'est ici qu'on gère la proportion des images */
+.social-links a img {
+    width: 100%;       /* L'image prend toute la largeur du lien */
+    height: auto;      /* Garde le ratio original */
+    max-height: 100%;  /* Empêche de dépasser en hauteur */
+    filter: invert(70%); /* Optionnel : rend les icônes grises pour le style sombre */
+    transition: filter 0.3s ease;
+}
+
+/* Effet au survol */
+.social-links a:hover {
+    transform: translateY(-3px);
+}
+
+.social-links a:hover img {
+    filter: invert(100%); /* L'icône devient blanche au survol */
+}
+
+
+.upper-path-links {
+    text-decoration: none; /* Enlève le soulignement */
+    color: #9da5b4;       /* Une couleur grise plus claire */
+    transition: color 0.2s ease;
+}
+
+.upper-path-links:hover {
+    color: #ffffff;       /* Devient blanc quand on passe la souris */
+    text-decoration: underline; /* Optionnel : le soulignement revient au survol */
+}
+
+.thm-badge {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    overflow: hidden; /* Empêche les scrollbars de l'iframe */
+}
+
+.thm-badge iframe {
+    /* Tu peux ajuster ces valeurs selon tes besoins */
+    width: 300px;  
+    height: 90px;
+    
+    /* Optionnel : adoucir l'intégration */
+    border-radius: 8px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    
+    /* Si tu veux réduire la taille globale sans couper le contenu, 
+       on utilise le zoom (scale) */
+    transform: scale(0.9); 
+    transform-origin: center;
+}
+
+.post-card {
+    background-color: #252529; /* Un gris légèrement plus clair que le fond */
+    border: 1px solid #3e3e42;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex; /* Active le mode côte à côte */
+    gap: 1.5rem; /* Espace entre le texte et l'image */
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+}
+
+/* Effet de survol discret */
+.post-card:hover {
+    transform: translateY(-4px);
+    border-color: #505055;
+    background-color: #2a2a2e;
+}
+
+/* Partie texte (prend tout l'espace restant) */
+.post-content {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.post-content h2 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+}
+
+.post-content p {
+    color: #9da5b4;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+/* Meta données (date, tags) */
+.post-meta {
+    font-size: 0.8rem;
+    color: #6a737d;
+}
+
+.category {
+    margin-left: 1rem;
+    color: #58a6ff; /* Un petit bleu pour les tags comme sur ton screen */
+}
+
+/* Partie image */
+.post-image {
+    width: 200px; /* Taille fixe pour la miniature */
+    height: 120px;
+}
+
+.post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* L'image remplit le cadre sans se déformer */
+    border-radius: 8px;
+}
+
+/* Style pour les tags (Stack technique) */
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background: #2d2d30;
+    color: #9da5b4;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    border: 1px solid #3e3e42;
+    transition: 0.3s;
+}
+
+.tag:hover {
+    color: #ffffff;
+    border-color: #58a6ff;
+}
+
+/* Style pour le Status ou Certifs */
+.status-box p, .cert-list li {
+    font-size: 0.85rem;
+    color: #d1d1d1;
+    margin-bottom: 12px;
+    list-style: none;
+}
+
+.cert-list li::before {
+    content: "•";
+    color: #58a6ff;
+    margin-right: 8px;
+}
+
+/* Fake Terminal */
+/* Le cadre principal */
+.terminal-window-frame {
+    background-color: #1b1b1e; 
+    border: 1px solid #3e3e42;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); /* Ombre pour la profondeur */
+    margin: 2rem auto;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+/* La barre de titre */
+.terminal-bar {
+    background-color: #252529; /* Couleur de tes cartes */
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    border-bottom: 1px solid #3e3e42;
+    position: relative;
+}
+
+/* Les petits boutons style OS */
+.terminal-dots {
+    display: flex;
+    gap: 7px;
+}
+
+.t-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.t-red { background: #ff5f56; }
+.t-yellow { background: #ffbd2e; }
+.t-green { background: #27c93f; }
+
+/* L'onglet central */
+.terminal-tab {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: #9da5b4;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.t-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* Le corps du terminal */
+.terminal-body {
+    padding: 1.5rem;
+    height: 400px; /* Hauteur fixe pour le scroll */
+    overflow-y: auto;
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    cursor: text;
+}
+
+/* Harmonisation de l'input dans le cadre */
+.terminal-input-line {
+    display: flex;
+    margin-top: 5px;
+}
+
+#terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    flex: 1;
+    padding-left: 10px;
+}
