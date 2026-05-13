@@ -171,16 +171,15 @@ body {
     transform-origin: center;
 }
 
+/* Conteneur de la carte */
 .post-card {
     background-color: #252529;
     border: 1px solid #3e3e42;
     border-radius: 12px;
-    padding: 1.5rem;
     margin-bottom: 2rem;
-    display: flex;
-    gap: 1.5rem;
     transition: transform 0.2s ease, border-color 0.2s ease;
     cursor: pointer;
+    overflow: hidden; /* empêche l'image de déborder */
 }
 
 .post-card:hover {
@@ -189,11 +188,11 @@ body {
     background-color: #2a2a2e;
 }
 
+/* Zone de texte (prend tout l'espace restant) */
 .post-content {
-    flex: 1;
+    flex: 1; 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .post-content h2 {
@@ -218,9 +217,11 @@ body {
     color: #58a6ff;
 }
 
+/* L'image ne déborde jamais de sa zone */
 .post-image {
+    flex-shrink: 0;
     width: 200px;
-    height: 120px;
+    height: 150px;
 }
 
 .post-image img {
@@ -454,12 +455,43 @@ body {
     }
 
     /* Post cards en colonne */
+    .post-list a {
+        flex-direction: column-reverse;
+        gap: 1rem;
+        padding: 1.2rem;
+    }
+
     .post-card {
-        flex-direction: column;
+        flex-direction: unset; /* reset, c'est le <a> qui gère */
     }
 
     .post-image {
         width: 100%;
-        height: 160px;
+        height: 180px;
+        flex-shrink: unset;
     }
+}
+
+
+/* --- Correction du style des liens dans la liste des veilles --- */
+
+/* Le lien autour de la carte gère le flex */
+.post-list a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;        /* ← le padding passe ici */
+    text-decoration: none;
+    color: inherit;
+}
+
+.post-list a:visited h2 {
+    color: #ffffff;
+}
+
+.post-list a:hover .post-card {
+    transform: translateY(-4px);
+    border-color: #58a6ff;
+    background-color: #2a2a2e;
 }

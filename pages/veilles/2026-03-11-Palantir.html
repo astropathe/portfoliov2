@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Veilles Technologiques | Paul Manoha</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
+    <!-- Boutons Mobiles -->
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
         <span></span>
         <span></span>
@@ -24,6 +25,7 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <div class="container">
+        <!-- SIDEBAR GAUCHE -->
         <aside class="left-sidebar" id="leftSidebar">
             <div class="profile-section">
                 <img src="../photo/avatar.jpeg" alt="Avatar" class="avatar">
@@ -35,51 +37,47 @@
                     <li><a href="experiences.html">EXPERIENCES</a></li>
                     <li><a href="projets.html">PROJETS</a></li>
                     <li><a href="about.html">ABOUT</a></li>
-                    <li><a href="veilles.html">VEILLES</a></li>
+                    <li><a href="veilles.html" class="active">VEILLES</a></li>
                 </ul>
             </nav>
             <div class="social-links">
                 <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="../photo/github.png" alt="GH"></a>
-                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../photo/linkedin.svg" alt="LNKD"></a>
-                <a href="#" target="_blank" title="Email"><img class="social-icons" src="../photo/mail.png" alt="@"></a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../photo/linkedin.svg" alt="LI"></a>
+                <a href="mailto:votre-email@exemple.com" title="Email"><img class="social-icons" src="../photo/mail.png" alt="@"></a>
                 <a href="https://www.root-me.org/astropathe" target="_blank" title="Root-Me"><img src="../photo/rootme.svg" alt="RM"></a>
                 <a href="https://tryhackme.com/p/astropathe" target="_blank" title="TryHackMe"><img src="../photo/tryhackme.svg" alt="THM"></a>
             </div>
         </aside>
 
+        <!-- CONTENU CENTRAL -->
         <main class="content">
-            <header><a class="upper-path-links" href="../index.html">Home</a> > Projets</header>
-            <section class="post-list">
-                <article class="post-card">
-                    <div class="post-content">
-                        <h2>Developpement d'une extension firefox</h2>
-                        <p>Extension permetant de croiser ses sources automatiquement sur un site de news (LeMonde, BFMTV...)</p>
-                        <div class="post-meta">
-                            <span class="date">15 Mai 2026</span>
-                            <span class="category">#Dev #Projet</span>
-                        </div>
-                    </div>
-                    <div class="post-image">
-                        <img src="../photo/debAIsing.png" alt="Aperçu projet">
-                    </div>
-                </article>
+            <header>
+                <a class="upper-path-links" href="../index.html">Home</a> > Veilles technologiques
+            </header>
 
-                <article class="post-card">
-                    <div class="post-content">
-                        <h2>Simulation de Phishing</h2>
-                        <p>Mise en place d'envois de mails de phishing dans mon établissement via le framework Gopish</p>
-                        <div class="post-meta">
-                            <span class="date">15 Mai 2026</span>
-                            <span class="category">#Cyber #Projet</span>
+            <section class="post-list">
+                <!-- L'article est enveloppé par le lien pour être entièrement cliquable -->
+                <a href="veilles/2026-03-11-Palantir.html" class="post-link">
+                    <article class="post-card">
+                        <div class="post-content">
+                            <h2>De l’Iran à la surveillance de masse : la double guerre de Palantir</h2>
+                            <p>Le rôle de Palantir a radicalement basculé avec l’escalade des tensions entre les États-Unis et l’Iran. Le logiciel n’est plus un simple assistant, mais le « cerveau » des opérations.</p>
+                            <div class="post-meta">
+                                <span class="date">15 Mai 2026</span>
+                                <span class="category">#Cyber #Veille</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="post-image">
-                        <img src="../photo/phishing.png" alt="Aperçu projet">
-                    </div>
-                </article>
+                        <div class="post-image">
+                            <img src="../photo/veilles/palantir.jpg" alt="Aperçu Palantir">
+                        </div>
+                    </article>
+                </a>
+
+                <!-- Tu pourras ajouter d'autres articles ici sur le même modèle -->
             </section>
         </main>
 
+        <!-- SIDEBAR DROITE -->
         <aside class="right-sidebar" id="rightSidebar">
             <div class="search-bar">
                 <input type="text" id="searchBar" placeholder="Search...">
@@ -89,16 +87,11 @@
                 <div class="tag-cloud">
                     <span class="tag">Linux</span>
                     <span class="tag">Windows</span>
-                    <span class="tag">Cisco IOS</span>
                     <span class="tag">Docker</span>
                     <span class="tag">Wireshark</span>
                     <span class="tag">Nmap</span>
-                    <span class="tag">Metasploit</span>
-                    <span class="tag">Hashcat</span>
-                    <span class="tag">Active Directory</span>
                     <span class="tag">Python</span>
                     <span class="tag">Bash</span>
-                    <span class="tag">C#</span>
                 </div>
             </div>
             <br>
@@ -107,22 +100,14 @@
                 <div class="status-box">
                     <p>Certification <strong>Cisco CyberOps Associate</strong></p>
                     <p>Lab personnel : Cluster <strong>Proxmox</strong></p>
-                    <p>Lecture : <em>Technopolitique</em>, Asma Mhalla</p>
                 </div>
-            </div>
-            <br>
-            <div class="widget">
-                <h3>Certifications</h3>
-                <ul class="cert-list">
-                    <li>Cyber Security 101 (THM)</li>
-                    <li>À venir...</li>
-                </ul>
             </div>
         </aside>
     </div>
 
     <script src="../script.js"></script>
     <script>
+        // Script pour le menu mobile (Sidebar Toggle)
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const searchBtn    = document.getElementById('searchBtn');
         const leftSidebar  = document.getElementById('leftSidebar');
@@ -136,24 +121,29 @@
             hamburgerBtn.classList.remove('open');
             document.body.style.overflow = '';
         }
-        function openLeft() {
-            closeAll();
-            leftSidebar.classList.add('open');
-            overlay.classList.add('active');
-            hamburgerBtn.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-        function openRight() {
-            closeAll();
-            rightSidebar.classList.add('open');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
 
-        hamburgerBtn.addEventListener('click', () => leftSidebar.classList.contains('open') ? closeAll() : openLeft());
-        searchBtn.addEventListener('click',    () => rightSidebar.classList.contains('open') ? closeAll() : openRight());
+        hamburgerBtn.addEventListener('click', () => {
+            if(leftSidebar.classList.contains('open')) closeAll();
+            else {
+                closeAll();
+                leftSidebar.classList.add('open');
+                overlay.classList.add('active');
+                hamburgerBtn.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+
+        searchBtn.addEventListener('click', () => {
+            if(rightSidebar.classList.contains('open')) closeAll();
+            else {
+                closeAll();
+                rightSidebar.classList.add('open');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+
         overlay.addEventListener('click', closeAll);
-        leftSidebar.querySelectorAll('a').forEach(l => l.addEventListener('click', closeAll));
     </script>
 </body>
 </html>
