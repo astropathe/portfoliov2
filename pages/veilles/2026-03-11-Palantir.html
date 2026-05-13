@@ -3,16 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veilles Technologiques | Paul Manoha</title>
-    <link rel="stylesheet" href="../style.css">
+    <title>Palantir | Paul Manoha</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        /* ── Styles spécifiques à la page article ── */
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: 2rem;
+            color: #ffffff;
+            line-height: 1.3;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-meta {
+            font-size: 0.82rem;
+            color: #6a737d;
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-meta span { display: flex; align-items: center; gap: 4px; }
+        .article-meta .cat { color: #58a6ff; }
+
+        /* Image hero pleine largeur */
+        .article-hero {
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 2.5rem;
+            border: 1px solid #3e3e42;
+        }
+
+        /* Séparateur */
+        .article-divider {
+            border: none;
+            border-top: 1px solid #3e3e42;
+            margin: 2rem 0;
+        }
+
+        /* Corps de l'article */
+        .article-body h2 {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin: 2rem 0 0.8rem;
+        }
+
+        .article-body p {
+            color: #c0c8d4;
+            font-size: 0.97rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .article-body ul, .article-body ol {
+            margin: 0.5rem 0 1.2rem 1.5rem;
+        }
+
+        .article-body li {
+            color: #c0c8d4;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 0.4rem;
+        }
+
+        .article-body li strong {
+            color: #ffffff;
+        }
+
+        /* Citation */
+        .article-body blockquote {
+            border-left: 3px solid #58a6ff;
+            margin: 1.5rem 0;
+            padding: 0.8rem 1.2rem;
+            background: #252529;
+            border-radius: 0 8px 8px 0;
+            color: #9da5b4;
+            font-style: italic;
+        }
+
+        /* Tags en bas */
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #3e3e42;
+        }
+
+        /* Bouton retour */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #9da5b4;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            padding: 6px 12px;
+            border: 1px solid #3e3e42;
+            border-radius: 6px;
+            background: #252529;
+            transition: 0.2s;
+        }
+
+        .back-btn:hover {
+            color: #fff;
+            border-color: #58a6ff;
+        }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 1.4rem; }
+            .article-hero { max-height: 220px; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Boutons Mobiles -->
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
     </button>
 
     <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
@@ -25,56 +141,156 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <div class="container">
+
         <!-- SIDEBAR GAUCHE -->
         <aside class="left-sidebar" id="leftSidebar">
             <div class="profile-section">
-                <img src="../photo/avatar.jpeg" alt="Avatar" class="avatar">
+                <img src="../../photo/avatar.jpeg" alt="Avatar" class="avatar">
                 <h1>Paul Manoha</h1>
             </div>
             <nav>
                 <ul>
-                    <li><a href="../index.html">HOME</a></li>
-                    <li><a href="experiences.html">EXPERIENCES</a></li>
-                    <li><a href="projets.html">PROJETS</a></li>
-                    <li><a href="about.html">ABOUT</a></li>
-                    <li><a href="veilles.html" class="active">VEILLES</a></li>
+                    <li><a href="../../index.html">HOME</a></li>
+                    <li><a href="../experiences.html">EXPERIENCES</a></li>
+                    <li><a href="../projets.html">PROJETS</a></li>
+                    <li><a href="../about.html">ABOUT</a></li>
+                    <li><a href="../veilles.html">VEILLES</a></li>
+                    <li><a href="tags.html">TAGS</a></li>
                 </ul>
             </nav>
             <div class="social-links">
-                <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="../photo/github.png" alt="GH"></a>
-                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../photo/linkedin.svg" alt="LI"></a>
-                <a href="mailto:votre-email@exemple.com" title="Email"><img class="social-icons" src="../photo/mail.png" alt="@"></a>
-                <a href="https://www.root-me.org/astropathe" target="_blank" title="Root-Me"><img src="../photo/rootme.svg" alt="RM"></a>
-                <a href="https://tryhackme.com/p/astropathe" target="_blank" title="TryHackMe"><img src="../photo/tryhackme.svg" alt="THM"></a>
+                <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="../../photo/github.png" alt="GH"></a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../../photo/linkedin.svg" alt="LI"></a>
+                <a href="#" title="Email"><img class="social-icons" src="../../photo/mail.png" alt="@"></a>
+                <a href="https://www.root-me.org/astropathe" target="_blank" title="Root-Me"><img src="../../photo/rootme.svg" alt="RM"></a>
+                <a href="https://tryhackme.com/p/astropathe" target="_blank" title="TryHackMe"><img src="../../photo/tryhackme.svg" alt="THM"></a>
             </div>
         </aside>
 
         <!-- CONTENU CENTRAL -->
         <main class="content">
             <header>
-                <a class="upper-path-links" href="../index.html">Home</a> > Veilles technologiques
+                <a class="upper-path-links" href="../../index.html">Home</a> >
+                <a class="upper-path-links" href="../veilles.html">Veilles</a> >
+                Palantir
             </header>
 
-            <section class="post-list">
-                <!-- L'article est enveloppé par le lien pour être entièrement cliquable -->
-                <a href="veilles/2026-03-11-Palantir.html" class="post-link">
-                    <article class="post-card">
-                        <div class="post-content">
-                            <h2>De l’Iran à la surveillance de masse : la double guerre de Palantir</h2>
-                            <p>Le rôle de Palantir a radicalement basculé avec l’escalade des tensions entre les États-Unis et l’Iran. Le logiciel n’est plus un simple assistant, mais le « cerveau » des opérations.</p>
-                            <div class="post-meta">
-                                <span class="date">15 Mai 2026</span>
-                                <span class="category">#Cyber #Veille</span>
-                            </div>
-                        </div>
-                        <div class="post-image">
-                            <img src="../photo/veilles/palantir.jpg" alt="Aperçu Palantir">
-                        </div>
-                    </article>
-                </a>
+            <!-- Bouton retour -->
+            <a href="../veilles.html" class="back-btn">← Retour aux veilles</a>
 
-                <!-- Tu pourras ajouter d'autres articles ici sur le même modèle -->
-            </section>
+            <!-- En-tête de l'article -->
+            <div class="article-header">
+                <h1>De l'Iran à la surveillance de masse : la double guerre de Palantir</h1>
+                <div class="article-meta">
+                    <span>📅 11 Mars 2026</span>
+                    <span class="cat">#Cyber</span>
+                    <span class="cat">#Veille</span>
+                    <span>✍️ Paul Manoha</span>
+                </div>
+            </div>
+
+            <!-- Image hero -->
+            <img src="../../photo/veilles/palantir.jpg" alt="Palantir" class="article-hero">
+
+            <hr class="article-divider">
+
+            <!-- Corps de l'article -->
+            <div class="article-body">
+
+                <h2>Introduction</h2>
+                <p>
+                    Le 7 mars 2026, les frappes chirurgicales commencent sur Téhéran : 1 000 cibles neutralisées
+                    en seulement 24 heures, mobilisant cent fois moins de soldats qu'en Irak. Au centre de cette
+                    débauche de puissance se trouve Palantir, devenue le système nerveux des lignes de front,
+                    de l'Ukraine à l'Iran.
+                </p>
+                <p>
+                    Qualifiée d'entreprise « totémique » du XXIe siècle par l'analyste Olivier Tesquet, elle opère
+                    la fusion brutale entre surveillance de masse, capitalisme de défense et idéologie radicale.
+                    Autrefois cantonnée à l'ombre des services de renseignement, Palantir est désormais une
+                    « théorie de l'État en action », gérant l'intelligibilité même de la violence souveraine.
+                </p>
+
+                <hr class="article-divider">
+
+                <h2>Résumé</h2>
+                <p>
+                    Le rôle de Palantir a radicalement basculé avec l'escalade des tensions entre les États-Unis
+                    et l'Iran. Le logiciel n'est plus un simple assistant, mais le « cerveau » des opérations :
+                </p>
+                <ul>
+                    <li>
+                        <strong>L'IA de ciblage « Maven » :</strong> Intégré à la plateforme de Palantir, ce système
+                        a permis de traiter des téraoctets d'images satellites et de signaux radars en temps réel.
+                        Résultat : <strong>1 000 cibles militaires identifiées en seulement 24 heures</strong>,
+                        une prouesse impossible pour des analystes humains.
+                    </li>
+                    <li>
+                        <strong>Accélération de la « Kill Chain » :</strong> En automatisant la corrélation des données,
+                        Palantir réduit le délai entre la détection et la frappe à quelques minutes. Cette réactivité
+                        extrême change la nature même du conflit : la guerre devient une suite de décisions automatisées.
+                    </li>
+                    <li>
+                        <strong>Monopole de la donnée :</strong> L'entreprise s'impose comme une infrastructure souveraine
+                        privée, capable de fournir une « vérité opérationnelle » là où les services de renseignement
+                        classiques sont submergés par le volume d'informations.
+                    </li>
+                </ul>
+
+                <hr class="article-divider">
+
+                <h2>Analyse</h2>
+                <p>
+                    Ce que révèle le cas Palantir, c'est une privatisation rampante des capacités de guerre. 
+                    Une entreprise cotée en bourse décide désormais, en partie, qui est une cible et comment 
+                    les données de renseignement sont interprétées.
+                </p>
+                <blockquote>
+                    « Palantir ne vend pas un logiciel. Il vend une épistémologie de la guerre. »
+                    — Olivier Tesquet, journaliste à Télérama
+                </blockquote>
+                <p>
+                    La question posée n'est plus technique mais politique : peut-on déléguer la décision de vie
+                    ou de mort à un algorithme propriétaire dont le code source est classifié ?
+                </p>
+
+                <hr class="article-divider">
+
+                <h2>Implications pour la cybersécurité</h2>
+                <p>
+                    Au-delà du champ militaire, la montée en puissance de Palantir dans les administrations civiles
+                    (NHS au Royaume-Uni, police prédictive en France) soulève des enjeux directs pour les
+                    professionnels de la cybersécurité :
+                </p>
+                <ul>
+                    <li>Centralisation massive de données sensibles sur une infrastructure privée américaine</li>
+                    <li>Opacité des modèles de décision automatisée (absence d'explicabilité)</li>
+                    <li>Risque de <em>vendor lock-in</em> souverain pour des États entiers</li>
+                    <li>Surface d'attaque critique : une seule cible pour paralyser des opérations militaires</li>
+                </ul>
+
+                <hr class="article-divider">
+
+                <h2>Conclusion</h2>
+                <p>
+                    Palantir incarne une nouvelle forme de puissance, hybride entre tech company et bras armé
+                    de l'État. Son expansion illustre le brouillage des frontières entre secteur privé et 
+                    défense nationale — un phénomène que tout acteur de la cybersécurité doit surveiller 
+                    de près.
+                </p>
+
+                <!-- Tags -->
+                <!-- Dans 2026-03-11-Palantir.html, remplace les tags par : -->
+                <div class="article-tags">
+                    <a href="../veilles/tags.html" class="tag">#Cyber</a>
+                    <a href="../veilles/tags.html?tag=Veille" class="tag">#Veille</a>
+                    <a href="../veilles/tags.html?tag=Palantir" class="tag">#Palantir</a>
+                    <a href="../veilles/tags.html?tag=IA" class="tag">#IA</a>
+                    <a href="../veilles/tags.html?tag=Défense" class="tag">#Défense</a>
+                    <a href="../veilles/tags.html?tag=Surveillance" class="tag">#Surveillance</a>
+                </div>
+
+            </div>
         </main>
 
         <!-- SIDEBAR DROITE -->
@@ -87,11 +303,16 @@
                 <div class="tag-cloud">
                     <span class="tag">Linux</span>
                     <span class="tag">Windows</span>
+                    <span class="tag">Cisco IOS</span>
                     <span class="tag">Docker</span>
                     <span class="tag">Wireshark</span>
                     <span class="tag">Nmap</span>
+                    <span class="tag">Metasploit</span>
+                    <span class="tag">Hashcat</span>
+                    <span class="tag">Active Directory</span>
                     <span class="tag">Python</span>
                     <span class="tag">Bash</span>
+                    <span class="tag">C#</span>
                 </div>
             </div>
             <br>
@@ -100,14 +321,23 @@
                 <div class="status-box">
                     <p>Certification <strong>Cisco CyberOps Associate</strong></p>
                     <p>Lab personnel : Cluster <strong>Proxmox</strong></p>
+                    <p>Lecture : <em>Technopolitique</em>, Asma Mhalla</p>
                 </div>
             </div>
+            <br>
+            <div class="widget">
+                <h3>Certifications</h3>
+                <ul class="cert-list">
+                    <li>Cyber Security 101 (THM)</li>
+                    <li>À venir...</li>
+                </ul>
+            </div>
         </aside>
+
     </div>
 
-    <script src="../script.js"></script>
+    <script src="../../script.js"></script>
     <script>
-        // Script pour le menu mobile (Sidebar Toggle)
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const searchBtn    = document.getElementById('searchBtn');
         const leftSidebar  = document.getElementById('leftSidebar');
@@ -121,29 +351,24 @@
             hamburgerBtn.classList.remove('open');
             document.body.style.overflow = '';
         }
+        function openLeft() {
+            closeAll();
+            leftSidebar.classList.add('open');
+            overlay.classList.add('active');
+            hamburgerBtn.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function openRight() {
+            closeAll();
+            rightSidebar.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
-        hamburgerBtn.addEventListener('click', () => {
-            if(leftSidebar.classList.contains('open')) closeAll();
-            else {
-                closeAll();
-                leftSidebar.classList.add('open');
-                overlay.classList.add('active');
-                hamburgerBtn.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-        });
-
-        searchBtn.addEventListener('click', () => {
-            if(rightSidebar.classList.contains('open')) closeAll();
-            else {
-                closeAll();
-                rightSidebar.classList.add('open');
-                overlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        });
-
+        hamburgerBtn.addEventListener('click', () => leftSidebar.classList.contains('open') ? closeAll() : openLeft());
+        searchBtn.addEventListener('click',    () => rightSidebar.classList.contains('open') ? closeAll() : openRight());
         overlay.addEventListener('click', closeAll);
+        leftSidebar.querySelectorAll('a').forEach(l => l.addEventListener('click', closeAll));
     </script>
 </body>
 </html>

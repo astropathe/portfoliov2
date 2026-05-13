@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tags | Paul Manoha</title>
+    <link rel="stylesheet" href="../../style.css">
+    <style>
+        /* ── Page Tags ── */
+
+        .tags-hero {
+            margin-bottom: 2rem;
+        }
+
+        .tags-hero h2 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Nuage de tags cliquables */
+        .tag-filter-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2.5rem;
+        }
+
+        .tag-filter {
+            background: #2d2d30;
+            color: #9da5b4;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            border: 1px solid #3e3e42;
+            cursor: pointer;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .tag-filter:hover {
+            color: #ffffff;
+            border-color: #58a6ff;
+        }
+
+        .tag-filter.active {
+            background: #1c3a5e;
+            color: #58a6ff;
+            border-color: #58a6ff;
+            font-weight: bold;
+        }
+
+        .tag-filter .count {
+            background: #3e3e42;
+            color: #6a737d;
+            font-size: 0.7rem;
+            padding: 1px 6px;
+            border-radius: 10px;
+            margin-left: 5px;
+        }
+
+        .tag-filter.active .count {
+            background: #2a5080;
+            color: #58a6ff;
+        }
+
+        /* Section résultats */
+        .results-header {
+            font-size: 0.82rem;
+            color: #6a737d;
+            margin-bottom: 1.2rem;
+            min-height: 1.2rem;
+        }
+
+        .results-header span {
+            color: #58a6ff;
+            font-weight: bold;
+        }
+
+        /* Carte article dans la page tags */
+        .tag-article-card {
+            background-color: #252529;
+            border: 1px solid #3e3e42;
+            border-radius: 12px;
+            margin-bottom: 1.2rem;
+            overflow: hidden;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .tag-article-card:hover {
+            transform: translateY(-3px);
+            border-color: #58a6ff;
+            background-color: #2a2a2e;
+        }
+
+        .tag-article-card a {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .tag-article-card .card-img {
+            flex-shrink: 0;
+            width: 110px;
+            height: 75px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .tag-article-card .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tag-article-card .card-body { flex: 1; }
+
+        .tag-article-card .card-type {
+            font-size: 0.72rem;
+            color: #6a737d;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .tag-article-card h3 {
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+            line-height: 1.4;
+        }
+
+        .tag-article-card p {
+            color: #9da5b4;
+            font-size: 0.82rem;
+            margin-bottom: 0.6rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .card-tag {
+            background: #2d2d30;
+            color: #9da5b4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            border: 1px solid #3e3e42;
+        }
+
+        .card-tag.highlighted {
+            background: #1c3a5e;
+            color: #58a6ff;
+            border-color: #58a6ff;
+        }
+
+        /* Message "aucun résultat" */
+        .no-results {
+            display: none;
+            text-align: center;
+            color: #6a737d;
+            padding: 3rem 1rem;
+        }
+
+        .no-results .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .no-results p { font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .tag-article-card .card-img {
+                width: 80px;
+                height: 60px;
+            }
+
+            .tag-article-card h3 { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+    </button>
+
+    <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+    </button>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="container">
+
+        <!-- SIDEBAR GAUCHE -->
+        <aside class="left-sidebar" id="leftSidebar">
+            <div class="profile-section">
+                <img src="../../photo/avatar.jpeg" alt="Avatar" class="avatar">
+                <h1>Paul Manoha</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">HOME</a></li>
+                    <li><a href="../experiences.html">EXPERIENCES</a></li>
+                    <li><a href="../projets.html">PROJETS</a></li>
+                    <li><a href="../about.html">ABOUT</a></li>
+                    <li><a href="../veilles.html">VEILLES</a></li>
+                    <li><a href="tags.html">TAGS</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="../photo/github.png" alt="GH"></a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../photo/linkedin.svg" alt="LI"></a>
+                <a href="#" title="Email"><img class="social-icons" src="../photo/mail.png" alt="@"></a>
+                <a href="https://www.root-me.org/astropathe" target="_blank" title="Root-Me"><img src="../photo/rootme.svg" alt="RM"></a>
+                <a href="https://tryhackme.com/p/astropathe" target="_blank" title="TryHackMe"><img src="../photo/tryhackme.svg" alt="THM"></a>
+            </div>
+        </aside>
+
+        <!-- CONTENU CENTRAL -->
+        <main class="content">
+            <header>
+                <a class="upper-path-links" href="../index.html">Home</a> > Tags
+            </header>
+
+            <!-- Nuage de tous les tags -->
+            <div class="tags-hero">
+                <h2>Parcourir par tag</h2>
+                <div class="tag-filter-cloud" id="tagCloud">
+                    <!-- Généré par JS -->
+                </div>
+            </div>
+
+            <!-- Résultats filtrés -->
+            <div class="results-header" id="resultsHeader"></div>
+
+            <div id="articleList">
+                <!-- Généré par JS -->
+            </div>
+
+            <div class="no-results" id="noResults">
+                <div class="icon">🔍</div>
+                <p>Aucun article pour ce tag.</p>
+            </div>
+        </main>
+
+        <!-- SIDEBAR DROITE -->
+        <aside class="right-sidebar" id="rightSidebar">
+            <div class="search-bar">
+                <input type="text" id="searchBar" placeholder="Search...">
+            </div>
+            <div class="widget">
+                <h3>Technical Stack</h3>
+                <div class="tag-cloud">
+                    <span class="tag">Linux</span>
+                    <span class="tag">Windows</span>
+                    <span class="tag">Cisco IOS</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Wireshark</span>
+                    <span class="tag">Nmap</span>
+                    <span class="tag">Metasploit</span>
+                    <span class="tag">Hashcat</span>
+                    <span class="tag">Active Directory</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Bash</span>
+                    <span class="tag">C#</span>
+                </div>
+            </div>
+            <br>
+            <div class="widget">
+                <h3>En cours</h3>
+                <div class="status-box">
+                    <p>Certification <strong>Cisco CyberOps Associate</strong></p>
+                    <p>Lab personnel : Cluster <strong>Proxmox</strong></p>
+                    <p>Lecture : <em>Technopolitique</em>, Asma Mhalla</p>
+                </div>
+            </div>
+            <br>
+            <div class="widget">
+                <h3>Certifications</h3>
+                <ul class="cert-list">
+                    <li>Cyber Security 101 (THM)</li>
+                    <li>À venir...</li>
+                </ul>
+            </div>
+        </aside>
+
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        /* =========================================================
+           BASE DE DONNÉES DES ARTICLES
+           → Pour ajouter un article : copie un objet et modifie-le.
+           ========================================================= */
+        const ARTICLES = [
+            {
+                title: "De l'Iran à la surveillance de masse : la double guerre de Palantir",
+                excerpt: "Le rôle de Palantir a radicalement basculé avec l'escalade des tensions entre les États-Unis et l'Iran. Le logiciel n'est plus un simple assistant, mais le « cerveau » des opérations.",
+                date: "11 Mars 2026",
+                type: "Veille",
+                tags: ["Cyber", "Veille", "Palantir", "IA", "Défense", "Surveillance"],
+                url: "veilles/2026-03-11-Palantir.html",
+                image: "../photo/veilles/palantir.jpg"
+            },
+            {
+                title: "Développement d'une extension Firefox",
+                excerpt: "Extension permettant de croiser ses sources automatiquement sur un site de news (LeMonde, BFMTV...).",
+                date: "15 Mai 2026",
+                type: "Projet",
+                tags: ["Dev", "Projet", "Firefox"],
+                url: "projets.html",
+                image: "../photo/debAIsing.png"
+            },
+            {
+                title: "Simulation de Phishing avec GoPhish",
+                excerpt: "Mise en place d'envois de mails de phishing dans mon établissement via le framework GoPhish.",
+                date: "15 Mai 2026",
+                type: "Projet",
+                tags: ["Cyber", "Projet", "Phishing", "Red Team"],
+                url: "projets.html",
+                image: "../photo/debAIsing.png"
+            }
+            /* ← Ajoute tes prochains articles ici */
+        ];
+
+        /* ── Moteur de tags ── */
+        let activeTag = null;
+
+        // 1. Compte les occurrences de chaque tag
+        function buildTagCounts() {
+            const counts = {};
+            ARTICLES.forEach(a => a.tags.forEach(t => {
+                counts[t] = (counts[t] || 0) + 1;
+            }));
+            return counts;
+        }
+
+        // 2. Génère le nuage de tags
+        function renderTagCloud() {
+            const counts = buildTagCounts();
+            const cloud  = document.getElementById('tagCloud');
+            cloud.innerHTML = '';
+
+            // Tri alphabétique
+            Object.keys(counts).sort().forEach(tag => {
+                const btn = document.createElement('button');
+                btn.className = 'tag-filter' + (tag === activeTag ? ' active' : '');
+                btn.innerHTML = `#${tag} <span class="count">${counts[tag]}</span>`;
+                btn.addEventListener('click', () => toggleTag(tag));
+                cloud.appendChild(btn);
+            });
+        }
+
+        // 3. Active/désactive un tag
+        function toggleTag(tag) {
+            activeTag = activeTag === tag ? null : tag;
+
+            // Lire le paramètre URL
+            const url = new URL(window.location);
+            if (activeTag) url.searchParams.set('tag', activeTag);
+            else url.searchParams.delete('tag');
+            history.replaceState({}, '', url);
+
+            renderTagCloud();
+            renderArticles();
+        }
+
+        // 4. Génère la liste des articles filtrés
+        function renderArticles() {
+            const list   = document.getElementById('articleList');
+            const header = document.getElementById('resultsHeader');
+            const empty  = document.getElementById('noResults');
+
+            const filtered = activeTag
+                ? ARTICLES.filter(a => a.tags.includes(activeTag))
+                : ARTICLES;
+
+            // En-tête résultats
+            if (activeTag) {
+                header.innerHTML = `<span>${filtered.length}</span> article${filtered.length > 1 ? 's' : ''} tagué${filtered.length > 1 ? 's' : ''} <span>#${activeTag}</span>`;
+            } else {
+                header.innerHTML = `Tous les articles <span>(${ARTICLES.length})</span>`;
+            }
+
+            // Affichage vide
+            if (filtered.length === 0) {
+                list.innerHTML = '';
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+
+            // Cartes
+            list.innerHTML = filtered.map(a => `
+                <div class="tag-article-card">
+                    <a href="${a.url}">
+                        <div class="card-img">
+                            <img src="${a.image}" alt="${a.title}" onerror="this.parentElement.style.display='none'">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-type">${a.type} · ${a.date}</div>
+                            <h3>${a.title}</h3>
+                            <p>${a.excerpt}</p>
+                            <div class="card-tags">
+                                ${a.tags.map(t =>
+                                    `<span class="card-tag ${t === activeTag ? 'highlighted' : ''}">#${t}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // 5. Lecture du tag depuis l'URL (ex: tags.html?tag=Cyber)
+        function init() {
+            const params = new URLSearchParams(window.location.search);
+            activeTag = params.get('tag') || null;
+            renderTagCloud();
+            renderArticles();
+        }
+
+        init();
+
+        /* ── Menu mobile ── */
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const searchBtn    = document.getElementById('searchBtn');
+        const leftSidebar  = document.getElementById('leftSidebar');
+        const rightSidebar = document.getElementById('rightSidebar');
+        const overlay      = document.getElementById('sidebarOverlay');
+
+        function closeAll() {
+            leftSidebar.classList.remove('open');
+            rightSidebar.classList.remove('open');
+            overlay.classList.remove('active');
+            hamburgerBtn.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function openLeft() {
+            closeAll();
+            leftSidebar.classList.add('open');
+            overlay.classList.add('active');
+            hamburgerBtn.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function openRight() {
+            closeAll();
+            rightSidebar.classList.add('open');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        hamburgerBtn.addEventListener('click', () => leftSidebar.classList.contains('open') ? closeAll() : openLeft());
+        searchBtn.addEventListener('click',    () => rightSidebar.classList.contains('open') ? closeAll() : openRight());
+        overlay.addEventListener('click', closeAll);
+        leftSidebar.querySelectorAll('a').forEach(l => l.addEventListener('click', closeAll));
+    </script>
+</body>
+</html>
