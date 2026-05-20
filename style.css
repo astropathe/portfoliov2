@@ -495,3 +495,24 @@ body {
     border-color: #58a6ff;
     background-color: #2a2a2e;
 }
+
+
+/* --- Style des liens de sources d'articles --- */
+
+.source-link {
+    color: #58a6ff;         /* Un bleu propre (identique à tes catégories) */
+    text-decoration: none;  /* Enlève le soulignement permanent pas très esthétique */
+    font-weight: 500;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+/* Force la couleur à rester bleue MÊME si tu as déjà cliqué dessus (évite le violet) */
+.source-link:visited {
+    color: #58a6ff;
+}
+
+/* Effet au survol : le lien s'éclaire et se souligne subtilement */
+.source-link:hover {
+    color: #79c0ff;
+    text-decoration: underline; /* Le soulignement n'apparaît qu'au survol */
+}

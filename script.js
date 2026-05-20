@@ -31,7 +31,8 @@ const commands = {
     about: "Étudiant en BTS SIO SISR passionné par cybersécurité.",
     skills: "Linux, Cisco, Docker, Proxmox, Wireshark.",
     projects: "Regardez la section Projets à gauche !",
-    whoami: "paul_manoha (uid=1000)"
+    whoami: "paul_manoha (uid=1000)",
+    shutdown : "Bien essayé mais non ! "
 };
 
 input.addEventListener('keydown', (e) => {
