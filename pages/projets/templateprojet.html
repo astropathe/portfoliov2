@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet | Paul Manoha</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+    </button>
+    <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    </button>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="container">
+        <aside class="left-sidebar" id="leftSidebar">
+            <div class="profile-section">
+                <img src="../../photo/avatar.jpeg" alt="Avatar" class="avatar">
+                <h1>Paul Manoha</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">HOME</a></li>
+                    <li><a href="experiences.html">EXPERIENCES</a></li>
+                    <li><a href="projets.html" class="active">PROJETS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="veilles.html">VEILLES</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="https://github.com/astropathe" target="_blank"><img src="../../photo/github.png" alt="GH"></a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank"><img src="../../photo/linkedin.svg" alt="LI"></a>
+                <a href="mailto:ton-email@exemple.com"><img class="social-icons" src="../../photo/mail.png" alt="@"></a>
+                <a href="https://www.root-me.org/astropathe" target="_blank"><img src="../../photo/rootme.svg" alt="RM"></a>
+                <a href="https://tryhackme.com/p/astropathe" target="_blank"><img src="../../photo/tryhackme.svg" alt="THM"></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header>
+                <a class="upper-path-links" href="../index.html">Home</a> > <a class="upper-path-links" href="projets.html">Projets</a> > Writeup Lab
+            </header>
+
+            <article class="project-article">
+                <h1 class="project-title">Déploiement d'un Honeypot & Analyse des logs d'attaque</h1>
+                
+                <div class="project-meta-tags">
+                    <span class="tag">#Proxmox</span>
+                    <span class="tag">#Linux</span>
+                    <span class="tag">#Splunk</span>
+                    <span class="tag">#Cyber</span>
+                </div>
+
+                <p class="project-intro">
+                    L'objectif de ce projet était de mettre en place un conteneur Honeypot SSH (Cowrie) isolé au sein d'un cluster Proxmox afin d'analyser les comportements d'attaquants en temps réel et de centraliser les métriques.
+                </p>
+
+                <div class="demo-box info-alert">
+                    <div class="demo-title">⚠️ Isolation Réseau (⚠️ Crucial)</div>
+                    <p>Le conteneur a été déployé dans une DMZ dédiée avec des règles de pare-feu strictes empéchant tout trafic sortant vers le LAN principal pour éviter les pivots.</p>
+                </div>
+
+                <h2>1. Architecture du Lab</h2>
+                <p>Voici la topologie réseau implémentée pour la capture de paquets malveillants :</p>
+
+                <div class="demo-box visual-demo">
+                    <div class="demo-title">📷 Topologie ou Capture d'écran du Dashboard</div>
+                    <div class="media-container">
+                        <img src="../../photo/projets/demo-lab.jpg" alt="Aperçu du projet" class="demo-img-fallback">
+                    </div>
+                </div>
+
+                <h2>2. Script de monitoring des connexions</h2>
+                <p>Ce script Bash permet d'extraire rapidement les adresses IP des attaquants qui tentent de forcer l'accès bruteforce :</p>
+
+                <div class="demo-box code-demo">
+                    <div class="demo-title">📄 auth_parser.sh</div>
+                    <pre><code>#!/list/bash
+# Extraction des IP uniques tentant des connexions Root
+LOG_FILE="/var/log/cowrie/cowrie.log"
+
+if [ -f "$LOG_FILE" ]; then
+    grep "login attempt" "$LOG_FILE" | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | sort -u
+else
+    echo "Fichier de log introuvable."
+fi</code></pre>
+                </div>
+
+                <h2>3. Résultats obtenus</h2>
+                <p>En l'espace de 48 heures d'exposition sur l'adresse IP publique du Lab, nous avons recensé plus de 12 000 tentatives d'authentification infructueuses, principalement en provenance de bots automatisés.</p>
+            </article>
+        </main>
+
+        <aside class="right-sidebar" id="rightSidebar">
+            <div class="widget">
+                <h3>Détails Projet</h3>
+                <div class="status-box">
+                    <p><strong>Rôle :</strong> Administrateur Sys/Sec</p>
+                    <p><strong>Durée :</strong> 1 semaine</p>
+                    <p><strong>Statut :</strong> Terminé ✅</p>
+                </div>
+            </div>
+            <br>
+            <div class="widget">
+                <h3>Dépôt</h3>
+                <a href="https://github.com/astropathe" target="_blank" class="source-link">
+                    <img src="../../photo/github.png" style="width:16px; filter:invert(100%); vertical-align:middle; margin-right:5px;"> Voir les scripts
+                </a>
+            </div>
+        </aside>
+    </div>
+
+    <script src="../../script.js"></script>
+    <script>
+        // Code JavaScript identique pour le support du menu mobile
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const searchBtn    = document.getElementById('searchBtn');
+        const leftSidebar  = document.getElementById('leftSidebar');
+        const rightSidebar = document.getElementById('rightSidebar');
+        const overlay      = document.getElementById('sidebarOverlay');
+
+        function closeAll() {
+            leftSidebar.classList.remove('open'); rightSidebar.classList.remove('open');
+            overlay.classList.remove('active'); hamburgerBtn.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        hamburgerBtn.addEventListener('click', () => leftSidebar.classList.contains('open') ? closeAll() : (() => { closeAll(); leftSidebar.classList.add('open'); overlay.classList.add('active'); hamburgerBtn.classList.add('open'); document.body.style.overflow = 'hidden'; })());
+        searchBtn.addEventListener('click', () => rightSidebar.classList.contains('open') ? closeAll() : (() => { closeAll(); rightSidebar.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; })());
+        overlay.addEventListener('click', closeAll);
+    </script>
+</body>
+</html>
