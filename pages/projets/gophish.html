@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation Phishing | Paul Manoha</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+    </button>
+    <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    </button>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="container">
+        <aside class="left-sidebar" id="leftSidebar">
+            <div class="profile-section">
+                <img src="../../photo/avatar.jpeg" alt="Avatar" class="avatar">
+                <h1>Paul Manoha</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">HOME</a></li>
+                    <li><a href="experiences.html">EXPERIENCES</a></li>
+                    <li><a href="projets.html" class="active">PROJETS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="veilles.html">VEILLES</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="https://github.com/astropathe" target="_blank"><img src="../../photo/github.png" alt="GH"></a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank"><img src="../../photo/linkedin.svg" alt="LI"></a>
+                <a href="mailto:ton-email@exemple.com"><img class="social-icons" src="../../photo/mail.png" alt="@"></a>
+                <a href="https://www.root-me.org/astropathe" target="_blank"><img src="../../photo/rootme.svg" alt="RM"></a>
+                <a href="https://tryhackme.com/p/astropathe" target="_blank"><img src="../../photo/tryhackme.svg" alt="THM"></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header>
+                <a class="upper-path-links" href="../index.html">Home</a> > <a class="upper-path-links" href="projets.html">Projets</a> > Simulation Phishing
+            </header>
+
+            <article class="project-article">
+                <h1 class="project-title">Campagne de Phishing Pédagogique & Sensibilisation</h1>
+                
+                <div class="project-meta-tags">
+                    <span class="tag">#Gophish</span>
+                    <span class="tag">#RaspberryPi</span>
+                    <span class="tag">#Cloudflare</span>
+                    <span class="tag">#Tailscale</span>
+                    <span class="tag">#Cybersecurity</span>
+                </div>
+
+                <p class="project-intro">
+                    L'objectif de ce projet mené en équipe était de concevoir, déployer et analyser une campagne de simulation d'attaque par ingénierie sociale (Phishing) au sein d'un établissement d'enseignement afin de mesurer la vulnérabilité des utilisateurs et d'éditer un support concret de prévention.
+                </p>
+
+                <div class="demo-box info-alert">
+                    <div class="demo-title">⚠️ Éthique & Confidentialité (RGPD)</div>
+                    <p>Conformément à la réglementation, aucune donnée d'authentification (mot de passe) n'a été interceptée ni stockée en clair. Le framework a été configuré pour capturer uniquement l'événement de soumission du formulaire pour des besoins statistiques anonymes.</p>
+                </div>
+
+                <h2>1. Architecture Technique et Réseau</h2>
+                <p>Pour assurer l'hébergement de la plateforme open-source <strong>Gophish</strong>, nous avons déployé une infrastructure résiliente et sécurisée basée sur un serveur local exposé de manière contrôlée :</p>
+                <ul>
+                    <li><strong>Serveur d'hébergement :</strong> Un Raspberry Pi 5 équipé de Pi OS Lite, assurant un rôle de serveur dédié basse consommation en ligne de commande.</li>
+                    <li><strong>Exposition Externe :</strong> Utilisation d'un <strong>Tunnel Cloudflare</strong> pour publier la Landing Page en HTTPS (domaine <code>.trycloudflare.com</code>) sans ouverture de port critique sur le routeur de l'infrastructure d'accueil.</li>
+                    <li><strong>Administration Distante :</strong> Configuration d'un VPN Mesh avec <strong>Tailscale</strong> pour manager l'infrastructure SSH et superviser l'outil d'administration Gophish de façon isolée.</li>
+                </ul>
+
+                <div class="demo-box visual-demo">
+                    <div class="demo-title">📷 Supervision du Dashboard Gophish (Analyse en Temps Réel)</div>
+                    <div class="media-container">
+                        <img src="../../photo/phishing.png" alt="Dashboard Gophish" class="demo-img-fallback">
+                    </div>
+                </div>
+
+                <h2>2. Conception des Leurres : Email & Landing Page Templates</h2>
+                <p>La crédibilité du scénario reposait entièrement sur la fidélité visuelle des interfaces présentées aux cibles. Nous avons configuré deux éléments majeurs dans Gophish :</p>
+                <ul>
+                    <li><strong>L'Email Template :</strong> Création d'un message au format HTML usurpant l'identité visuelle de Microsoft. Le texte exploitait le levier psychologique de l'urgence en simulant une tentative de connexion suspecte et en exigeant une réinitialisation immédiate du mot de passe via un bouton d'action.</li>
+                    <li><strong>La Landing Page :</strong> Clone de la page d'authentification officielle <code>login.live.com</code>. J'ai importé et nettoyé le code source HTML/CSS original pour assurer un rendu graphique identique sur navigateur (desktop et mobile) et optimiser le taux de conversion de la simulation.</li>
+                </ul>
+
+                <div class="demo-box visual-demo">
+                    <div class="demo-title">📷 Aperçu des Modèles (Email Microsoft & Page de Connexion Clônée)</div>
+                    <div class="media-container" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <img src="../../photo/projets/gophish/mail.png" alt="Template Email Phishing" class="demo-img-fallback" style="flex: 1; min-width: 250px;">
+                        <img src="../../photo/projets/gophish/landingpage.png" alt="Template Landing Page" class="demo-img-fallback" style="flex: 1; min-width: 250px;">
+                    </div>
+                </div>
+
+                <h2>3. Automatisation & Résilience : Script de Sauvegarde</h2>
+                <p>La base de données Gophish reposant sur un fichier de type <strong>SQLite</strong> (<code>gophish.db</code>), j'ai écrit et planifié un script Bash pour automatiser l'arrêt propre du service et la sauvegarde à chaud afin de prévenir toute corruption de données :</p>
+
+                <div class="demo-box code-demo">
+                    <div class="demo-title">📄 backup_gophish.sh</div>
+                    <pre><code>#!/bin/bash
+# Automatisation de l'archivage de la base de données Gophish
+BACKUP_DIR="/home/astropathe/backups"
+DB_PATH="/opt/gophish/gophish.db"
+DATE=$(date +%Y-%m-%d_%H-%m)
+
+echo "[*] Arrêt du service Gophish..."
+sudo systemctl stop gophish
+
+if [ -f "$DB_PATH" ]; then
+    echo "[*] Copie et compression de la base de données..."
+    cp "$DB_PATH" "$BACKUP_DIR/gophish_$DATE.db"
+    echo "[+] Sauvegarde réussie : gophish_$DATE.db"
+else
+    echo "[-] Erreur : Fichier de base de données introuvable."
+fi
+
+echo "[*] Redémarrage du service Gophish..."
+sudo systemctl start gophish</code></pre>
+                </div>
+
+                <h2>4. Analyse Post-Campagne et Livrables</h2>
+                <p>Les envois ont été séquencés par vagues horaires (Staggered Sending) afin de contourner les détections heuristiques basiques. L'analyse fine des résultats a permis de mettre en évidence des comportements cibles précieux :</p>
+                <ul>
+                    <li><strong>Incident et Résilience technique :</strong> Gestion des restrictions de quotas SMTP imposés par le relais Gmail (limitation d'envois à 500 messages par tranche de 24h glissantes) ayant nécessité une mise en conformité de la file d'attente d'envois.</li>
+                    <li><strong>Livrable de Remédiation :</strong> Conception complète d'un flyer de sensibilisation détaillant les indicateurs de compromission visibles sur notre attaque (analyse de l'en-tête de l'expéditeur, détournement de l'URL Cloudflare, et la relativité de la sécurité liée au certificat SSL du cadenas).</li>
+                </ul>
+            </article>
+        </main>
+
+        <aside class="right-sidebar" id="rightSidebar">
+            <div class="widget">
+                <h3>Détails Projet</h3>
+                <div class="status-box">
+                    <p><strong>Rôle :</strong> Admin Sys / Sec Ops</p>
+                    <p><strong>Durée :</strong> 12 semaines</p>
+                    <p><strong>Cadre :</strong> Projet PPE</p>
+                    <p><strong>Statut :</strong> Terminé ✅</p>
+                </div>
+            </div>
+            <br>
+            <div class="widget">
+                <h3>Dépôt</h3>
+                <a href="https://github.com/astropathe" target="_blank" class="source-link">
+                    <img src="../../photo/github.png" style="width:16px; filter:invert(100%); vertical-align:middle; margin-right:5px;" alt="GitHub"> Voir les scripts
+                </a>
+            </div>
+        </aside>
+    </div>
+
+    <script src="../../script.js"></script>
+    <script>
+        // Code JavaScript pour le support du menu mobile
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const searchBtn    = document.getElementById('searchBtn');
+        const leftSidebar  = document.getElementById('leftSidebar');
+        const rightSidebar = document.getElementById('rightSidebar');
+        const overlay      = document.getElementById('sidebarOverlay');
+
+        function closeAll() {
+            leftSidebar.classList.remove('open'); rightSidebar.classList.remove('open');
+            overlay.classList.remove('active'); hamburgerBtn.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        hamburgerBtn.addEventListener('click', () => leftSidebar.classList.contains('open') ? closeAll() : (() => { closeAll(); leftSidebar.classList.add('open'); overlay.classList.add('active'); hamburgerBtn.classList.add('open'); document.body.style.overflow = 'hidden'; })());
+        searchBtn.addEventListener('click', () => rightSidebar.classList.contains('open') ? closeAll() : (() => { closeAll(); rightSidebar.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; })());
+        overlay.addEventListener('click', closeAll);
+    </script>
+</body>
+</html>

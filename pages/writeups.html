@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writeups | Paul Manoha</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+    </button>
+    <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+    </button>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="container">
+        <aside class="left-sidebar" id="leftSidebar">
+            <div class="profile-section">
+                <img src="../photo/avatar.jpeg" alt="Avatar" class="avatar">
+                <h1>Paul Manoha</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">HOME</a></li>
+                    <li><a href="experiences.html">EXPERIENCES</a></li>
+                    <li><a href="projets.html">PROJETS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="veilles.html">VEILLES</a></li>
+                    <li><a href="writeups.html" class="active">WRITEUPS</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="https://github.com/astropathe" target="_blank"><img src="../photo/github.png" alt="GH"></a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank"><img src="../photo/linkedin.svg" alt="LI"></a>
+                <a href="mailto:ton-email@exemple.com"><img class="social-icons" src="../photo/mail.png" alt="@"></a>
+                <a href="https://www.root-me.org/astropathe" target="_blank"><img src="../photo/rootme.svg" alt="RM"></a>
+                <a href="https://tryhackme.com/p/astropathe" target="_blank"><img src="../photo/tryhackme.svg" alt="THM"></a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header>
+                <a class="upper-path-links" href="../index.html">Home</a> > Writeups & CTF
+            </header>
+
+            <section class="filter-section">
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="all">Tous</button>
+                    <button class="filter-btn" data-filter="hackerone">HackerOne</button>
+                    <button class="filter-btn" data-filter="yeswehack">YesWeHack</button>
+                    <button class="filter-btn" data-filter="yeswehack">Intigriti</button>
+                </div>
+                
+                <div class="filter-group">
+                    <button class="filter-btn sub-filter" data-type="all">Tous types</button>
+                    <button class="filter-btn sub-filter" data-type="web">Web</button>
+                    <button class="filter-btn sub-filter" data-type="android">Android</button>
+                    <button class="filter-btn sub-filter" data-type="bugbounty">Bug Bounty</button>
+                </div>
+            </section>
+
+            <section class="post-list" id="writeups-list">
+
+                <article class="post-card" data-platform="intigriti" data-category="bugbounty">
+                    <a href="#">
+                        <div class="post-content">
+                            <h2>Challenge 0526 - Intigriti</h2>
+                            <p>Une vulnérabilité de type IDOR combinée à des failles XSS permettant d'activer une fenetre d'alerte depuis un espace de posts.</p>
+                            <div class="post-meta">
+                                <span class="date"><i class="far fa-calendar"></i> 22 Mai 2026</span>
+                                <span class="category"><i class="fas fa-flag"></i> #HackerOne #Android</span>
+                            </div>
+                        </div>
+                        <div class="post-image">
+                            <img src="../photo/writeups/intigriti/Screenshot_20260521_155424.png" alt="Aperçu Oauthbreaker">
+                        </div>
+                    </a>
+                </article>
+
+                <article class="post-card" data-platform="yeswehack" data-category="bugbounty">
+                    <a href="#">
+                        <div class="post-content">
+                            <h2>Challenge of the month #51 - YesWeHack</h2>
+                            <p>Une vulnérabilité de contournement d'authentification, combinée à une faille Path Travel (« Zip Slip ») dans le composant d'extraction du plugin, permet à des attaquants non authentifiés d'exécuter du code arbitraire (RCE) sur le serveur sous-jacent.</p>
+                            <div class="post-meta">
+                                <span class="date"><i class="far fa-calendar"></i> 22 Mai 2026</span>
+                                <span class="category"><i class="fas fa-flag"></i> #HackerOne #Android</span>
+                            </div>
+                        </div>
+                        <div class="post-image">
+                            <img src="../photo/writeups/yeswehack/challdogo-51.png" alt="Aperçu Oauthbreaker">
+                        </div>
+                    </a>
+                </article>
+
+                <article class="post-card" data-platform="hackerone" data-category="android">
+                    <a href="#">
+                        <div class="post-content">
+                            <h2> Oauthbreaker - HackerOne CTF 101</h2>
+                            <p>L'application simule un flux d'authentification OAuth. Elle expose deux vulnérabilités : un Open Redirect sur le paramètre redirect_url, et une exposition dangereuse d'une interface JavaScript dans une WebView</p>
+                            <div class="post-meta">
+                                <span class="date"><i class="far fa-calendar"></i> 22 Mai 2026</span>
+                                <span class="category"><i class="fas fa-flag"></i> #HackerOne #Android</span>
+                            </div>
+                        </div>
+                        <div class="post-image">
+                            <img src="../photo/writeups/hackerone/Screenshot_20260522_154032.png" alt="Aperçu Oauthbreaker">
+                        </div>
+                    </a>
+                </article>
+
+                <article class="post-card" data-platform="hackerone" data-category="android">
+                    <a href="#">
+                        <div class="post-content">
+                            <h2>Intentional Exercise - HackerOne CTF 101</h2>
+                            <p>L'application charge une WebView dont l'URL est authentifiée via un hash SHA-256. La clé secrète est codée en dur dans le code source. L'objectif est de forger un hash valide pour accéder à l'endpoint /flagBearer.</p>
+                            <div class="post-meta">
+                                <span class="date"><i class="far fa-calendar"></i> 22 Mai 2026</span>
+                                <span class="category"><i class="fas fa-flag"></i> #HackerOne #Android</span>
+                            </div>
+                        </div>
+                        <div class="post-image">
+                            <img src="../photo/writeups/hackerone/Screenshot_20260522_153849.png" alt="Aperçu IE">
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="post-card" data-platform="hackerone" data-category="web">
+                    <a href="#">
+                        <div class="post-content">
+                            <h2>Postbook - HackerOne CTF 101</h2>
+                            <p>Postbook est une application web de type réseau social simplifié. Les vulnérabilités exploitées sont classiques : mots de passe triviaux, IDOR (Insecure Direct Object Reference), manipulation de champs cachés, et tokens de session prédictibles.</p>
+                            <div class="post-meta">
+                                <span class="date"><i class="far fa-calendar"></i> 22 Mai 2026</span>
+                                <span class="category"><i class="fas fa-flag"></i> #HackerOne #Web</span>
+                            </div>
+                        </div>
+                        <div class="post-image">
+                            <img src="../photo/writeups/hackerone/Screenshot_20260522_150638.png" alt="Aperçu Postbook">
+                        </div>
+                    </a>
+                </article>
+
+                <article class="post-card" data-platform="hackerone" data-category="android">
+                    <a href="#">
+                        <div class="post-content">
+                            <h2>H1 Thermostat - HackerOne CTF 101</h2>
+                            <p>H1 Thermostat est une application Android simulant un thermostat connecté. Les deux flags sont cachés dans le code source Java de l'APK, dans la classe PayloadRequest.java.</p>
+                            <div class="post-meta">
+                                <span class="date"><i class="far fa-calendar"></i> 22 Mai 2026</span>
+                                <span class="category"><i class="fas fa-flag"></i> #HackerOne #Android</span>
+                            </div>
+                        </div>
+                        <div class="post-image">
+                            <img src="../photo/writeups/hackerone/thermostat.png" alt="Aperçu Thermo">
+                        </div>
+                    </a>
+                </article>
+                
+            </section>
+        </main>
+
+        <aside class="right-sidebar" id="rightSidebar">
+            <div class="search-bar">
+                <input type="text" id="searchBar" placeholder="Rechercher un writeup...">
+            </div>
+            <div class="widget">
+                <h3>Statistiques CTF</h3>
+                <div class="status-box">
+                    <p><strong>Root-Me :</strong> Top 6% </p>
+                    <p><strong>TryHackMe :</strong> Top 15%</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        const platformButtons = document.querySelectorAll('.filter-btn:not(.sub-filter)');
+        const typeButtons = document.querySelectorAll('.sub-filter');
+        // FIX : On cible .post-card car l'article englobe le lien
+        const cards = document.querySelectorAll('.post-card');
+        const searchInput = document.getElementById('searchBar');
+
+        let currentPlatform = 'all';
+        let currentType = 'all';
+
+        function filterWriteups() {
+            const searchText = searchInput.value.toLowerCase();
+
+            cards.forEach(card => {
+                const matchesPlatform = (currentPlatform === 'all' || card.getAttribute('data-platform') === currentPlatform);
+                const matchesType = (currentType === 'all' || card.getAttribute('data-category') === currentType);
+                
+                const title = card.querySelector('h2').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                const matchesSearch = title.includes(searchText) || description.includes(searchText);
+
+                if (matchesPlatform && matchesType && matchesSearch) {
+                    card.style.display = 'block'; // On affiche l'article
+                } else {
+                    card.style.display = 'none';  // On masque l'article
+                }
+            });
+        }
+
+        platformButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                platformButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentPlatform = btn.getAttribute('data-filter');
+                filterWriteups();
+            });
+        });
+
+        typeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                typeButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentType = btn.getAttribute('data-type');
+                filterWriteups();
+            });
+        });
+
+        searchInput.addEventListener('input', filterWriteups);
+
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const leftSidebar  = document.getElementById('leftSidebar');
+        const overlay      = document.getElementById('sidebarOverlay');
+        function closeAll() { leftSidebar.classList.remove('open'); overlay.classList.remove('active'); hamburgerBtn.classList.remove('open'); document.body.style.overflow = ''; }
+        hamburgerBtn.addEventListener('click', () => leftSidebar.classList.contains('open') ? closeAll() : (() => { closeAll(); leftSidebar.classList.add('open'); overlay.classList.add('active'); hamburgerBtn.classList.add('open'); document.body.style.overflow = 'hidden'; })());
+        overlay.addEventListener('click', closeAll);
+    </script>
+</body>
+</html>
