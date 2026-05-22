@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Template Projet | Paul Manoha</title>
+    <title>DebAIsing | Paul Manoha</title>
     <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
@@ -44,56 +44,68 @@
 
         <main class="content">
             <header>
-                <a class="upper-path-links" href="../index.html">Home</a> > <a class="upper-path-links" href="projets.html">Projets</a> > Writeup Lab
+                <a class="upper-path-links" href="../index.html">Home</a> > <a class="upper-path-links" href="projets.html">Projets</a> > DebAIsing
             </header>
 
             <article class="project-article">
-                <h1 class="project-title">Déploiement d'un Honeypot & Analyse des logs d'attaque</h1>
+                <h1 class="project-title">DebAIsing — Extension IA d'Analyse et de Neutralisation des Biais Médiatiques</h1>
                 
                 <div class="project-meta-tags">
-                    <span class="tag">#Proxmox</span>
-                    <span class="tag">#Linux</span>
-                    <span class="tag">#Splunk</span>
-                    <span class="tag">#Cyber</span>
+                    <span class="tag">#JavaScript</span>
+                    <span class="tag">#Extension-Web</span>
+                    <span class="tag">#Gemini-API</span>
+                    <span class="tag">#Cyber-Privacy</span>
                 </div>
 
                 <p class="project-intro">
-                    L'objectif de ce projet était de mettre en place un conteneur Honeypot SSH (Cowrie) isolé au sein d'un cluster Proxmox afin d'analyser les comportements d'attaquants en temps réel et de centraliser les métriques.
+                    L'objectif de <strong>DebAIsing</strong> était de concevoir une extension de navigateur (Firefox/Chrome) capable de briser les bulles de filtre et de détecter en temps réel les biais cognitifs, émotionnels ou partisans dans les titres de la presse écrite grand public.
                 </p>
 
                 <div class="demo-box info-alert">
-                    <div class="demo-title">⚠️ Isolation Réseau (⚠️ Crucial)</div>
-                    <p>Le conteneur a été déployé dans une DMZ dédiée avec des règles de pare-feu strictes empéchant tout trafic sortant vers le LAN principal pour éviter les pivots.</p>
+                    <div class="demo-title">🛡️ Sécurité & Confidentialité des Données (Privacy by Design)</div>
+                    <p>Pour éviter l'exfiltration ou le vol des clés d'API (notamment lors des pushs publics sur GitHub), l'architecture utilise le stockage local chiffré du navigateur (<code>chrome.storage.local</code>). La clé de l'utilisateur n'est jamais écrite en dur dans le code source.</p>
                 </div>
 
-                <h2>1. Architecture du Lab</h2>
-                <p>Voici la topologie réseau implémentée pour la capture de paquets malveillants :</p>
+                <h2>1. Mécanisme de capture universel</h2>
+                <p>Le principal défi technique consistait à créer un script d'injection (Content Script) résistant aux surcouches CSS agressives et aux structures de DOM dynamiques des sites complexes comme <i>Le Figaro</i> ou <i>Le Monde</i>.</p>
 
                 <div class="demo-box visual-demo">
-                    <div class="demo-title">📷 Topologie ou Capture d'écran du Dashboard</div>
+                    <div class="demo-title">📷 Interface utilisateur et rendu de l'Analyse IA</div>
                     <div class="media-container">
-                        <img src="../../photo/projets/demo-lab.jpg" alt="Aperçu du projet" class="demo-img-fallback">
+                        <img src="../../photo/debAIsing.png" alt="Aperçu de l'extension DebAIsing" class="demo-img-fallback">
                     </div>
                 </div>
 
-                <h2>2. Script de monitoring des connexions</h2>
-                <p>Ce script Bash permet d'extraire rapidement les adresses IP des attaquants qui tentent de forcer l'accès bruteforce :</p>
+                <h2>2. Requêtage asynchrone et isolation de l'API</h2>
+                <p>Ce fragment issu de <code>panel.js</code> gère la communication asynchrone avec le modèle <strong>Gemini 1.5 Flash</strong> via un flux sécurisé, afin d'obtenir une réponse structurée en moins de 2 secondes :</p>
 
                 <div class="demo-box code-demo">
-                    <div class="demo-title">📄 auth_parser.sh</div>
-                    <pre><code>#!/list/bash
-# Extraction des IP uniques tentant des connexions Root
-LOG_FILE="/var/log/cowrie/cowrie.log"
+                    <div class="demo-title">📄 panel.js (Extrait Appel API)</div>
+                    <pre><code>const prompt = `Tu es un expert en analyse médiatique. Analyse le biais du titre : "${titre}". 
+Donne une réponse courte avec :
+1. Le ton (ex: Alarmiste, Neutre, Partisan).
+2. Les mots porteurs de biais s'il y en a.
+3. Une proposition de titre purement factuel.`;
 
-if [ -f "$LOG_FILE" ]; then
-    grep "login attempt" "$LOG_FILE" | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b" | sort -u
-else
-    echo "Fichier de log introuvable."
-fi</code></pre>
+const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+});
+
+const data = await response.json();
+if (data.candidates && data.candidates[0]) {
+    displayIA.innerText = data.candidates[0].content.parts[0].text;
+}</code></pre>
                 </div>
 
-                <h2>3. Résultats obtenus</h2>
-                <p>En l'espace de 48 heures d'exposition sur l'adresse IP publique du Lab, nous avons recensé plus de 12 000 tentatives d'authentification infructueuses, principalement en provenance de bots automatisés.</p>
+                <h2>3. Fonctionnalités Implémentées</h2>
+                <p>L'extension est aujourd'hui capable de :</p>
+                <ul>
+                    <li>Injecter de manière stable un bouton neutre via la méthode CSS avancée <code>all: initial</code> pour contourner les protections de style des éditeurs.</li>
+                    <li>Extraire proprement le texte des titres sans capturer les balises enfants ou les scripts publicitaires.</li>
+                    <li>Générer instantanément une version neutre et factuelle de l'information grâce à l'IA, tout en offrant un pivot rapide vers Google News pour comparer les sources alternatives.</li>
+                </ul>
             </article>
         </main>
 
@@ -101,16 +113,16 @@ fi</code></pre>
             <div class="widget">
                 <h3>Détails Projet</h3>
                 <div class="status-box">
-                    <p><strong>Rôle :</strong> Administrateur Sys/Sec</p>
-                    <p><strong>Durée :</strong> 1 semaine</p>
-                    <p><strong>Statut :</strong> Terminé ✅</p>
+                    <p><strong>Rôle :</strong> Développeur Extension / Intégration IA</p>
+                    <p><strong>Stack :</strong> JS (Vanilla), Web Extensions API, Google AI Studio</p>
+                    <p><strong>Statut :</strong> En développement ⚙️</p>
                 </div>
             </div>
             <br>
             <div class="widget">
                 <h3>Dépôt</h3>
-                <a href="https://github.com/astropathe" target="_blank" class="source-link">
-                    <img src="../../photo/github.png" style="width:16px; filter:invert(100%); vertical-align:middle; margin-right:5px;"> Voir les scripts
+                <a href="https://github.com/astropathe/debaising" target="_blank" class="source-link">
+                    <img src="../../photo/github.png" style="width:16px; filter:invert(100%); vertical-align:middle; margin-right:5px;"> Code Source
                 </a>
             </div>
         </aside>
