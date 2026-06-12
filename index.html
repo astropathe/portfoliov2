@@ -3,27 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Writeups | Paul Manoha</title>
-    
+    <title>Home | Paul Manoha</title>
+
     <meta http-equiv="X-Frame-Options" content="DENY">
-    
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
-    
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https://img.icons8.com; script-src 'self' 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https://img.icons8.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://tryhackme-certificates.s3-eu-west-1.amazonaws.com;">
+
     <link rel="icon" type="image/png" href="photo/avatar.jpeg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Bouton hamburger (haut gauche, mobile only) -->
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
     </button>
 
-    <!-- Bouton loupe (haut droite, mobile only) -->
     <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
@@ -31,7 +26,15 @@
         </svg>
     </button>
 
-    <!-- Overlay partagé -->
+    <!-- Lightbox certificat -->
+    <div class="cert-lightbox" id="certLightbox">
+        <div class="cert-lightbox-backdrop" id="certLightboxBackdrop"></div>
+        <div class="cert-lightbox-inner">
+            <button class="cert-lightbox-close" id="certLightboxClose" aria-label="Fermer">✕</button>
+            <img src="" alt="Certificat" id="certLightboxImg">
+        </div>
+    </div>
+
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <div class="container">
@@ -50,7 +53,6 @@
                     <li><a href="pages/writeups.html">WRITEUPS</a></li>
                 </ul>
             </nav>
-
             <div class="social-links">
                 <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="photo/github.png" alt="GH"></a>
                 <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="photo/linkedin.svg" alt="LinkedIn"></a>
@@ -63,76 +65,248 @@
         <main class="content">
             <header>Home</header>
 
-            <section class="terminal-window-frame">
-                <div class="terminal-bar">
-                    <div class="terminal-dots">
-                        <span class="t-dot t-red"></span>
-                        <span class="t-dot t-yellow"></span>
-                        <span class="t-dot t-green"></span>
-                    </div>
-                    <div class="terminal-tab">
-                        <img src="https://img.icons8.com/color/48/debian.png" alt="debian-icon" class="t-icon">
-                        paul@debian: ~
+            <!-- ============================================================
+                 STATS — Mets à jour ces valeurs quand tu progresses
+                 ============================================================ -->
+            <script>
+                const STATS = {
+                    bio: "Passionné de sécurité offensive et défensive, j'explore les réseaux, le pentest et l'administration système. En train de monter un lab Proxmox et de préparer la certification Cisco CyberOps Associate.",
+                    role: "Étudiant en cybersécurité · CTF Player · SysAdmin",
+
+                    thm: {
+                        logo:  "photo/tryhackme.svg",
+                        rank:  "Top 9%",
+                        rooms: 72,
+                        issuerLogo: "photo/cisco.png", 
+                    },
+                    rootme: {
+                        logo:       "photo/rootme.svg",
+                        points:     890,
+                        challenges: 76,
+                    },
+                    htb: {
+                        logo:     "photo/htb.png",
+                        machines: 3,
+                        rank:     "Beginner III",
+                    },
+
+                    // status      : "done" | "wip" | "planned"
+                    // badge       : chemin image badge (optionnel)
+                    // cert        : chemin image certificat — ouvre une lightbox (optionnel)
+                    // certUrl     : lien PDF/externe — ouvre un nouvel onglet (optionnel)
+                    // issuerLogo  : chemin logo organisation (optionnel)
+                    certifications: [
+                        {
+                            name:       "Ethical Hacker",
+                            issuer:     "Cisco Networking Academy",
+                            issuerLogo: "photo/cisco.png",
+                            status:     "done",
+                            badge:      "photo/ethical-hacker.png",
+                            cert:       "photo/certificatEHCisco.png",
+                        },
+                        {
+                            name:       "Introduction to Cybersecurity",
+                            issuer:     "Cisco Networking Academy",
+                            issuerLogo: "photo/cisco.png",
+                            status:     "done",
+                            badge:      "photo/introduction-to-cybersecurity.png",
+                            cert:       "photo/certificatINTROCYBERcisco.png",
+                        },
+                        {
+                            name:       "Pre Security",
+                            issuer:     "TryHackMe",
+                            issuerLogo: "photo/tryhackme.svg",
+                            status:     "done",
+                            cert:       "photo/presecuritypath.png",
+                        },
+                        {
+                            name:       "CyberOps Associate",
+                            issuer:     "Cisco",
+                            issuerLogo: "photo/cisco.png",
+                            status:     "wip",
+                        },
+                        // Ajoute tes prochaines certifs ici :
+                        // { name: "...", issuer: "...", issuerLogo: "photo/...", status: "done", badge: "photo/...", cert: "photo/..." },
+                    ]
+                };
+            </script>
+            <!-- ============================================================ -->
+
+            <section class="home-page">
+
+                <div class="home-bio">
+                    <div class="bio-text">
+                        <h2>Paul Manoha</h2>
+                        <p class="role" id="js-role"></p>
+                        <p class="bio-desc" id="js-bio"></p>
                     </div>
                 </div>
 
-                <div class="terminal-body" id="terminal-screen" onclick="document.getElementById('terminal-input').focus()">
-                    <div id="welcome-message">
-                        <p>Bienvenue sur mon terminal. Tapez <span class="blue-text">'help'</span> pour voir les commandes.</p>
+                <p class="section-label">Plateformes CTF</p>
+                <div class="home-stats-grid">
+                    <div class="home-stat-card">
+                        <div class="stat-platform">
+                            <img src="" id="js-thm-logo" class="stat-platform-logo" alt="TryHackMe">
+                            TryHackMe
+                        </div>
+                        <div class="stat-val" id="js-thm-rank"></div>
+                        <div class="stat-sub" id="js-thm-rooms"></div>
                     </div>
-                    <div id="terminal-history"></div>
-                    <div class="terminal-input-line">
-                        <span class="prompt">paul@debian:~$</span>
-                        <input type="text" id="terminal-input" autofocus autocomplete="off" spellcheck="false">
+                    <div class="home-stat-card">
+                        <div class="stat-platform">
+                            <img src="" id="js-rm-logo" class="stat-platform-logo" alt="Root-Me">
+                            Root-Me
+                        </div>
+                        <div class="stat-val" id="js-rm-pts"></div>
+                        <div class="stat-sub" id="js-rm-chall"></div>
+                    </div>
+                    <div class="home-stat-card">
+                        <div class="stat-platform">
+                            <img src="" id="js-htb-logo" class="stat-platform-logo" alt="HackTheBox">
+                            HackTheBox
+                        </div>
+                        <div class="stat-val" id="js-htb-machines"></div>
+                        <div class="stat-sub" id="js-htb-rank"></div>
                     </div>
                 </div>
+
+                <p class="section-label">Certifications</p>
+                <div class="home-cert-list" id="js-certs"></div>
+
             </section>
         </main>
 
-        <aside class="right-sidebar" id="rightSidebar">
-            <div class="search-bar">
-                <input type="text" id="searchBar" placeholder="Search...">
-            </div>
+    <aside class="right-sidebar" id="rightSidebar">
 
-            <div class="widget">
-                <h3>Technical Stack</h3>
-                <div class="tag-cloud">
-                    <span class="tag">Linux</span>
-                    <span class="tag">Windows</span>
-                    <span class="tag">Cisco IOS</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Wireshark</span>
-                    <span class="tag">Nmap</span>
-                    <span class="tag">Metasploit</span>
-                    <span class="tag">Hashcat</span>
-                    <span class="tag">Active Directory</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Bash</span>
-                    <span class="tag">C#</span>
+
+        <!-- CV TELECHARGEMENT -->
+        <div class="widget">
+            <h3>Curriculum Vitae</h3>
+            <a href="#" target="_blank" class="cv-download-card interactive-box" download="CV_Paul_Manoha.pdf">
+                <div class="cv-info">
+                    <span class="cv-name">CV_Paul_Manoha.pdf</span>
+                    <span class="cv-size">Document PDF</span>
+                </div>
+                <span class="download-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </span>
+            </a>
+        </div>
+
+        <!-- DETAILS -->
+        <div class="widget">
+            <h3>Informations</h3>
+            <div class="meta-grid">
+                <div class="grid-item">
+                    <span class="grid-label">Situation</span>
+                    <span class="grid-value">Recherche de stage</span>
+                </div>
+                <div class="grid-item">
+                    <span class="grid-label">Mobilité</span>
+                    <span class="grid-value">Annonay et alentours</span>
+                </div>
+                <div class="grid-item">
+                    <span class="grid-label">Permis</span>
+                    <span class="grid-value">B (Véhiculé)</span>
                 </div>
             </div>
-            <br>
-            <div class="widget">
-                <h3>En cours</h3>
-                <div class="status-box">
-                    <p>Certification <strong>Cisco CyberOps Associate</strong></p>
-                    <p>Lab personnel : Cluster <strong>Proxmox</strong></p>
-                    <p>Lecture : <em>Technopolitique</em>, Asma Mhalla</p>
-                </div>
-            </div>
-            <br>
-            <div class="widget">
-                <h3>Certifications</h3>
-                <ul class="cert-list">
-                    <li>Cyber Security 101 (THM)</li>
-                    <li>À venir...</li>
-                </ul>
-            </div>
-        </aside>
+        </div>
+</aside>
     </div>
 
     <script src="script.js"></script>
     <script>
+        /* ── Injection des stats ── */
+        document.getElementById('js-role').textContent         = STATS.role;
+        document.getElementById('js-bio').textContent          = STATS.bio;
+
+        /* --- AJOUT : Injection des logos des plateformes --- */
+        document.getElementById('js-thm-logo').src             = STATS.thm.logo;
+        document.getElementById('js-rm-logo').src              = STATS.rootme.logo;
+        document.getElementById('js-htb-logo').src             = STATS.htb.logo;
+        /* -------------------------------------------------- */
+
+        document.getElementById('js-thm-rank').textContent     = STATS.thm.rank;
+        document.getElementById('js-thm-rooms').textContent    = STATS.thm.rooms + ' rooms complétées';
+        document.getElementById('js-rm-pts').textContent       = STATS.rootme.points.toLocaleString('fr-FR') + ' pts';
+        document.getElementById('js-rm-chall').textContent     = STATS.rootme.challenges + ' challenges résolus';
+        document.getElementById('js-htb-machines').textContent = STATS.htb.machines + ' machines';
+        document.getElementById('js-htb-rank').textContent     = STATS.htb.rank;
+
+        /* ── Génération des cartes certifs ── */
+        const certContainer = document.getElementById('js-certs');
+
+        STATS.certifications.forEach(cert => {
+            const hasBadge      = !!cert.badge;
+            const hasCert       = !!cert.cert;
+            const hasCertUrl    = !!cert.certUrl;
+            const hasIssuerLogo = !!cert.issuerLogo;
+            const isDone        = cert.status === 'done';
+            const isWip         = cert.status === 'wip';
+
+            const label      = isDone ? 'Obtenu' : isWip ? 'En cours' : 'Prévu';
+            const badgeClass = isDone ? 'cert-badge-done' : isWip ? 'cert-badge-wip' : 'cert-badge-planned';
+
+            const card = document.createElement('div');
+            card.className = 'home-cert-card' + (hasBadge ? ' has-badge' : '');
+
+            const main = document.createElement('div');
+            main.className = 'cert-card-main';
+            main.innerHTML = `
+                <div class="cert-card-left">
+                    ${hasIssuerLogo ? `<img src="${cert.issuerLogo}" alt="${cert.issuer}" class="cert-issuer-logo">` : ''}
+                    <div class="cert-card-info">
+                        <span class="cert-name">${cert.name}</span>
+                        <span class="cert-issuer">${cert.issuer}</span>
+                    </div>
+                </div>
+                <div class="cert-card-actions">
+                    ${hasCert ? `<button class="cert-view-btn" data-img="${cert.cert}" title="Voir le certificat">
+                        <i class="fa fa-file" aria-hidden="true"></i> Certificat
+                    </button>` : ''}
+                    ${hasCertUrl ? `<a class="cert-view-btn" href="${cert.certUrl}" target="_blank" rel="noopener" title="Voir le certificat">
+                        <i class="fa fa-external-link" aria-hidden="true"></i> Certificat
+                    </a>` : ''}
+                    <span class="cert-badge ${badgeClass}">${label}</span>
+                </div>
+            `;
+            card.appendChild(main);
+
+            if (hasBadge) {
+                const badgeWrap = document.createElement('div');
+                badgeWrap.className = 'cert-credly-wrap';
+                badgeWrap.innerHTML = `<img src="${cert.badge}" alt="Badge ${cert.name}" class="cert-badge-img">`;
+                card.appendChild(badgeWrap);
+            }
+
+            certContainer.appendChild(card);
+        });
+
+        /* ── Lightbox certificat ── */
+        const lightbox         = document.getElementById('certLightbox');
+        const lightboxImg      = document.getElementById('certLightboxImg');
+        const lightboxClose    = document.getElementById('certLightboxClose');
+        const lightboxBackdrop = document.getElementById('certLightboxBackdrop');
+
+        document.getElementById('js-certs').addEventListener('click', e => {
+            const btn = e.target.closest('.cert-view-btn');
+            if (!btn || btn.tagName === 'A') return;
+            lightboxImg.src = btn.dataset.img;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            lightboxImg.src = '';
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxBackdrop.addEventListener('click', closeLightbox);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+        /* ── Menu mobile ── */
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const searchBtn    = document.getElementById('searchBtn');
         const leftSidebar  = document.getElementById('leftSidebar');
@@ -146,7 +320,6 @@
             hamburgerBtn.classList.remove('open');
             document.body.style.overflow = '';
         }
-
         function openLeft() {
             closeAll();
             leftSidebar.classList.add('open');
@@ -154,7 +327,6 @@
             hamburgerBtn.classList.add('open');
             document.body.style.overflow = 'hidden';
         }
-
         function openRight() {
             closeAll();
             rightSidebar.classList.add('open');
@@ -162,19 +334,11 @@
             document.body.style.overflow = 'hidden';
         }
 
-        hamburgerBtn.addEventListener('click', () => {
-            leftSidebar.classList.contains('open') ? closeAll() : openLeft();
-        });
-
-        searchBtn.addEventListener('click', () => {
-            rightSidebar.classList.contains('open') ? closeAll() : openRight();
-        });
-
+        hamburgerBtn.addEventListener('click', () => leftSidebar.classList.contains('open') ? closeAll() : openLeft());
+        searchBtn.addEventListener('click',    () => rightSidebar.classList.contains('open') ? closeAll() : openRight());
         overlay.addEventListener('click', closeAll);
-
-        leftSidebar.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeAll);
-        });
+        leftSidebar.querySelectorAll('a').forEach(l => l.addEventListener('click', closeAll));
     </script>
+    
 </body>
 </html>

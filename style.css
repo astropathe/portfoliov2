@@ -1,4 +1,6 @@
-/* 1. Reset et Fondamentaux */
+/* ============================================
+   1. RESET & FONDAMENTAUX
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -12,14 +14,18 @@ body {
     line-height: 1.6;
 }
 
-/* 2. Layout principal avec CSS Grid */
+/* ============================================
+   2. LAYOUT PRINCIPAL
+   ============================================ */
 .container {
     display: grid;
     grid-template-columns: 260px 1fr 300px;
     min-height: 100vh;
 }
 
-/* 3. Sidebar Gauche */
+/* ============================================
+   3. SIDEBAR GAUCHE
+   ============================================ */
 .left-sidebar {
     background-color: #1b1b1e;
     border-right: 1px solid #2d2d30;
@@ -61,15 +67,18 @@ body {
     font-size: 0.9rem;
     font-weight: bold;
     border-radius: 8px;
-    transition: 0.3s;
+    transition: background 0.3s, color 0.3s;
 }
 
-.left-sidebar nav ul li a:hover {
+.left-sidebar nav ul li a:hover,
+.left-sidebar nav ul li a.active {
     background-color: #2d2d30;
     color: #ffffff;
 }
 
-/* 4. Contenu Principal (Centre) */
+/* ============================================
+   4. CONTENU PRINCIPAL
+   ============================================ */
 .content {
     padding: 2rem 4rem;
     max-width: 900px;
@@ -82,16 +91,16 @@ body {
     margin-bottom: 2.5rem;
 }
 
-/* 5. Sidebar Droite */
+/* ============================================
+   5. SIDEBAR DROITE
+   ============================================ */
 .right-sidebar {
     padding: 2rem;
     border-left: 1px solid #2d2d30;
-    
-    /* --- FIX : ANCRAGE DE LA BARRE AU SCROLL --- */
     position: sticky;
-    top: 0;                /* Se bloque tout en haut de l'écran */
-    height: 100vh;         /* S'assure que la colonne prend toute la hauteur visible */
-    overflow-y: auto;      /* Si tes futurs widgets débordent, on peut les scroller à l'intérieur */
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .search-bar input {
@@ -111,7 +120,9 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Social links */
+/* ============================================
+   6. SOCIAL LINKS
+   ============================================ */
 .social-links {
     margin-top: auto;
     display: flex;
@@ -149,54 +160,42 @@ body {
     filter: invert(100%);
 }
 
-.upper-path-links {
-    text-decoration: none;
-    color: #9da5b4;
-    transition: color 0.2s ease;
-}
-
-.upper-path-links:hover {
-    color: #ffffff;
-    text-decoration: underline;
-}
-
-.thm-badge {
-    width: 100%;
+/* ============================================
+   7. POST CARDS
+   ============================================ */
+.post-list a {
     display: flex;
-    justify-content: center;
-    margin-top: 1.5rem;
-    overflow: hidden;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
 }
 
-.thm-badge iframe {
-    width: 300px;
-    height: 90px;
-    border-radius: 8px;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-    transform: scale(0.9);
-    transform-origin: center;
+.post-list a:visited h2 {
+    color: #ffffff;
 }
 
-/* Conteneur de la carte */
 .post-card {
     background-color: #252529;
     border: 1px solid #3e3e42;
     border-radius: 12px;
     margin-bottom: 2rem;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     cursor: pointer;
-    overflow: hidden; /* empêche l'image de déborder */
+    overflow: hidden;
 }
 
-.post-card:hover {
+.post-card:hover,
+.post-list a:hover .post-card {
     transform: translateY(-4px);
     border-color: #505055;
     background-color: #2a2a2e;
 }
 
-/* Zone de texte (prend tout l'espace restant) */
 .post-content {
-    flex: 1; 
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
@@ -218,12 +217,16 @@ body {
     color: #6a737d;
 }
 
+.post-meta i {
+    margin-right: 4px;
+    color: #6a737d;
+}
+
 .category {
     margin-left: 1rem;
     color: #58a6ff;
 }
 
-/* L'image ne déborde jamais de sa zone */
 .post-image {
     flex-shrink: 0;
     width: 200px;
@@ -237,6 +240,9 @@ body {
     border-radius: 8px;
 }
 
+/* ============================================
+   8. WIDGETS & TAGS
+   ============================================ */
 .tag-cloud {
     display: flex;
     flex-wrap: wrap;
@@ -250,7 +256,7 @@ body {
     border-radius: 4px;
     font-size: 0.75rem;
     border: 1px solid #3e3e42;
-    transition: 0.3s;
+    transition: color 0.3s, border-color 0.3s;
 }
 
 .tag:hover {
@@ -258,7 +264,8 @@ body {
     border-color: #58a6ff;
 }
 
-.status-box p, .cert-list li {
+.status-box p,
+.cert-list li {
     font-size: 0.85rem;
     color: #d1d1d1;
     margin-bottom: 12px;
@@ -271,86 +278,472 @@ body {
     margin-right: 8px;
 }
 
-/* Fake Terminal */
-.terminal-window-frame {
-    background-color: #1b1b1e;
-    border: 1px solid #3e3e42;
-    border-radius: 8px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    margin: 2rem auto;
-    overflow: hidden;
-    max-width: 100%;
-}
-
-.terminal-bar {
-    background-color: #252529;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    border-bottom: 1px solid #3e3e42;
-    position: relative;
-}
-
-.terminal-dots {
-    display: flex;
-    gap: 7px;
-}
-
-.t-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-}
-.t-red    { background: #ff5f56; }
-.t-yellow { background: #ffbd2e; }
-.t-green  { background: #27c93f; }
-
-.terminal-tab {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.8rem;
+/* ============================================
+   9. LIENS UTILITAIRES
+   ============================================ */
+.upper-path-links {
+    text-decoration: none;
     color: #9da5b4;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    transition: color 0.2s ease;
 }
 
-.t-icon {
-    width: 16px;
-    height: 16px;
-}
-
-.terminal-body {
-    padding: 1.5rem;
-    height: 400px;
-    overflow-y: auto;
-    font-family: 'Cascadia Code', 'Fira Code', monospace;
-    cursor: text;
-}
-
-.terminal-input-line {
-    display: flex;
-    margin-top: 5px;
-}
-
-#terminal-input {
-    background: transparent;
-    border: none;
-    outline: none;
+.upper-path-links:hover {
     color: #ffffff;
-    font-family: inherit;
-    font-size: 0.95rem;
-    flex: 1;
-    padding-left: 10px;
+    text-decoration: underline;
+}
+
+.source-link {
+    color: #58a6ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.source-link:visited { color: #58a6ff; }
+
+.source-link:hover {
+    color: #79c0ff;
+    text-decoration: underline;
 }
 
 /* ============================================
-   RESPONSIVE MOBILE
+   10. PAGES PROJETS (ARTICLE DÉTAILLÉ)
    ============================================ */
+.project-article h1.project-title {
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
 
-/* Boutons fixes (cachés sur desktop) */
+.project-meta-tags { margin-bottom: 2rem; }
+
+.project-intro {
+    font-size: 1.1rem;
+    color: #e1e1e3;
+    margin-bottom: 2rem;
+}
+
+.project-article h2 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #2d2d30;
+    padding-bottom: 0.5rem;
+}
+
+.project-article p {
+    margin-bottom: 1.2rem;
+    color: #b5becd;
+}
+
+.demo-box {
+    background-color: #252529;
+    border: 1px solid #3e3e42;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    overflow: hidden;
+}
+
+.demo-title {
+    background-color: #1f1f23;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-family: monospace;
+    color: #9da5b4;
+    border-bottom: 1px solid #3e3e42;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-alert { border: 1px solid #ff9e3b; }
+
+.info-alert p {
+    padding: 1rem;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #d1d1d1;
+}
+
+.media-container {
+    padding: 1rem;
+    background: #121214;
+    display: flex;
+    justify-content: center;
+}
+
+.demo-img-fallback {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid #2d2d30;
+}
+
+.code-demo pre {
+    margin: 0;
+    padding: 1rem;
+    background-color: #121214;
+    overflow-x: auto;
+}
+
+.code-demo code {
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 0.9rem;
+    color: #a9b1d6;
+    line-height: 1.5;
+}
+
+/* ============================================
+   11. FILTRES WRITEUPS
+   ============================================ */
+.filter-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    background-color: #212124;
+    padding: 1.2rem;
+    border-radius: 10px;
+    border: 1px solid #2d2d30;
+}
+
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-btn {
+    background-color: #2d2d30;
+    color: #9da5b4;
+    border: 1px solid #3e3e42;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-btn:hover {
+    background-color: #38383c;
+    color: #ffffff;
+    border-color: #58a6ff;
+}
+
+.filter-btn.active {
+    background-color: #58a6ff;
+    color: #121214;
+    border-color: #58a6ff;
+    font-weight: bold;
+}
+
+/* ============================================
+   12. PAGE HOME
+   ============================================ */
+.home-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-bio {
+    background: #252529;
+    border: 1px solid #3e3e42;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.home-bio h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #ffffff;
+}
+
+.home-bio .role {
+    font-size: 0.85rem;
+    color: #6a737d;
+    margin-bottom: 10px;
+}
+
+.home-bio .bio-desc {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #9da5b4;
+}
+
+.section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6a737d;
+    margin-bottom: 0.6rem;
+    margin-top: 0.25rem;
+}
+
+.home-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.home-stat-card {
+    background: #252529;
+    border: 1px solid #3e3e42;
+    border-radius: 8px;
+    padding: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.home-stat-card:hover {
+    border-color: #505055;
+}
+
+.stat-platform {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espace propre entre le logo et le texte */
+    font-weight: bold;
+}
+
+/* --- Ajustement des logos des plateformes CTF --- */
+.stat-platform-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    /* Ajuste la disposition si nécessaire */
+    display: inline-block;
+    vertical-align: middle;
+    
+    /* FIX CONTRASTE : Rend les logos sombres brillants/blancs sur fond noir */
+    filter: brightness(0) invert(1); 
+    /* NOTE : Si tu veux garder les couleurs originales (le vert HTB, le rouge THM) 
+       mais juste les rendre plus visibles, utilise plutôt : filter: drop-shadow(0px 0px 2px rgba(255,255,255,0.6)); */
+}
+
+/* --- Ajustement des petits logos des certifs (Cisco, THM...) --- */
+.cert-issuer-logo {
+    width: 32px; /* Un poil plus grand pour la lisibilité */
+    height: 32px;
+    object-fit: contain;
+    
+    /* Améliore le contraste sur fond sombre */
+    filter: brightness(1.3); 
+}
+ 
+
+/* Si le logo de Cisco dans tes certifications reste invisible car écrit en noir */
+img[src*="cisco"] {
+    filter: brightness(0) invert(1) !important; /* Force le logo Cisco à passer en blanc épuré */
+}
+
+img[src*="tryhackme"] {
+    filter: brightness(0) invert(1) !important; /* Force le logo Cisco à passer en blanc épuré */
+}
+
+.stat-val {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.stat-sub {
+    font-size: 0.78rem;
+    color: #6a737d;
+    margin-top: 2px;
+}
+
+.home-cert-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+/* Carte certif — layout de base (sans badge) */
+.home-cert-card {
+    background: #252529;
+    border: 1px solid #3e3e42;
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.home-cert-card:hover { border-color: #505055; }
+
+/* Carte avec badge Credly : côte à côte */
+.home-cert-card.has-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+}
+
+.cert-card-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cert-card-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+
+
+.cert-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.cert-name {
+    font-size: 0.9rem;
+    color: #d1d1d1;
+    font-weight: 500;
+}
+
+.cert-issuer {
+    font-size: 0.78rem;
+    color: #6a737d;
+}
+
+.cert-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+}
+
+/* Bouton "Voir le certificat" */
+.cert-view-btn {
+    background: #2d2d30;
+    border: 1px solid #3e3e42;
+    border-radius: 6px;
+    color: #9da5b4;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+}
+
+.cert-view-btn:hover {
+    background: #38383c;
+    color: #ffffff;
+    border-color: #58a6ff;
+}
+
+/* Badges de statut */
+.cert-badge {
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.cert-badge-done {
+    background: #1a3d25;
+    color: #4caf7d;
+    border: 1px solid #2a5c38;
+}
+
+.cert-badge-wip {
+    background: #3d3010;
+    color: #d4a017;
+    border: 1px solid #5c4a18;
+}
+
+.cert-badge-planned {
+    background: #2a2d3d;
+    color: #7c9adb;
+    border: 1px solid #3a4060;
+}
+
+/* Zone badge image */
+.cert-credly-wrap {
+    flex-shrink: 0;
+    width: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-badge-img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+/* Lightbox certificat */
+.cert-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-lightbox.active { display: flex; }
+
+.cert-lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+}
+
+.cert-lightbox-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #3e3e42;
+}
+
+.cert-lightbox-inner img {
+    display: block;
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+.cert-lightbox-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid #3e3e42;
+    border-radius: 6px;
+    color: #d1d1d1;
+    font-size: 0.9rem;
+    padding: 4px 9px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    z-index: 2;
+}
+
+.cert-lightbox-close:hover {
+    background: rgba(0,0,0,0.9);
+    color: #ffffff;
+}
+
+/* ============================================
+   14. RESPONSIVE MOBILE
+   ============================================ */
 .hamburger-btn,
 .search-btn {
     display: none;
@@ -378,12 +771,10 @@ body {
     transition: transform 0.3s, opacity 0.3s;
 }
 
-/* Animation hamburger → croix */
 .hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger-btn.open span:nth-child(2) { opacity: 0; }
 .hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Overlay */
 .sidebar-overlay {
     display: none;
     position: fixed;
@@ -396,19 +787,15 @@ body {
 .sidebar-overlay.active { display: block; }
 
 @media (max-width: 768px) {
-
-    /* Layout colonne unique */
     .container {
         display: flex;
         flex-direction: column;
         grid-template-columns: unset;
     }
 
-    /* Affiche les deux boutons */
     .hamburger-btn { display: flex; }
     .search-btn    { display: flex; }
 
-    /* Sidebar gauche — slide depuis la gauche */
     .left-sidebar {
         position: fixed;
         top: 0;
@@ -423,11 +810,8 @@ body {
         padding-top: 4rem;
     }
 
-    .left-sidebar.open {
-        transform: translateX(0);
-    }
+    .left-sidebar.open { transform: translateX(0); }
 
-    /* Sidebar droite — slide depuis la droite */
     .right-sidebar {
         position: fixed;
         top: 0;
@@ -443,11 +827,8 @@ body {
         padding: 4rem 1.5rem 2rem;
     }
 
-    .right-sidebar.open {
-        transform: translateX(0);
-    }
+    .right-sidebar.open { transform: translateX(0); }
 
-    /* Contenu pleine largeur */
     .content {
         padding: 5rem 1.2rem 2rem;
         max-width: 100%;
@@ -455,20 +836,10 @@ body {
         width: 100%;
     }
 
-    /* Terminal plus compact */
-    .terminal-body {
-        height: 280px;
-    }
-
-    /* Post cards en colonne */
     .post-list a {
         flex-direction: column-reverse;
         gap: 1rem;
         padding: 1.2rem;
-    }
-
-    .post-card {
-        flex-direction: unset; /* reset, c'est le <a> qui gère */
     }
 
     .post-image {
@@ -476,204 +847,92 @@ body {
         height: 180px;
         flex-shrink: unset;
     }
+
+    .home-stats-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
+/* ============================================
+   BARRE LATERALE DROITE (VERSION PREMIUM)
+   ============================================ */
 
-/* --- Correction du style des liens dans la liste des veilles --- */
-
-/* Le lien autour de la carte gère le flex */
-.post-list a {
+/* Carte de téléchargement du CV */
+.cv-download-card {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 2rem;
-    padding: 1.5rem;        /* ← le padding passe ici */
-    text-decoration: none;
-    color: inherit;
-}
-
-.post-list a:visited h2 {
-    color: #ffffff;
-}
-
-.post-list a:hover .post-card {
-    transform: translateY(-4px);
-    border-color: #58a6ff;
-    background-color: #2a2a2e;
-}
-
-
-/* --- Style des liens de sources d'articles --- */
-
-.source-link {
-    color: #58a6ff;         /* Un bleu propre (identique à tes catégories) */
-    text-decoration: none;  /* Enlève le soulignement permanent pas très esthétique */
-    font-weight: 500;
-    transition: color 0.2s ease, text-decoration 0.2s ease;
-}
-
-/* Force la couleur à rester bleue MÊME si tu as déjà cliqué dessus (évite le violet) */
-.source-link:visited {
-    color: #58a6ff;
-}
-
-/* Effet au survol : le lien s'éclaire et se souligne subtilement */
-.source-link:hover {
-    color: #79c0ff;
-    text-decoration: underline; /* Le soulignement n'apparaît qu'au survol */
-}
-
-/* ============================================
-   STYLE DES PAGES PROJETS (ARTICLE DETAILED)
-   ============================================ */
-
-.project-article h1.project-title {
-    color: #ffffff;
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-}
-
-.project-meta-tags {
-    margin-bottom: 2rem;
-}
-
-.project-intro {
-    font-size: 1.1rem;
-    color: #e1e1e3;
-    margin-bottom: 2rem;
-}
-
-.project-article h2 {
-    color: #ffffff;
-    font-size: 1.3rem;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #2d2d30;
-    padding-bottom: 0.5rem;
-}
-
-.project-article p {
-    margin-bottom: 1.2rem;
-    color: #b5becd;
-}
-
-/* --- LE CONTENEUR DES ESPACES DE DEMO --- */
-.demo-box {
-    background-color: #252529;
-    border: 1px solid #3e3e42;
+    justify-content: space-between;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
     border-radius: 8px;
-    margin: 1.5rem 0;
-    overflow: hidden;
+    padding: 12px 16px;
+    text-decoration: none !important;
+    transition: all 0.2s ease-in-out;
 }
 
-.demo-title {
-    background-color: #1f1f23;
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-    font-family: monospace;
-    color: #9da5b4;
-    border-bottom: 1px solid #3e3e42;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Espace Démo 1 : Boîte d'info / Alerte Cyber */
-.info-alert {
-    border: 1px solid #ff9e3b; /* Orange pour l'alerte technique */
-}
-.info-alert p {
-    padding: 1rem;
-    margin: 0;
-    font-size: 0.95rem;
-    color: #d1d1d1;
-}
-
-/* Espace Démo 2 : Image / Maquette réseau */
-.media-container {
-    padding: 1rem;
-    background: #121214;
-    display: flex;
-    justify-content: center;
-}
-
-.demo-img-fallback {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-    border: 1px solid #2d2d30;
-}
-
-/* Espace Démo 3 : Fenêtre d'affichage de Code */
-.code-demo pre {
-    margin: 0;
-    padding: 1rem;
-    background-color: #121214;
-    overflow-x: auto;
-}
-
-.code-demo code {
-    font-family: 'Cascadia Code', 'Fira Code', monospace;
-    font-size: 0.9rem;
-    color: #a9b1d6; /* Thème de couleur de code soft */
-    line-height: 1.5;
-}
-
-/* ============================================
-   BARRE DE FILTRES (WRITEUPS)
-   ============================================ */
-
-.filter-section {
+.cv-info {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-    background-color: #212124;
-    padding: 1.2rem;
-    border-radius: 10px;
-    border: 1px solid #2d2d30;
+    gap: 2px;
 }
 
-.filter-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.filter-btn {
-    background-color: #2d2d30;
-    color: #9da5b4;
-    border: 1px solid #3e3e42;
-    padding: 6px 14px;
+.cv-name {
+    font-family: monospace;
     font-size: 0.85rem;
+    color: #c9d1d9;
     font-weight: 500;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.2s ease;
 }
 
-.filter-btn:hover {
-    background-color: #38383c;
-    color: #ffffff;
+.cv-size {
+    font-size: 0.75rem;
+    color: #8b949e;
+}
+
+.download-icon {
+    color: #8b949e;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Effets interactifs (Hover) */
+.cv-download-card:hover {
+    background-color: #161b22;
     border-color: #58a6ff;
 }
 
-/* État actif du filtre sélectionné */
-.filter-btn.active {
-    background-color: #58a6ff;
-    color: #121214;
-    border-color: #58a6ff;
-    font-weight: bold;
+.cv-download-card:hover .download-icon {
+    color: #58a6ff;
+    transform: translateY(2px);
 }
 
-/* Ajustement pour les icônes dans les métas */
-.post-meta i {
-    margin-right: 4px;
-    color: #6a737d;
+/* Grille d'informations épurée */
+.meta-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
-/* Gestion de l'affichage des liens */
-.post-link {
-    text-decoration: none;
-    color: inherit;
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-bottom: 1px solid #21262d;
+    padding-bottom: 10px;
+}
+
+.grid-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.grid-label {
+    font-size: 0.75rem;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.grid-value {
+    font-size: 0.9rem;
+    color: #e6edf3;
+    font-weight: 500;
 }
