@@ -243,25 +243,41 @@ body {
 /* ============================================
    8. WIDGETS & TAGS
    ============================================ */
+/* Structuration de la Technical Stack */
+.skills-category {
+    margin-top: 1rem;
+}
+
+.skills-category h4 {
+    font-size: 0.75rem;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
 .tag-cloud {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
+    margin-bottom: 0.25rem;
 }
 
 .tag {
-    background: #2d2d30;
-    color: #9da5b4;
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
     padding: 4px 10px;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 0.75rem;
-    border: 1px solid #3e3e42;
-    transition: color 0.3s, border-color 0.3s;
+    font-family: monospace;
+    transition: all 0.15s ease;
 }
 
 .tag:hover {
-    color: #ffffff;
     border-color: #58a6ff;
+    color: #ffffff;
 }
 
 .status-box p,
