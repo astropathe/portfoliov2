@@ -135,22 +135,5 @@ if (data.candidates && data.candidates[0]) {
     </div>
 
     <script src="../../script.js"></script>
-    <script>
-        // Code JavaScript identique pour le support du menu mobile
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const searchBtn    = document.getElementById('searchBtn');
-        const leftSidebar  = document.getElementById('leftSidebar');
-        const rightSidebar = document.getElementById('rightSidebar');
-        const overlay      = document.getElementById('sidebarOverlay');
-
-        function closeAll() {
-            leftSidebar.classList.remove('open'); rightSidebar.classList.remove('open');
-            overlay.classList.remove('active'); hamburgerBtn.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        hamburgerBtn.addEventListener('click', () => leftSidebar.classList.contains('open') ? closeAll() : (() => { closeAll(); leftSidebar.classList.add('open'); overlay.classList.add('active'); hamburgerBtn.classList.add('open'); document.body.style.overflow = 'hidden'; })());
-        searchBtn.addEventListener('click', () => rightSidebar.classList.contains('open') ? closeAll() : (() => { closeAll(); rightSidebar.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; })());
-        overlay.addEventListener('click', closeAll);
-    </script>
 </body>
 </html>

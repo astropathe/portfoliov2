@@ -476,39 +476,6 @@
         }
 
         init();
-
-        /* ── Menu mobile ── */
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const searchBtn    = document.getElementById('searchBtn');
-        const leftSidebar  = document.getElementById('leftSidebar');
-        const rightSidebar = document.getElementById('rightSidebar');
-        const overlay      = document.getElementById('sidebarOverlay');
-
-        function closeAll() {
-            leftSidebar.classList.remove('open');
-            rightSidebar.classList.remove('open');
-            overlay.classList.remove('active');
-            hamburgerBtn.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        function openLeft() {
-            closeAll();
-            leftSidebar.classList.add('open');
-            overlay.classList.add('active');
-            hamburgerBtn.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-        function openRight() {
-            closeAll();
-            rightSidebar.classList.add('open');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        hamburgerBtn.addEventListener('click', () => leftSidebar.classList.contains('open') ? closeAll() : openLeft());
-        searchBtn.addEventListener('click',    () => rightSidebar.classList.contains('open') ? closeAll() : openRight());
-        overlay.addEventListener('click', closeAll);
-        leftSidebar.querySelectorAll('a').forEach(l => l.addEventListener('click', closeAll));
     </script>
 </body>
 </html>

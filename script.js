@@ -1,69 +1,56 @@
+// Recherche dans les cartes de posts (si présent sur la page)
 document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.getElementById('searchBar');
+    if (!searchBar) return; // Quitter si searchBar n'existe pas
+    
     const posts = document.querySelectorAll('.post-card');
+    if (posts.length === 0) return; // Quitter si pas de posts
 
     searchBar.addEventListener('keyup', (e) => {
         const searchString = e.target.value.toLowerCase();
 
         posts.forEach(post => {
-            // On récupère tout le texte à l'intérieur de la carte (titre, p, tags)
             const text = post.textContent.toLowerCase();
-            
-            // Si le texte contient la recherche, on affiche, sinon on cache
-            if (text.includes(searchString)) {
-                post.style.display = "flex"; // On remet en flex pour garder ton design
-            } else {
-                post.style.display = "none";
-            }
+            post.style.display = text.includes(searchString) ? "flex" : "none";
         });
     });
 });
 
+// Menu mobile - Hamburger et Sidebar
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const searchBtn    = document.getElementById('searchBtn');
+    const leftSidebar  = document.getElementById('leftSidebar');
+    const rightSidebar = document.getElementById('rightSidebar');
+    const overlay      = document.getElementById('sidebarOverlay');
 
-//=============terminal==================
+    if (!hamburgerBtn || !searchBtn || !leftSidebar || !rightSidebar || !overlay) return;
 
-const input = document.getElementById('terminal-input');
-const history = document.getElementById('terminal-history');
-const terminalScreen = document.getElementById('terminal-screen');
-
-const commands = {
-    help: "Commandes : <b>whoami</b>, <b>about</b>, <b>skills</b>, <b>projects</b>, <b>clear</b>",
-    about: "Étudiant en BTS SIO SISR passionné par cybersécurité.",
-    skills: "Linux, Cisco, Docker, Proxmox, Wireshark.",
-    projects: "Regardez la section Projets à gauche !",
-    whoami: "paul_manoha (uid=1000)",
-    shutdown : "Bien essayé mais non ! "
-};
-
-input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        const fullCommand = input.value.toLowerCase().trim();
-
-        if (fullCommand === 'clear') {
-            // On vide seulement l'historique, pas le message de bienvenue
-            history.innerHTML = '';
-        } else {
-            // Créer l'écho de la commande
-            const line = document.createElement('p');
-            line.innerHTML = `<span class="prompt">paul@debian:~$</span> <span class="command-echo">${fullCommand}</span>`;
-            history.appendChild(line);
-
-            // Gérer la réponse
-            if (commands[fullCommand]) {
-                const resLine = document.createElement('p');
-                resLine.innerHTML = commands[fullCommand];
-                resLine.style.marginBottom = "1rem";
-                history.appendChild(resLine);
-            } else if (fullCommand !== "") {
-                const errLine = document.createElement('p');
-                errLine.innerHTML = `<span class="error-text">bash: ${fullCommand}: commande introuvable</span>`;
-                errLine.style.marginBottom = "1rem";
-                history.appendChild(errLine);
-            }
-        }
-
-        input.value = '';
-        // On scroll sur le container global pour toujours voir l'input
-        terminalScreen.scrollTop = terminalScreen.scrollHeight;
+    function closeAll() {
+        leftSidebar.classList.remove('open');
+        rightSidebar.classList.remove('open');
+        overlay.classList.remove('active');
+        hamburgerBtn.classList.remove('open');
+        document.body.style.overflow = '';
     }
+
+    function openLeft() {
+        closeAll();
+        leftSidebar.classList.add('open');
+        overlay.classList.add('active');
+        hamburgerBtn.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function openRight() {
+        closeAll();
+        rightSidebar.classList.add('open');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    hamburgerBtn.addEventListener('click', () => leftSidebar.classList.contains('open') ? closeAll() : openLeft());
+    searchBtn.addEventListener('click', () => rightSidebar.classList.contains('open') ? closeAll() : openRight());
+    overlay.addEventListener('click', closeAll);
+    leftSidebar.querySelectorAll('a').forEach(l => l.addEventListener('click', closeAll));
 });

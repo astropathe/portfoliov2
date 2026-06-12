@@ -189,7 +189,6 @@
     <script>
         const platformButtons = document.querySelectorAll('.filter-btn:not(.sub-filter)');
         const typeButtons = document.querySelectorAll('.sub-filter');
-        // FIX : On cible .post-card car l'article englobe le lien
         const cards = document.querySelectorAll('.post-card');
         const searchInput = document.getElementById('searchBar');
 
@@ -198,20 +197,13 @@
 
         function filterWriteups() {
             const searchText = searchInput.value.toLowerCase();
-
             cards.forEach(card => {
                 const matchesPlatform = (currentPlatform === 'all' || card.getAttribute('data-platform') === currentPlatform);
                 const matchesType = (currentType === 'all' || card.getAttribute('data-category') === currentType);
-                
                 const title = card.querySelector('h2').textContent.toLowerCase();
                 const description = card.querySelector('p').textContent.toLowerCase();
                 const matchesSearch = title.includes(searchText) || description.includes(searchText);
-
-                if (matchesPlatform && matchesType && matchesSearch) {
-                    card.style.display = 'block'; // On affiche l'article
-                } else {
-                    card.style.display = 'none';  // On masque l'article
-                }
+                card.style.display = (matchesPlatform && matchesType && matchesSearch) ? 'block' : 'none';
             });
         }
 
@@ -234,13 +226,6 @@
         });
 
         searchInput.addEventListener('input', filterWriteups);
-
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const leftSidebar  = document.getElementById('leftSidebar');
-        const overlay      = document.getElementById('sidebarOverlay');
-        function closeAll() { leftSidebar.classList.remove('open'); overlay.classList.remove('active'); hamburgerBtn.classList.remove('open'); document.body.style.overflow = ''; }
-        hamburgerBtn.addEventListener('click', () => leftSidebar.classList.contains('open') ? closeAll() : (() => { closeAll(); leftSidebar.classList.add('open'); overlay.classList.add('active'); hamburgerBtn.classList.add('open'); document.body.style.overflow = 'hidden'; })());
-        overlay.addEventListener('click', closeAll);
     </script>
 </body>
 </html>
