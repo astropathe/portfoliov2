@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Writeups | Paul Manoha</title>
-    
+
     <meta http-equiv="X-Frame-Options" content="DENY">
-    
+
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
-    
+
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https://img.icons8.com; script-src 'self' 'unsafe-inline';">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -61,7 +61,7 @@
                     <button class="filter-btn" data-filter="yeswehack">YesWeHack</button>
                     <button class="filter-btn" data-filter="intigriti">Intigriti</button>
                 </div>
-                
+
                 <div class="filter-group">
                     <button class="filter-btn sub-filter" data-type="all">Tous types</button>
                     <button class="filter-btn sub-filter" data-type="web">Web</button>
@@ -135,7 +135,7 @@
                         </div>
                     </a>
                 </article>
-                
+
                 <article class="post-card" data-platform="hackerone" data-category="web">
                     <a href="#">
                         <div class="post-content">
@@ -167,7 +167,7 @@
                         </div>
                     </a>
                 </article>
-                
+
             </section>
         </main>
 
@@ -186,46 +186,6 @@
     </div>
 
     <script src="../script.js"></script>
-    <script>
-        const platformButtons = document.querySelectorAll('.filter-btn:not(.sub-filter)');
-        const typeButtons = document.querySelectorAll('.sub-filter');
-        const cards = document.querySelectorAll('.post-card');
-        const searchInput = document.getElementById('searchBar');
-
-        let currentPlatform = 'all';
-        let currentType = 'all';
-
-        function filterWriteups() {
-            const searchText = searchInput.value.toLowerCase();
-            cards.forEach(card => {
-                const matchesPlatform = (currentPlatform === 'all' || card.getAttribute('data-platform') === currentPlatform);
-                const matchesType = (currentType === 'all' || card.getAttribute('data-category') === currentType);
-                const title = card.querySelector('h2').textContent.toLowerCase();
-                const description = card.querySelector('p').textContent.toLowerCase();
-                const matchesSearch = title.includes(searchText) || description.includes(searchText);
-                card.style.display = (matchesPlatform && matchesType && matchesSearch) ? 'block' : 'none';
-            });
-        }
-
-        platformButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                platformButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentPlatform = btn.getAttribute('data-filter');
-                filterWriteups();
-            });
-        });
-
-        typeButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                typeButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentType = btn.getAttribute('data-type');
-                filterWriteups();
-            });
-        });
-
-        searchInput.addEventListener('input', filterWriteups);
-    </script>
+    <script src="../page-writeups.js"></script>
 </body>
 </html>

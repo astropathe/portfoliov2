@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.getElementById('searchBar');
     if (!searchBar) return; // Quitter si searchBar n'existe pas
-    
+
     const posts = document.querySelectorAll('.post-card');
     if (posts.length === 0) return; // Quitter si pas de posts
 

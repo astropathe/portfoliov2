@@ -65,72 +65,7 @@
         <main class="content">
             <header>Home</header>
 
-            <!-- ============================================================
-                 STATS — Mets à jour ces valeurs quand tu progresses
-                 ============================================================ -->
-            <script>
-                const STATS = {
-                    bio: "Passionné de sécurité offensive et défensive, j'explore les réseaux, le pentest et l'administration système. En train de monter un lab Proxmox et de préparer la certification Cisco CyberOps Associate.",
-                    role: "Étudiant en cybersécurité · CTF Player · SysAdmin",
 
-                    thm: {
-                        logo:  "photo/tryhackme.svg",
-                        rank:  "Top 9%",
-                        rooms: 72,
-                        issuerLogo: "photo/cisco.png", 
-                    },
-                    rootme: {
-                        logo:       "photo/rootme.svg",
-                        points:     890,
-                        challenges: 76,
-                    },
-                    htb: {
-                        logo:     "photo/htb.png",
-                        machines: 3,
-                        rank:     "Beginner III",
-                    },
-
-                    // status      : "done" | "wip" | "planned"
-                    // badge       : chemin image badge (optionnel)
-                    // cert        : chemin image certificat — ouvre une lightbox (optionnel)
-                    // certUrl     : lien PDF/externe — ouvre un nouvel onglet (optionnel)
-                    // issuerLogo  : chemin logo organisation (optionnel)
-                    certifications: [
-                        {
-                            name:       "Ethical Hacker",
-                            issuer:     "Cisco Networking Academy",
-                            issuerLogo: "photo/cisco.png",
-                            status:     "done",
-                            badge:      "photo/ethical-hacker.png",
-                            cert:       "photo/certificatEHCisco.png",
-                        },
-                        {
-                            name:       "Introduction to Cybersecurity",
-                            issuer:     "Cisco Networking Academy",
-                            issuerLogo: "photo/cisco.png",
-                            status:     "done",
-                            badge:      "photo/introduction-to-cybersecurity.png",
-                            cert:       "photo/certificatINTROCYBERcisco.png",
-                        },
-                        {
-                            name:       "Pre Security",
-                            issuer:     "TryHackMe",
-                            issuerLogo: "photo/tryhackme.svg",
-                            status:     "done",
-                            cert:       "photo/presecuritypath.png",
-                        },
-                        {
-                            name:       "CyberOps Associate",
-                            issuer:     "Cisco",
-                            issuerLogo: "photo/cisco.png",
-                            status:     "wip",
-                        },
-                        // Ajoute tes prochaines certifs ici :
-                        // { name: "...", issuer: "...", issuerLogo: "photo/...", status: "done", badge: "photo/...", cert: "photo/..." },
-                    ]
-                };
-            </script>
-            <!-- ============================================================ -->
 
             <section class="home-page">
 
@@ -178,7 +113,6 @@
 
     <aside class="right-sidebar" id="rightSidebar">
 
-
         <!-- CV TELECHARGEMENT -->
         <div class="widget">
             <h3>Curriculum Vitae</h3>
@@ -215,7 +149,7 @@
         <!-- TECHNICAL STACK (MISE À JOUR) -->
         <div class="widget">
             <h3>Technical Stack</h3>
-            
+
             <div class="skills-category">
                 <h4>Sec & Réseaux</h4>
                 <div class="tag-cloud">
@@ -255,97 +189,7 @@
     </aside>
 
     <script src="script.js"></script>
-    <script>
-        /* ── Injection des stats ── */
-        document.getElementById('js-role').textContent         = STATS.role;
-        document.getElementById('js-bio').textContent          = STATS.bio;
+    <script src="page-index.js"></script>
 
-        /* --- AJOUT : Injection des logos des plateformes --- */
-        document.getElementById('js-thm-logo').src             = STATS.thm.logo;
-        document.getElementById('js-rm-logo').src              = STATS.rootme.logo;
-        document.getElementById('js-htb-logo').src             = STATS.htb.logo;
-        /* -------------------------------------------------- */
-
-        document.getElementById('js-thm-rank').textContent     = STATS.thm.rank;
-        document.getElementById('js-thm-rooms').textContent    = STATS.thm.rooms + ' rooms complétées';
-        document.getElementById('js-rm-pts').textContent       = STATS.rootme.points.toLocaleString('fr-FR') + ' pts';
-        document.getElementById('js-rm-chall').textContent     = STATS.rootme.challenges + ' challenges résolus';
-        document.getElementById('js-htb-machines').textContent = STATS.htb.machines + ' machines';
-        document.getElementById('js-htb-rank').textContent     = STATS.htb.rank;
-
-        /* ── Génération des cartes certifs ── */
-        const certContainer = document.getElementById('js-certs');
-
-        STATS.certifications.forEach(cert => {
-            const hasBadge      = !!cert.badge;
-            const hasCert       = !!cert.cert;
-            const hasCertUrl    = !!cert.certUrl;
-            const hasIssuerLogo = !!cert.issuerLogo;
-            const isDone        = cert.status === 'done';
-            const isWip         = cert.status === 'wip';
-
-            const label      = isDone ? 'Obtenu' : isWip ? 'En cours' : 'Prévu';
-            const badgeClass = isDone ? 'cert-badge-done' : isWip ? 'cert-badge-wip' : 'cert-badge-planned';
-
-            const card = document.createElement('div');
-            card.className = 'home-cert-card' + (hasBadge ? ' has-badge' : '');
-
-            const main = document.createElement('div');
-            main.className = 'cert-card-main';
-            main.innerHTML = `
-                <div class="cert-card-left">
-                    ${hasIssuerLogo ? `<img src="${cert.issuerLogo}" alt="${cert.issuer}" class="cert-issuer-logo">` : ''}
-                    <div class="cert-card-info">
-                        <span class="cert-name">${cert.name}</span>
-                        <span class="cert-issuer">${cert.issuer}</span>
-                    </div>
-                </div>
-                <div class="cert-card-actions">
-                    ${hasCert ? `<button class="cert-view-btn" data-img="${cert.cert}" title="Voir le certificat">
-                        <i class="fa fa-file" aria-hidden="true"></i> Certificat
-                    </button>` : ''}
-                    ${hasCertUrl ? `<a class="cert-view-btn" href="${cert.certUrl}" target="_blank" rel="noopener" title="Voir le certificat">
-                        <i class="fa fa-external-link" aria-hidden="true"></i> Certificat
-                    </a>` : ''}
-                    <span class="cert-badge ${badgeClass}">${label}</span>
-                </div>
-            `;
-            card.appendChild(main);
-
-            if (hasBadge) {
-                const badgeWrap = document.createElement('div');
-                badgeWrap.className = 'cert-credly-wrap';
-                badgeWrap.innerHTML = `<img src="${cert.badge}" alt="Badge ${cert.name}" class="cert-badge-img">`;
-                card.appendChild(badgeWrap);
-            }
-
-            certContainer.appendChild(card);
-        });
-
-        /* ── Lightbox certificat ── */
-        const lightbox         = document.getElementById('certLightbox');
-        const lightboxImg      = document.getElementById('certLightboxImg');
-        const lightboxClose    = document.getElementById('certLightboxClose');
-        const lightboxBackdrop = document.getElementById('certLightboxBackdrop');
-
-        document.getElementById('js-certs').addEventListener('click', e => {
-            const btn = e.target.closest('.cert-view-btn');
-            if (!btn || btn.tagName === 'A') return;
-            lightboxImg.src = btn.dataset.img;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });gi
-
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-            lightboxImg.src = '';
-        }
-
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightboxBackdrop.addEventListener('click', closeLightbox);
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-    </script>
-    
 </body>
 </html>
