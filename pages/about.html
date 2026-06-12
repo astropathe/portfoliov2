@@ -55,13 +55,50 @@
         </aside>
 
         <main class="content">
-            <header><a class="upper-path-links" href="../index.html">Home</a> > About</header>
-            <section class="post-list">
-                <article class="post-card">
-                    <h2>ABOUT</h2>
-                    <p>ABOUT</p>
-                </article>
-            </section>
+            <section class="about-section">
+    <h2 class="section-title">À Propos</h2>
+    
+    <div class="about-grid">
+        <!-- PROFIL -->
+        <div class="about-card hero-card">
+            <div class="terminal-prompt"><span class="usr">paul@portfolio:~$</span> cat profile.md</div>
+            <p class="lead-text">
+                Étudiant en 2ème année de BTS SIO (SISR) à Annonay. Axé sur l'administration systèmes, les réseaux et la sécurité offensive/défensive. Mon profil se construit principalement autour de l'expérimentation concrète et de l'auto-formation.
+            </p>
+        </div>
+
+        <!-- CTF -->
+        <div class="about-card">
+            <div class="terminal-prompt"><span class="usr">paul@portfolio:~$</span> ./check_ctf_rank.sh</div>
+            <p>Pratique régulière de challenges de sécurité pour développer des réflexes d'audit et de compréhension rapide d'architectures inconnues.</p>
+            <div class="mini-stats-grid">
+                <div class="mini-stat"><strong>Top 6%</strong><span>Root-Me</span></div>
+                <div class="mini-stat"><strong>Top 9%</strong><span>TryHackMe</span></div>
+                <div class="mini-stat"><strong>15e /1040</strong><span>Passe ton hack</span></div>
+            </div>
+        </div>
+
+        <!-- LAB -->
+        <div class="about-card">
+            <div class="terminal-prompt"><span class="usr">paul@portfolio:~$</span> neofetch --lab</div>
+            <p>Maintenance d'un Home Lab dédié à la simulation d'attaques, au durcissement de services et à la centralisation de logs.</p>
+            <div class="lab-features">
+                <span>Proxmox VE</span>
+                <span>Elastic Stack (ELK)</span>
+                <span>Suricata IDS</span>
+                <span>Active Directory</span>
+            </div>
+        </div>
+
+        <!-- SHARE -->
+        <div class="about-card full-width">
+            <div class="terminal-prompt"><span class="usr">paul@portfolio:~$</span> systemctl status club-informatique</div>
+            <p>
+                Implication dans le club informatique de l'établissement. Participation à la création d'un CTF interne destiné à initier les étudiants et à transmettre de bonnes pratiques en sécurité défensive.
+            </p>
+        </div>
+    </div>
+</section>
         </main>
 
         <aside class="right-sidebar" id="rightSidebar">

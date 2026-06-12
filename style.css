@@ -952,3 +952,238 @@ img[src*="tryhackme"] {
     color: #e6edf3;
     font-weight: 500;
 }
+
+
+/* ============================================
+   SECTION EXPÉRIENCES (TIMELINE STYLE)
+   ============================================ */
+
+.experiences-section {
+    padding: 1rem 0;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+}
+
+/* Conteneur de la frise */
+.timeline {
+    position: relative;
+    border-left: 2px solid #30363d; /* Ligne verticale grise */
+    margin-left: 8px;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Chaque ligne d'expérience */
+.timeline-item {
+    position: relative;
+}
+
+/* Le petit point sur la ligne */
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: -29px; /* Aligné pile sur la bordure gauche */
+    top: 4px;
+    width: 8px;
+    height: 8px;
+    background-color: #0d1117;
+    border: 2px solid #58a6ff; /* Point bleu focus */
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Métadonnées (Date et lieu) */
+.timeline-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 0.8rem;
+    font-family: monospace;
+    color: #8b949e;
+    margin-bottom: 6px;
+}
+
+.timeline-location {
+    color: #484f58;
+}
+
+/* Contenu textuel */
+.timeline-content {
+    background-color: transparent;
+}
+
+.exp-title {
+    font-size: 1.1rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin: 0 0 2px 0;
+}
+
+.exp-company {
+    font-size: 0.9rem;
+    color: #58a6ff; /* Nom de boîte en bleu */
+    margin: 0 0 12px 0;
+    font-weight: 500;
+}
+
+/* Liste des tâches */
+.exp-tasks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.exp-tasks li {
+    font-size: 0.9rem;
+    color: #c9d1d9;
+    line-height: 1.5;
+    position: relative;
+    padding-left: 12px;
+}
+
+/* Tiret personnalisé devant chaque tâche */
+.exp-tasks li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #30363d;
+}
+
+.exp-tasks strong {
+    color: #f0f6fc;
+    font-weight: 500;
+}
+
+
+/* ============================================
+   SECTION À PROPOS - REAL TERMINAL STYLE (PLUS GROS)
+   ============================================ */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem; /* Un poil plus d'espace entre les grandes cases */
+    max-width: 850px;
+    margin-top: 1rem;
+}
+
+/* Le prompt de commande - Ajusté pour éviter les retours à la ligne */
+.terminal-prompt {
+    font-family: monospace;
+    font-size: 0.88rem; /* Taille opti pour que tout tienne en largeur */
+    color: #e6edf3;
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.02em;
+}
+
+/* On applique ton rouge uniquement sur le span de l'utilisateur */
+.terminal-prompt .usr {
+    color: #fa5a5a;
+    font-weight: 500;
+    margin-right: 4px; /* Petit espace avant la commande */
+}
+
+/* On s'assure que le ::before reste vide */
+.terminal-prompt::before {
+    content: "";
+}
+
+.hero-card, .full-width {
+    grid-column: span 2;
+}
+
+.about-card {
+    background-color: #252529; 
+    border: 1px solid #30363d; 
+    border-radius: 6px;        
+    padding: 1.5rem; /* Plus d'espace interne pour respirer avec le texte plus gros */
+    
+    display: flex;
+    flex-direction: column;
+}
+
+/* Paragraphes normaux - Passés de 0.85rem à 0.95rem */
+.about-card p {
+    font-size: 0.95rem;
+    color: #c9d1d9;
+    line-height: 1.6;
+    margin: 0 0 1.25rem 0;
+}
+
+.about-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* Texte d'introduction - Passé de 0.95rem à 1.05rem */
+.lead-text {
+    font-size: 1.05rem !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+}
+
+/* Mini blocs statistiques */
+.mini-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: auto;
+}
+
+.mini-stat {
+    background-color: #161b22;
+    border: 1px solid #21262d;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Chiffres des stats - Passés de 0.85rem à 0.95rem */
+.mini-stat strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #fa5a5a;
+    font-family: monospace;
+}
+
+/* Libellés des stats - Passés de 0.7rem à 0.75rem */
+.mini-stat span {
+    font-size: 0.75rem;
+    color: #8b949e;
+}
+
+/* Badges Tech */
+.lab-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+/* Boutons de technos - Passés de 0.75rem à 0.85rem */
+.lab-features span {
+    background-color: #161b22;
+    border: 1px solid #21262d;
+    color: #c9d1d9;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: monospace;
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-card, .full-width {
+        grid-column: span 1;
+    }
+}
