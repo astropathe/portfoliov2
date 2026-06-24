@@ -9,7 +9,14 @@
 
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https://img.icons8.com; script-src 'self' 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self'; 
+    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud; 
+    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud; 
+    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud; 
+    script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud; 
+    connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud; 
+    frame-src 'self' https://cdn.botpress.cloud;">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -185,7 +192,11 @@
         </aside>
     </div>
 
+
+    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/06/24/18/20260624180205-LDJTCTBS.js" defer></script>
     <script src="../script.js"></script>
     <script src="../page-writeups.js"></script>
+    
 </body>
 </html>

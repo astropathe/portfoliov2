@@ -1,3 +1,23 @@
+/* ========================================================
+   GESTION DU THÈME GLOBAL (À exécuter sur toutes les pages)
+   ======================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            
+            // On sauvegarde le choix de l'utilisateur dans le stockage local du navigateur
+            if (document.body.classList.contains('light-mode')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
+});
+
 // Recherche dans les cartes de posts (si présent sur la page)
 document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.getElementById('searchBar');

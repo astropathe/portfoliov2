@@ -7,7 +7,14 @@
 
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https://img.icons8.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://tryhackme-certificates.s3-eu-west-1.amazonaws.com;">
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self'; 
+    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud; 
+    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud; 
+    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud; 
+    script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud; 
+    connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud; 
+    frame-src 'self' https://cdn.botpress.cloud;">
 
     <link rel="icon" type="image/png" href="photo/avatar.jpeg">
     <link rel="stylesheet" href="style.css">
@@ -53,6 +60,16 @@
                     <li><a href="pages/writeups.html">WRITEUPS</a></li>
                 </ul>
             </nav>
+
+            <!-- BOUTON SÉLECTEUR DE THÈME -->
+            <div class="theme-toggle-container">
+                <button id="theme-toggle" class="theme-btn" aria-label="Changer de thème">
+                    <div class="theme-btn-slider"></div>
+                    <span class="theme-icon icon-sun"><i class="fa fa-sun-o"></i></span>
+                    <span class="theme-icon icon-moon"><i class="fa fa-moon"></i></span>
+                </button>
+            </div>
+
             <div class="social-links">
                 <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="photo/github.png" alt="GH"></a>
                 <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="photo/linkedin.svg" alt="LinkedIn"></a>
@@ -116,7 +133,7 @@
         <!-- CV TELECHARGEMENT -->
         <div class="widget">
             <h3>Curriculum Vitae</h3>
-            <a href="../Doc/CV_Paul_Manoha_2026.pdf" target="_blank" class="cv-download-card interactive-box" download="CV_Paul_Manoha.pdf">
+            <a href="Doc/CV_Paul_Manoha_2026.pdf" target="_blank" class="cv-download-card interactive-box" download="CV_Paul_Manoha.pdf">
                 <div class="cv-info">
                     <span class="cv-name">CV_Paul_Manoha.pdf</span>
                     <span class="cv-size">Document PDF</span>
@@ -188,8 +205,11 @@
     </div>
     </aside>
 
+
+
+    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/06/24/18/20260624180205-LDJTCTBS.js" defer></script>
     <script src="script.js"></script>
     <script src="page-index.js"></script>
-
 </body>
 </html>

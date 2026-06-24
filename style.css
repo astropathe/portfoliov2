@@ -24,18 +24,26 @@ body {
 }
 
 /* ============================================
-   3. SIDEBAR GAUCHE
+   3. SIDEBAR GAUCHE (OPTIMISÉE UX)
    ============================================ */
 .left-sidebar {
     background-color: #1b1b1e;
     border-right: 1px solid #2d2d30;
-    padding: 2rem;
+    padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: sticky;
     top: 0;
     height: 100vh;
+    
+    /* Sécurité anti-coupure pour petits écrans */
+    overflow-y: auto; 
+    scrollbar-width: none; /* Firefox */
+}
+
+.left-sidebar::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
 }
 
 .avatar {
@@ -243,7 +251,6 @@ body {
 /* ============================================
    8. WIDGETS & TAGS
    ============================================ */
-/* Structuration de la Technical Stack */
 .skills-category {
     margin-top: 1rem;
 }
@@ -456,7 +463,7 @@ body {
 }
 
 /* ============================================
-   12. PAGE HOME
+   12. PAGE HOME & LIGHTBOX
    ============================================ */
 .home-page {
     display: flex;
@@ -521,42 +528,28 @@ body {
 .stat-platform {
     display: flex;
     align-items: center;
-    gap: 8px; /* Espace propre entre le logo et le texte */
+    gap: 8px;
     font-weight: bold;
 }
 
-/* --- Ajustement des logos des plateformes CTF --- */
 .stat-platform-logo {
     width: 24px;
     height: 24px;
     object-fit: contain;
-    /* Ajuste la disposition si nécessaire */
     display: inline-block;
     vertical-align: middle;
-
-    /* FIX CONTRASTE : Rend les logos sombres brillants/blancs sur fond noir */
     filter: brightness(0) invert(1);
-    /* NOTE : Si tu veux garder les couleurs originales (le vert HTB, le rouge THM)
-       mais juste les rendre plus visibles, utilise plutôt : filter: drop-shadow(0px 0px 2px rgba(255,255,255,0.6)); */
 }
 
-/* --- Ajustement des petits logos des certifs (Cisco, THM...) --- */
 .cert-issuer-logo {
-    width: 32px; /* Un poil plus grand pour la lisibilité */
+    width: 32px;
     height: 32px;
     object-fit: contain;
-
-    /* Améliore le contraste sur fond sombre */
     filter: brightness(1.3);
 }
 
-/* Si le logo de Cisco dans tes certifications reste invisible car écrit en noir */
-img[src*="cisco"] {
-    filter: brightness(0) invert(1) !important; /* Force le logo Cisco à passer en blanc épuré */
-}
-
-img[src*="tryhackme"] {
-    filter: brightness(0) invert(1) !important; /* Force le logo Cisco à passer en blanc épuré */
+img[src*="cisco"], img[src*="tryhackme"] {
+    filter: brightness(0) invert(1) !important;
 }
 
 .stat-val {
@@ -578,7 +571,6 @@ img[src*="tryhackme"] {
     margin-bottom: 1rem;
 }
 
-/* Carte certif — layout de base (sans badge) */
 .home-cert-card {
     background: #252529;
     border: 1px solid #3e3e42;
@@ -589,7 +581,6 @@ img[src*="tryhackme"] {
 
 .home-cert-card:hover { border-color: #505055; }
 
-/* Carte avec badge Credly : côte à côte */
 .home-cert-card.has-badge {
     display: flex;
     align-items: center;
@@ -636,7 +627,6 @@ img[src*="tryhackme"] {
     flex-shrink: 0;
 }
 
-/* Bouton "Voir le certificat" */
 .cert-view-btn {
     background: #2d2d30;
     border: 1px solid #3e3e42;
@@ -655,7 +645,6 @@ img[src*="tryhackme"] {
     border-color: #58a6ff;
 }
 
-/* Badges de statut */
 .cert-badge {
     font-size: 0.72rem;
     padding: 3px 10px;
@@ -682,7 +671,6 @@ img[src*="tryhackme"] {
     border: 1px solid #3a4060;
 }
 
-/* Zone badge image */
 .cert-credly-wrap {
     flex-shrink: 0;
     width: 72px;
@@ -698,7 +686,7 @@ img[src*="tryhackme"] {
     border-radius: 6px;
 }
 
-/* Lightbox certificat */
+/* Lightbox certificat (Fixée) */
 .cert-lightbox {
     display: none;
     position: fixed;
@@ -708,7 +696,9 @@ img[src*="tryhackme"] {
     justify-content: center;
 }
 
-.cert-lightbox.active { display: flex; }
+.cert-lightbox.active { 
+    display: flex !important; 
+}
 
 .cert-lightbox-backdrop {
     position: absolute;
@@ -734,6 +724,12 @@ img[src*="tryhackme"] {
     object-fit: contain;
 }
 
+/* Masque l'image et le texte alt tant qu'aucune source n'est injectée par JS */
+.cert-lightbox img[src=""], 
+.cert-lightbox img:not([src]) {
+    display: none !important;
+}
+
 .cert-lightbox-close {
     position: absolute;
     top: 10px;
@@ -752,6 +748,82 @@ img[src*="tryhackme"] {
 .cert-lightbox-close:hover {
     background: rgba(0,0,0,0.9);
     color: #ffffff;
+}
+
+/* ============================================
+   13. BOUTON TOGGLE THÈME (MINI CAPSULE COMPACTE)
+   ============================================ */
+.theme-toggle-container {
+    width: 100%;
+    margin-top: auto; /* Reste sagement ancré en bas */
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center; /* Centre le mini-bouton dans la sidebar */
+}
+
+.theme-btn {
+    position: relative;
+    width: 64px;
+    height: 32px;
+    background-color: #141416;
+    border: 1px solid #2d2d30;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* La pastille ronde qui glisse */
+.theme-btn-slider {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 24px;
+    height: 24px;
+    background-color: #2d2d30;
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+/* Zone des icônes */
+.theme-icon {
+    position: relative;
+    z-index: 2;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: color 0.25s ease;
+}
+
+/* --- LOGIQUE DE COULEURS (DARK & LIGHT) --- */
+
+/* Mode Sombre (Défaut) */
+body:not(.light-mode) .theme-btn .icon-moon { color: #ffffff !important; }
+body:not(.light-mode) .theme-btn .icon-sun { color: #52525b !important; }
+body:not(.light-mode) .theme-btn-slider { 
+    transform: translateX(30px); /* Glisse à droite sur la lune */
+    background-color: #2d2d30; 
+}
+
+/* Mode Clair */
+body.light-mode .theme-btn {
+    background-color: #f0f2f5 !important;
+    border-color: #d0d7de !important;
+}
+body.light-mode .theme-btn .icon-sun { color: #ffffff !important; }
+body.light-mode .theme-btn .icon-moon { color: #57606a !important; }
+body.light-mode .theme-btn-slider { 
+    transform: translateX(0px); /* Glisse à gauche sur le soleil */
+    background-color: #fa5a5a !important; /* Devient rouge signature en mode clair */
+    box-shadow: 0 2px 4px rgba(250, 90, 90, 0.2);
 }
 
 /* ============================================
@@ -867,10 +939,8 @@ img[src*="tryhackme"] {
 }
 
 /* ============================================
-   BARRE LATERALE DROITE (VERSION PREMIUM)
+   15. COMPOSANTS DROITS (CV DOWNLOAD & METAGRID)
    ============================================ */
-
-/* Carte de téléchargement du CV */
 .cv-download-card {
     display: flex;
     align-items: center;
@@ -906,7 +976,6 @@ img[src*="tryhackme"] {
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
-/* Effets interactifs (Hover) */
 .cv-download-card:hover {
     background-color: #161b22;
     border-color: #58a6ff;
@@ -917,7 +986,6 @@ img[src*="tryhackme"] {
     transform: translateY(2px);
 }
 
-/* Grille d'informations épurée */
 .meta-grid {
     display: flex;
     flex-direction: column;
@@ -951,9 +1019,8 @@ img[src*="tryhackme"] {
 }
 
 /* ============================================
-   SECTION EXPÉRIENCES (TIMELINE STYLE)
+   16. SECTION EXPÉRIENCES (TIMELINE)
    ============================================ */
-
 .experiences-section {
     padding: 1rem 0;
 }
@@ -965,10 +1032,9 @@ img[src*="tryhackme"] {
     letter-spacing: -0.02em;
 }
 
-/* Conteneur de la frise */
 .timeline {
     position: relative;
-    border-left: 2px solid #30363d; /* Ligne verticale grise */
+    border-left: 2px solid #30363d;
     margin-left: 8px;
     padding-left: 24px;
     display: flex;
@@ -976,26 +1042,23 @@ img[src*="tryhackme"] {
     gap: 2rem;
 }
 
-/* Chaque ligne d'expérience */
 .timeline-item {
     position: relative;
 }
 
-/* Le petit point sur la ligne */
 .timeline-item::before {
     content: "";
     position: absolute;
-    left: -29px; /* Aligné pile sur la bordure gauche */
+    left: -29px;
     top: 4px;
     width: 8px;
     height: 8px;
     background-color: #0d1117;
-    border: 2px solid #fa5a5a; /* Point rouge focus */
+    border: 2px solid #fa5a5a;
     border-radius: 50%;
     z-index: 1;
 }
 
-/* Métadonnées (Date et lieu) */
 .timeline-meta {
     display: flex;
     gap: 12px;
@@ -1009,11 +1072,6 @@ img[src*="tryhackme"] {
     color: #484f58;
 }
 
-/* Contenu textuel */
-.timeline-content {
-    background-color: transparent;
-}
-
 .exp-title {
     font-size: 1.1rem;
     color: #ffffff;
@@ -1023,12 +1081,11 @@ img[src*="tryhackme"] {
 
 .exp-company {
     font-size: 0.9rem;
-    color: #fa5a5a; /* Nom de boîte en rouge */
+    color: #fa5a5a;
     margin: 0 0 12px 0;
     font-weight: 500;
 }
 
-/* Liste des tâches */
 .exp-tasks {
     list-style: none;
     padding: 0;
@@ -1046,7 +1103,6 @@ img[src*="tryhackme"] {
     padding-left: 12px;
 }
 
-/* Tiret personnalisé devant chaque tâche */
 .exp-tasks li::before {
     content: "•";
     position: absolute;
@@ -1060,36 +1116,28 @@ img[src*="tryhackme"] {
 }
 
 /* ============================================
-   SECTION À PROPOS - REAL TERMINAL STYLE (PLUS GROS)
+   17. SECTION À PROPOS (TERMINAL STYLE)
    ============================================ */
-
 .about-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem; /* Un poil plus d'espace entre les grandes cases */
+    gap: 1.25rem;
     max-width: 850px;
     margin-top: 1rem;
 }
 
-/* Le prompt de commande - Ajusté pour éviter les retours à la ligne */
 .terminal-prompt {
     font-family: monospace;
-    font-size: 0.88rem; /* Taille opti pour que tout tienne en largeur */
+    font-size: 0.88rem;
     color: #e6edf3;
     margin-bottom: 0.85rem;
     letter-spacing: 0.02em;
 }
 
-/* On applique ton rouge uniquement sur le span de l'utilisateur */
 .terminal-prompt .usr {
     color: #fa5a5a;
     font-weight: 500;
-    margin-right: 4px; /* Petit espace avant la commande */
-}
-
-/* On s'assure que le ::before reste vide */
-.terminal-prompt::before {
-    content: "";
+    margin-right: 4px;
 }
 
 .hero-card, .full-width {
@@ -1100,13 +1148,11 @@ img[src*="tryhackme"] {
     background-color: #252529;
     border: 1px solid #30363d;
     border-radius: 6px;
-    padding: 1.5rem; /* Plus d'espace interne pour respirer avec le texte plus gros */
-
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
 }
 
-/* Paragraphes normaux - Passés de 0.85rem à 0.95rem */
 .about-card p {
     font-size: 0.95rem;
     color: #c9d1d9;
@@ -1118,14 +1164,12 @@ img[src*="tryhackme"] {
     margin-bottom: 0;
 }
 
-/* Texte d'introduction - Passé de 0.95rem à 1.05rem */
 .lead-text {
     font-size: 1.05rem !important;
     line-height: 1.6 !important;
     margin: 0 !important;
 }
 
-/* Mini blocs statistiques */
 .mini-stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1141,7 +1185,6 @@ img[src*="tryhackme"] {
     text-align: center;
 }
 
-/* Chiffres des stats - Passés de 0.85rem à 0.95rem */
 .mini-stat strong {
     display: block;
     font-size: 0.95rem;
@@ -1149,13 +1192,11 @@ img[src*="tryhackme"] {
     font-family: monospace;
 }
 
-/* Libellés des stats - Passés de 0.7rem à 0.75rem */
 .mini-stat span {
     font-size: 0.75rem;
     color: #8b949e;
 }
 
-/* Badges Tech */
 .lab-features {
     display: flex;
     flex-wrap: wrap;
@@ -1163,7 +1204,6 @@ img[src*="tryhackme"] {
     margin-top: auto;
 }
 
-/* Boutons de technos - Passés de 0.75rem à 0.85rem */
 .lab-features span {
     background-color: #161b22;
     border: 1px solid #21262d;
@@ -1175,10 +1215,298 @@ img[src*="tryhackme"] {
 }
 
 @media (max-width: 768px) {
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-    .hero-card, .full-width {
-        grid-column: span 1;
-    }
+    .about-grid { grid-template-columns: 1fr; }
+    .hero-card, .full-width { grid-column: span 1; }
 }
+
+/* ============================================
+   18. POLISH GLOBAL DU MODE CLAIR (LIGHT MODE)
+   ============================================ */
+body.light-mode {
+    background-color: #f8f9fa !important; /* Gris ultra doux */
+    color: #24292f !important;
+}
+
+body.light-mode .left-sidebar {
+    background-color: #ffffff !important;
+    border-right: 1px solid #d0d7de !important;
+}
+
+body.light-mode .right-sidebar {
+    background-color: #ffffff !important;
+    border-left: 1px solid #d0d7de !important;
+}
+
+body.light-mode .home-bio {
+    background-color: #ffffff !important;
+    border: 1px solid #d0d7de !important;
+}
+
+body.light-mode .home-bio h2 { color: #24292f !important; }
+body.light-mode .home-bio .bio-desc { color: #57606a !important; }
+body.light-mode .section-label, body.light-mode header { color: #57606a !important; }
+
+body.light-mode .home-stat-card {
+    background-color: #ffffff !important;
+    border: 1px solid #d0d7de !important;
+}
+
+body.light-mode .home-stat-card .stat-platform { color: #24292f !important; }
+body.light-mode .home-stat-card .stat-val { color: #24292f !important; }
+body.light-mode .home-stat-card .stat-sub { color: #57606a !important; }
+
+body.light-mode .home-cert-list > div {
+    background-color: #ffffff !important;
+    border: 1px solid #d0d7de !important;
+}
+
+body.light-mode .home-cert-list > div * { color: #24292f !important; }
+body.light-mode .home-cert-list .cert-status { color: #57606a !important; }
+
+body.light-mode .about-card {
+    background-color: #ffffff !important;
+    border: 1px solid #d0d7de !important;
+}
+
+body.light-mode .terminal-prompt { color: #24292f !important; }
+body.light-mode .terminal-prompt .usr { color: #fa5a5a !important; }
+body.light-mode .about-card p { color: #24292f !important; }
+body.light-mode .about-card .lead-text { color: #24292f !important; }
+
+body.light-mode .mini-stat {
+    background-color: #f0f2f5 !important;
+    border: 1px solid #d0d7de !important;
+}
+
+body.light-mode .mini-stat strong { color: #fa5a5a !important; }
+body.light-mode .mini-stat span { color: #57606a !important; }
+
+body.light-mode .lab-features span {
+    background-color: #f0f2f5 !important;
+    border: 1px solid #d0d7de !important;
+    color: #24292f !important;
+}
+
+body.light-mode .section-title { color: #24292f !important; }
+body.light-mode .timeline { border-left-color: #d0d7de !important; }
+body.light-mode .timeline-item::before {
+    background-color: #ffffff !important;
+    border-color: #fa5a5a !important;
+}
+
+body.light-mode .timeline-meta { color: #57606a !important; }
+body.light-mode .exp-title { color: #24292f !important; }
+body.light-mode .exp-company { color: #fa5a5a !important; }
+body.light-mode .exp-tasks li { color: #24292f !important; }
+body.light-mode .exp-tasks li::before { color: #d0d7de !important; }
+
+body.light-mode .widget {
+    background-color: #ffffff !important;
+    border: 1px solid #d0d7de !important;
+}
+
+body.light-mode .widget h3 {
+    color: #24292f !important;
+    border-bottom: 1px solid #d0d7de !important;
+}
+
+body.light-mode .grid-label { color: #57606a !important; }
+body.light-mode .grid-value { color: #24292f !important; }
+
+body.light-mode .cv-download-card {
+    background-color: #f6f8fa !important;
+    border: 1px solid #d0d7de !important;
+}
+
+body.light-mode .cv-name { color: #24292f !important; }
+body.light-mode .cv-size, body.light-mode .download-icon { color: #57606a !important; }
+body.light-mode .cv-download-card:hover {
+    background-color: #f0f2f5 !important;
+    border-color: #fa5a5a !important;
+}
+
+body.light-mode .cv-download-card:hover .download-icon { color: #fa5a5a !important; }
+
+body.light-mode .tag {
+    background-color: #f0f2f5 !important;
+    border: 1px solid #d0d7de !important;
+    color: #24292f !important;
+}
+
+body.light-mode .left-sidebar nav ul li a { color: #57606a !important; }
+body.light-mode .left-sidebar nav ul li a:hover,
+body.light-mode .left-sidebar nav ul li a.active {
+    background-color: #f0f2f5 !important;
+    color: #24292f !important;
+}
+
+/* Désactivation de l'inversion de couleur des logos en mode clair */
+body.light-mode .stat-platform-logo,
+body.light-mode .cert-issuer-logo,
+body.light-mode img[src*="cisco"],
+body.light-mode img[src*="tryhackme"] {
+    filter: none !important;
+}
+
+body.light-mode .cert-name { color: #24292f !important; }
+body.light-mode .cert-issuer { color: #57606a !important; }
+
+body.light-mode .cert-view-btn {
+    background-color: #ffffff !important;
+    color: #fa5a5a !important;
+    border: 1px solid #fa5a5a !important;
+    font-weight: 500;
+}
+
+body.light-mode .cert-view-btn:hover {
+    background-color: #fa5a5a !important;
+    color: #ffffff !important;
+}
+
+body.light-mode .cert-badge-done {
+    background-color: #2ea44f !important;
+    color: #ffffff !important;
+    font-weight: bold;
+    border: none !important;
+}
+
+body.light-mode .cert-badge-wip {
+    background-color: #d29922 !important;
+    color: #ffffff !important;
+    font-weight: bold;
+    border: none !important;
+}
+
+body.light-mode .cert-badge-planned {
+    background-color: #ddf4ff !important;
+    color: #0969da !important;
+    border: 1px solid #b6e3ff !important;
+}
+
+body.light-mode .ctf-platform-card {
+    border-top: 4px solid #fa5a5a !important;
+    transition: transform 0.2s ease;
+}
+
+body.light-mode .ctf-card-thm { border-top-color: #cc0000 !important; }
+body.light-mode .ctf-card-rootme { border-top-color: #2196f3 !important; }
+body.light-mode .ctf-card-htb { border-top-color: #9fe643 !important; }
+
+
+/* ============================================
+   SECTION LAB : TERMINAL LLM LOCAL
+   ============================================ */
+.terminal-container {
+    background-color: #0c0c0d;
+    border: 1px solid #2d2d30;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow: hidden;
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+}
+
+.terminal-header {
+    background-color: #141416;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #2d2d30;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 6px;
+}
+.terminal-buttons span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.terminal-buttons .close { background-color: #ff5f56; }
+.terminal-buttons .minimize { background-color: #ffbd2e; }
+.terminal-buttons .maximize { background-color: #27c93f; }
+
+.terminal-title {
+    color: #62626c;
+    font-size: 0.8rem;
+    margin-left: 20px;
+}
+
+.terminal-body {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    color: #a9b1d6;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.system-status {
+    color: #58a6ff;
+    line-height: 1.8;
+}
+
+/* Barre de chargement du modèle */
+.progress-bar-container {
+    width: 100%;
+    height: 6px;
+    background-color: #1c1c1f;
+    border-radius: 3px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #fa5a5a; /* Ton rouge signature */
+    transition: width 0.2s ease;
+}
+
+/* Lignes de dialogue */
+.bot-prompt { color: #fa5a5a; font-weight: bold; }
+.user-prompt { color: #4caf7d; font-weight: bold; }
+.bot-response { color: #e1e1e3; line-height: 1.5; white-space: pre-wrap; }
+
+/* Input de saisie */
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    background-color: #0c0c0d;
+    padding: 10px 1.5rem;
+    border-top: 1px solid #1c1c1f;
+}
+.terminal-input-line .terminal-prompt {
+    color: #4caf7d;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+.terminal-input-line input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+/* Version Mode Clair */
+body.light-mode .terminal-container {
+    background-color: #ffffff;
+    border-color: #d0d7de;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+body.light-mode .terminal-header {
+    background-color: #f6f8fa;
+    border-bottom-color: #d0d7de;
+}
+body.light-mode .terminal-body { color: #24292f; }
+body.light-mode .bot-response { color: #24292f; }
+body.light-mode .terminal-input-line { background-color: #f6f8fa; border-top-color: #d0d7de; }
+body.light-mode .terminal-input-line input { color: #24292f; }
