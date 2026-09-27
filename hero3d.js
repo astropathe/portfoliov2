@@ -8,19 +8,18 @@
    - le contexte WebGL échoue à l'initialisation
    Dans tous ces cas le hero reste utilisable sans canvas.
 
-   ── Remplacer l'icosaèdre par ton propre modèle .glb ──
-   1. Dépose ton fichier dans un dossier `assets/` à la racine (ex: assets/model.glb).
-   2. Charge le GLTFLoader compatible avec la version de three.min.js utilisée
-      ici (r128) : ajoute ce script AVANT hero3d.js dans le HTML —
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/GLTFLoader.js"></script>
-      (le loader n'est PAS inclus dans three.min.js, c'est un fichier séparé).
-   3. Ajoute `https://cdnjs.cloudflare.com` est déjà whitelisté en script-src
-      dans la CSP de chaque page (nécessaire pour charger ce script).
-   4. Dans ce fichier, remplace l'appel `createDefaultObject(group)` par
-      `loadCustomModel(group, 'assets/model.glb')` (voir plus bas).
-   5. N'utilise que des modèles dont tu détiens les droits (modèle personnel,
-      ou licence explicite autorisant l'usage web/portfolio) — ne réutilise
-      jamais un .glb trouvé sur un site tiers sans vérifier sa licence.
+   ── Modèle personnalisé actif : assets/model.glb ──
+   cdnjs ne mirrore que le coeur de three.js (build/three.min.js), pas les
+   examples/loaders — le GLTFLoader compatible r128 est donc chargé depuis
+   jsdelivr (npm/three@0.128.0), whitelisté dans la CSP en script-src.
+   Si le loader ou le .glb échoue à charger, on retombe automatiquement
+   sur l'icosaèdre par défaut (createDefaultObject) — le hero reste
+   toujours utilisable.
+   Pour remplacer par un autre modèle : dépose le .glb dans assets/,
+   change l'URL passée à loadCustomModel() plus bas, et vérifie que tu en
+   détiens les droits (modèle personnel, ou licence explicite autorisant
+   l'usage web/portfolio) — ne réutilise jamais un .glb trouvé sur un site
+   tiers sans vérifier sa licence.
    ======================================================== */
 (function () {
     'use strict';
@@ -69,10 +68,10 @@
         return target;
     }
 
-    /* ── Pour brancher un modèle perso plus tard (voir instructions en tête de fichier) ──
+    /* ── Chargement d'un modèle .glb, réutilisable pour n'importe quelle URL ── */
     function loadCustomModel(target, url) {
         var script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/GLTFLoader.js';
+        script.src = 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js';
         script.onload = function () {
             var loader = new THREE.GLTFLoader();
             loader.load(url, function (gltf) {
@@ -86,23 +85,25 @@
                 var center = new THREE.Vector3();
                 box.getCenter(center);
                 model.position.sub(center);
-                var maxDim = Math.max(size.x, size.y, size.z);
+                var maxDim = Math.max(size.x, size.y, size.z) || 1;
                 var scale = (1.9 * 2) / maxDim;
                 model.scale.setScalar(scale);
 
                 target.add(model);
             }, undefined, function () {
-                // échec de chargement : on retombe sur l'objet par défaut
+                // échec de chargement du .glb : on retombe sur l'objet par défaut
                 createDefaultObject(target);
             });
         };
+        script.onerror = function () {
+            // échec de chargement du loader lui-même (CDN bloqué / hors-ligne)
+            createDefaultObject(target);
+        };
         document.head.appendChild(script);
     }
-    ── Pour activer : commente la ligne createDefaultObject ci-dessous et
-       décommente loadCustomModel('assets/model.glb') ── */
 
-    createDefaultObject(group);
-    // loadCustomModel(group, 'assets/model.glb');
+    loadCustomModel(group, 'assets/model.glb');
+    // createDefaultObject(group); // repli manuel vers l'icosaèdre par défaut si besoin
 
     group.position.x = W < 900 ? 0 : 2.1;
 
