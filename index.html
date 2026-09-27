@@ -11,7 +11,8 @@
     default-src 'self';
     font-src 'self' https://fonts.gstatic.com https://cdn.botpress.cloud;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.botpress.cloud;
-    img-src 'self' data: https://cdn.botpress.cloud https://files.bpcontent.cloud;
+    img-src 'self' data: blob: https://cdn.botpress.cloud https://files.bpcontent.cloud;
+    media-src 'self' data:;
     script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud https://cdnjs.cloudflare.com https://cdn.jsdelivr.net;
     connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud;
     frame-src 'self' https://cdn.botpress.cloud;">
