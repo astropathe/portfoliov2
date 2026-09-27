@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             type: "Projet",
             tags: ["Cyber", "Dev", "Stage"],
             url: "../projets/cve-tracker.html",
-            image: "../photo/uk_ncsc.webp"
+            image: "../photo/cve-tracker.png"
         },
         {
             title: "De l'Iran à la surveillance de masse : la double guerre de Palantir",
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             date: "15 Mai 2026",
             type: "Projet",
             tags: ["Dev", "Projet", "Firefox"],
-            url: "projets.html",
+            url: "../projets/debaising.html",
             image: "../photo/debAIsing.png"
         },
         {
@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
             date: "15 Mai 2026",
             type: "Projet",
             tags: ["Cyber", "Projet", "Phishing", "Red Team"],
-            url: "projets.html",
-            image: "../photo/debAIsing.png"
+            url: "../projets/gophish.html",
+            image: "../photo/phishing.png"
         },
         {
             title: "Nouveautés de la mise à jour Windows 11 KB5077241",
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             type: "Veille",
             tags: ["Cyber", "Veille", "Windows", "MAJ"],
             url: "2026-02-25-WindowsMAJ.html",
-            image: "../photo/windows11.webp"
+            image: "../photo/veilles/windows11.webp"
         },
         {
             title: "Les États-Unis veulent imposer leur vision des normes de cybersécurité de l’IA au reste du monde",
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             type: "Veille",
             tags: ["Cyber", "Veille", "USA", "Geopolitique"],
             url: "2026-02-04-USACYBER.html",
-            image: "../photo/us.jpg"
+            image: "../photo/veilles/us.jpg"
         },
         {
             title: "Le gouvernement britannique met en garde contre les attaques de groupes de hacktivistes russes en cours",
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             type: "Veille",
             tags: ["Cyber", "Veille", "UK", "Geopolitique"],
             url: "2026-01-21-UK.html",
-            image: "../photo/uk_ncsc.webp"
+            image: "../photo/veilles/uk_ncsc.webp"
         }
     ];
 

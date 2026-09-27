@@ -17,7 +17,9 @@
     script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud; 
     connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud; 
     frame-src 'self' https://cdn.botpress.cloud;">
+    <link rel="icon" type="image/png" href="../photo/avatar.jpeg">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -52,10 +54,20 @@
                     <li><a href="writeups.html">WRITEUPS</a></li>
                 </ul>
             </nav>
+
+            <!-- BOUTON SÉLECTEUR DE THÈME -->
+            <div class="theme-toggle-container">
+                <button id="theme-toggle" class="theme-btn" aria-label="Changer de thème">
+                    <div class="theme-btn-slider"></div>
+                    <span class="theme-icon icon-sun"><i class="fa fa-sun-o"></i></span>
+                    <span class="theme-icon icon-moon"><i class="fa fa-moon"></i></span>
+                </button>
+            </div>
+
             <div class="social-links">
                 <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="../photo/github.png" alt="GH"></a>
-                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../photo/linkedin.svg" alt="LNKD"></a>
-                <a href="#" target="_blank" title="Email"><img class="social-icons" src="../photo/mail.png" alt="@"></a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../photo/linkedin.svg" alt="LinkedIn"></a>
+                <a href="mailto:paulmanoha1106@gmail.com" title="Email"><img class="social-icons" src="../photo/mail.png" alt="@"></a>
                 <a href="https://www.root-me.org/astropathe" target="_blank" title="Root-Me"><img src="../photo/rootme.svg" alt="RM"></a>
                 <a href="https://tryhackme.com/p/astropathe" target="_blank" title="TryHackMe"><img src="../photo/tryhackme.svg" alt="THM"></a>
             </div>
