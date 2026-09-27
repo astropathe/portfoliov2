@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Paul Manoha</title>
+    <title>Paul Manoha</title>
 
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.gstatic.com;
-    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.googleapis.com;
-    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud;
+    font-src 'self' https://fonts.gstatic.com https://cdn.botpress.cloud;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.botpress.cloud;
+    img-src 'self' data: https://cdn.botpress.cloud https://files.bpcontent.cloud;
     script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud https://cdnjs.cloudflare.com;
     connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud;
     frame-src 'self' https://cdn.botpress.cloud;">
@@ -19,22 +19,13 @@
     <link rel="icon" type="image/png" href="photo/avatar.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
-        <span></span><span></span><span></span>
-    </button>
-
-    <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-    </button>
+    <div class="cursor-dot" id="cdot"></div>
+    <div class="cursor-ring" id="cring"></div>
 
     <!-- Lightbox certificat -->
     <div class="cert-lightbox" id="certLightbox">
@@ -45,169 +36,153 @@
         </div>
     </div>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <header class="site-header" id="mainHeader">
+        <div class="logo">PM.</div>
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="index.html" class="active hoverable">Home</a></li>
+                <li><a href="pages/projets.html" class="hoverable">Projets</a></li>
+                <li><a href="pages/about.html" class="hoverable">About</a></li>
+                <li><a href="pages/veilles.html" class="hoverable">Veilles</a></li>
+                <li><a href="pages/writeups.html" class="hoverable">Writeups</a></li>
+                <li><a href="#contact" class="hoverable">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-toggle" id="hamburgerBtn" aria-label="Ouvrir le menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
 
-    <div class="container">
-        <aside class="left-sidebar" id="leftSidebar">
-            <div class="profile-section">
-                <img src="photo/avatar.jpeg" alt="Avatar" class="avatar">
-                <h1>Paul Manoha</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="active">HOME</a></li>
-                    <li><a href="pages/experiences.html">EXPERIENCES</a></li>
-                    <li><a href="pages/projets.html">PROJETS</a></li>
-                    <li><a href="pages/about.html">ABOUT</a></li>
-                    <li><a href="pages/veilles.html">VEILLES</a></li>
-                    <li><a href="pages/writeups.html">WRITEUPS</a></li>
-                </ul>
-            </nav>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="active">Home</a>
+        <a href="pages/projets.html">Projets</a>
+        <a href="pages/about.html">About</a>
+        <a href="pages/veilles.html">Veilles</a>
+        <a href="pages/writeups.html">Writeups</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-            <div class="social-links">
-                <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="photo/github.png" alt="GH"></a>
-                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="photo/linkedin.svg" alt="LinkedIn"></a>
-                <a href="mailto:paulmanoha1106@gmail.com" title="Email"><img class="social-icons" src="photo/mail.png" alt="@"></a>
-                <a href="https://www.root-me.org/astropathe" target="_blank" title="Root-Me"><img src="photo/rootme.svg" alt="RM"></a>
-                <a href="https://tryhackme.com/p/astropathe" target="_blank" title="TryHackMe"><img src="photo/tryhackme.svg" alt="THM"></a>
-            </div>
-        </aside>
-
-        <main class="content">
-            <header>Home</header>
-
-
-
-            <section class="home-page">
-
-                <div class="home-bio">
-                    <div class="bio-text">
-                        <h2 data-reveal="hero">Paul Manoha</h2>
-                        <p class="role" id="js-role" data-reveal="hero"></p>
-                        <p class="bio-desc" id="js-bio" data-reveal="hero"></p>
-                    </div>
-                </div>
-
-                <p class="section-label" data-reveal>Plateformes CTF</p>
-                <div class="home-stats-grid" data-reveal-group>
-                    <div class="home-stat-card">
-                        <div class="stat-platform">
-                            <img src="" id="js-thm-logo" class="stat-platform-logo" alt="TryHackMe">
-                            TryHackMe
-                        </div>
-                        <div class="stat-val" id="js-thm-rank"></div>
-                        <div class="stat-sub" id="js-thm-rooms"></div>
-                    </div>
-                    <div class="home-stat-card">
-                        <div class="stat-platform">
-                            <img src="" id="js-rm-logo" class="stat-platform-logo" alt="Root-Me">
-                            Root-Me
-                        </div>
-                        <div class="stat-val" id="js-rm-pts"></div>
-                        <div class="stat-sub" id="js-rm-chall"></div>
-                    </div>
-                    <div class="home-stat-card">
-                        <div class="stat-platform">
-                            <img src="" id="js-htb-logo" class="stat-platform-logo" alt="HackTheBox">
-                            HackTheBox
-                        </div>
-                        <div class="stat-val" id="js-htb-machines"></div>
-                        <div class="stat-sub" id="js-htb-rank"></div>
-                    </div>
-                </div>
-
-                <p class="section-label" data-reveal>Certifications</p>
-                <div class="home-cert-list" id="js-certs" data-reveal-group></div>
-
-            </section>
-        </main>
-
-    <aside class="right-sidebar" id="rightSidebar">
-
-        <!-- CV TELECHARGEMENT -->
-        <div class="widget">
-            <h3>Curriculum Vitae</h3>
-            <a href="Doc/CV_Paul_Manoha_2026.pdf" target="_blank" class="cv-download-card interactive-box" download="CV_Paul_Manoha.pdf">
-                <div class="cv-info">
-                    <span class="cv-name">CV_Paul_Manoha.pdf</span>
-                    <span class="cv-size">Document PDF</span>
-                </div>
-                <span class="download-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                </span>
-            </a>
-        </div>
-        <br>
-        <!-- DETAILS -->
-        <div class="widget">
-            <h3>Informations</h3>
-            <div class="meta-grid">
-                <div class="grid-item">
-                    <span class="grid-label">Situation</span>
-                    <span class="grid-value">Recherche de stage</span>
-                </div>
-                <div class="grid-item">
-                    <span class="grid-label">Mobilité</span>
-                    <span class="grid-value">Annonay et alentours</span>
-                </div>
-                <div class="grid-item">
-                    <span class="grid-label">Permis</span>
-                    <span class="grid-value">B (Véhiculé)</span>
-                </div>
+    <section class="hero" id="home">
+        <canvas id="three-canvas"></canvas>
+        <div class="hero-text">
+            <p class="hero-tag mono">SISR · BTS SIO 2 — Root-Me / TryHackMe / HackTheBox — en recherche de stage</p>
+            <h1 class="hero-title">PAUL<br>MANOHA</h1>
+            <div class="hero-cta">
+                <a href="#contact" class="pill hoverable">Me contacter →</a>
+                <a href="Doc/CV_Paul_Manoha_2026.pdf" target="_blank" download="CV_Paul_Manoha.pdf" class="pill ghost hoverable">Télécharger le CV</a>
             </div>
         </div>
-        <br>
-        <!-- TECHNICAL STACK (MISE À JOUR) -->
-        <div class="widget">
-            <h3>Technical Stack</h3>
+        <div></div>
+        <div class="scroll-cue mono">Scroll ↓</div>
+    </section>
 
-            <div class="skills-category">
-                <h4>Sec & Réseaux</h4>
-                <div class="tag-cloud">
-                    <span class="tag">Kali Linux</span>
-                    <span class="tag">Suricata IDS</span>
-                    <span class="tag">Wireshark</span>
-                    <span class="tag">Pentest</span>
-                    <span class="tag">CVE</span>
-                    <span class="tag">CTF</span>
-                </div>
-            </div>
-
-            <div class="skills-category">
-                <h4>Sys & Virtualisation</h4>
-                <div class="tag-cloud">
-                    <span class="tag">Proxmox VE</span>
-                    <span class="tag">Linux/Debian</span>
-                    <span class="tag">Windows AD</span>
-                    <span class="tag">LXC/VM</span>
-                    <span class="tag">Raspberry Pi</span>
-                    <span class="tag">FreeCAD</span>
-                </div>
-            </div>
-
-            <div class="skills-category">
-                <h4>Supervision & Dev</h4>
-                <div class="tag-cloud">
-                    <span class="tag">ELK Stack</span>
-                    <span class="tag">Kibana</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Flask</span>
-                    <span class="tag">Git/GitLab</span>
-                </div>
-            </div>
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span>PENTEST</span><span>SYSADMIN</span><span>PROXMOX VE</span><span>CTF</span><span>SURICATA IDS</span><span>ELK STACK</span><span>ANNONAY (07)</span>
+            <span>PENTEST</span><span>SYSADMIN</span><span>PROXMOX VE</span><span>CTF</span><span>SURICATA IDS</span><span>ELK STACK</span><span>ANNONAY (07)</span>
         </div>
     </div>
-    </aside>
 
+    <section class="statement">
+        <p class="label mono">( À PROPOS )</p>
+        <h2 data-reveal>La cybersécurité, c'est pas qu'une ligne <span class="dim">sur un CV.</span></h2>
+        <p class="body-text" data-reveal>
+            Étudiant en 2ème année de BTS SIO (SISR) à Annonay, axé sur l'administration systèmes, les réseaux
+            et la sécurité offensive/défensive. Mon profil se construit principalement autour de l'expérimentation
+            concrète et de l'auto-formation — <a href="pages/about.html" class="source-link hoverable">en savoir plus →</a>
+        </p>
+        <div class="quote" data-reveal>
+            Ce qui m'intéresse, c'est comprendre comment un système casse — pour savoir comment le protéger.
+            <div class="who">— sur son approche du pentest</div>
+        </div>
+    </section>
 
+    <section style="background:var(--bg);">
+        <p class="label mono">PLATEFORMES CTF</p>
+        <div class="stats-grid">
+            <div class="stat-card hoverable" data-reveal>
+                <div class="plat"><img src="" id="js-thm-logo" class="stat-platform-logo" alt="TryHackMe">TryHackMe</div>
+                <div class="val" id="js-thm-rank"></div>
+                <div class="sub" id="js-thm-rooms"></div>
+            </div>
+            <div class="stat-card hoverable" data-reveal>
+                <div class="plat"><img src="" id="js-rm-logo" class="stat-platform-logo" alt="Root-Me">Root-Me</div>
+                <div class="val" id="js-rm-pts"></div>
+                <div class="sub" id="js-rm-chall"></div>
+            </div>
+            <div class="stat-card hoverable" data-reveal>
+                <div class="plat"><img src="" id="js-htb-logo" class="stat-platform-logo" alt="HackTheBox">HackTheBox</div>
+                <div class="val" id="js-htb-machines"></div>
+                <div class="sub" id="js-htb-rank"></div>
+            </div>
+        </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js"></script>
+        <p class="label mono" style="margin-top:3.5rem;">CERTIFICATIONS</p>
+        <div class="cert-row" id="js-certs"></div>
+    </section>
+
+    <section class="statement" id="competences">
+        <p class="label mono">( STACK TECHNIQUE )</p>
+        <h2 data-reveal>Réseaux, pentest, virtualisation <span class="dim">— et un peu de dev.</span></h2>
+        <div class="tags" data-reveal>
+            <span class="tag">Kali Linux</span><span class="tag">Suricata IDS</span><span class="tag">Wireshark</span>
+            <span class="tag">Pentest</span><span class="tag">CVE</span><span class="tag">Proxmox VE</span>
+            <span class="tag">Linux/Debian</span><span class="tag">Windows AD</span><span class="tag">ELK Stack</span>
+            <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Git/GitLab</span>
+        </div>
+    </section>
+
+    <section id="projets" style="background:var(--bg);">
+        <p class="label mono">SÉLECTION</p>
+        <h2 style="font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:600;" data-reveal>Projets &amp; stages</h2>
+        <div class="proj-list">
+            <a href="pages/experiences.html" class="proj-row hoverable">
+                <div class="pr-left"><span class="pn">01</span><h3>Stage Pandata — Technicien cybersécurité</h3></div>
+                <span class="tag-sm">Proxmox · Suricata · ELK</span>
+            </a>
+            <a href="pages/projets/gophish.html" class="proj-row hoverable">
+                <div class="pr-left"><span class="pn">02</span><h3>Campagne de phishing pédagogique (PPE)</h3></div>
+                <span class="tag-sm">Gophish · Raspberry Pi · Tailscale</span>
+            </a>
+            <a href="pages/veilles.html" class="proj-row hoverable">
+                <div class="pr-left"><span class="pn">03</span><h3>Veille — Ingénierie sociale &amp; identités</h3></div>
+                <span class="tag-sm">AiTM · Infostealers · IAM</span>
+            </a>
+        </div>
+    </section>
+
+    <footer class="site-footer" id="contact">
+        <div class="top">
+            <p class="label mono">( CONTACT )</p>
+            <h2 data-reveal>Un stage à pourvoir ? <span class="dim">Parlons-en.</span></h2>
+            <div class="hero-cta">
+                <a href="mailto:paulmanoha1106@gmail.com" class="pill hoverable">Me contacter →</a>
+                <a href="Doc/CV_Paul_Manoha_2026.pdf" target="_blank" download="CV_Paul_Manoha.pdf" class="pill ghost hoverable">Télécharger le CV</a>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <div class="foot-wordmark">MANOHA</div>
+            <div class="foot-meta mono">
+                <a href="https://github.com/astropathe" target="_blank" class="hoverable">GITHUB</a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" class="hoverable">LINKEDIN</a>
+                <a href="https://www.root-me.org/astropathe" target="_blank" class="hoverable">ROOT-ME</a>
+                <a href="https://tryhackme.com/p/astropathe" target="_blank" class="hoverable">TRYHACKME</a>
+            </div>
+        </div>
+        <p class="copyright mono">
+            <span>© 2026 — Paul Manoha, BTS SIO SISR</span>
+            <a href="pages/mentions-legales.html" class="hoverable">Mentions légales</a>
+        </p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/06/24/18/20260624180205-LDJTCTBS.js" defer></script>
     <script src="script.js"></script>
     <script src="page-index.js"></script>
+    <script src="hero3d.js"></script>
     <script src="animations.js"></script>
 </body>
 </html>

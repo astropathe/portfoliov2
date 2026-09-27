@@ -6,101 +6,100 @@
     <title>Template Projet | Paul Manoha</title>
 
     <meta http-equiv="X-Frame-Options" content="DENY">
-
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
-
     <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.gstatic.com;
-    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.googleapis.com;
-    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud;
+    font-src 'self' https://fonts.gstatic.com https://cdn.botpress.cloud;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.botpress.cloud;
+    img-src 'self' data: https://cdn.botpress.cloud https://files.bpcontent.cloud;
     script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud https://cdnjs.cloudflare.com;
     connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud;
     frame-src 'self' https://cdn.botpress.cloud;">
+
     <link rel="icon" type="image/png" href="../../photo/avatar.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
-        <span></span><span></span><span></span>
-    </button>
-    <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-    </button>
+    <div class="cursor-dot" id="cdot"></div>
+    <div class="cursor-ring" id="cring"></div>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <header class="site-header" id="mainHeader">
+        <div class="logo">PM.</div>
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="../../index.html" class="hoverable">Home</a></li>
+                <li><a href="../projets.html" class="active hoverable">Projets</a></li>
+                <li><a href="../about.html" class="hoverable">About</a></li>
+                <li><a href="../veilles.html" class="hoverable">Veilles</a></li>
+                <li><a href="../writeups.html" class="hoverable">Writeups</a></li>
+                <li><a href="#contact" class="hoverable">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-toggle" id="hamburgerBtn" aria-label="Ouvrir le menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
 
-    <div class="container">
-        <aside class="left-sidebar" id="leftSidebar">
-            <div class="profile-section">
-                <img src="../../photo/avatar.jpeg" alt="Avatar" class="avatar">
-                <h1>Paul Manoha</h1>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="../../index.html">Home</a>
+        <a href="../projets.html" class="active">Projets</a>
+        <a href="../about.html">About</a>
+        <a href="../veilles.html">Veilles</a>
+        <a href="../writeups.html">Writeups</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="page-hero" style="padding-bottom:0;">
+        <p class="breadcrumb mono"><a href="../../index.html" class="hoverable">Home</a> / <a href="../projets.html" class="hoverable">Projets</a> / Writeup Lab</p>
+    </div>
+
+    <section style="padding-top:1rem;">
+        <article class="project-article">
+            <h1 class="project-title" data-reveal>Déploiement d'un Honeypot & Analyse des logs d'attaque</h1>
+
+            <div class="project-meta-tags">
+                <span class="tag">#Proxmox</span>
+                <span class="tag">#Linux</span>
+                <span class="tag">#Splunk</span>
+                <span class="tag">#Cyber</span>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="../../index.html">HOME</a></li>
-                    <li><a href="../experiences.html">EXPERIENCES</a></li>
-                    <li><a href="../projets.html" class="active">PROJETS</a></li>
-                    <li><a href="../about.html">ABOUT</a></li>
-                    <li><a href="../veilles.html">VEILLES</a></li>
-                    <li><a href="../writeups.html">WRITEUPS</a></li>
-                </ul>
-            </nav>
 
-            <div class="social-links">
-                <a href="https://github.com/astropathe" target="_blank"><img src="../../photo/github.png" alt="GH"></a>
-                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank"><img src="../../photo/linkedin.svg" alt="LI"></a>
-                <a href="mailto:paulmanoha1106@gmail.com"><img class="social-icons" src="../../photo/mail.png" alt="@"></a>
-                <a href="https://www.root-me.org/astropathe" target="_blank"><img src="../../photo/rootme.svg" alt="RM"></a>
-                <a href="https://tryhackme.com/p/astropathe" target="_blank"><img src="../../photo/tryhackme.svg" alt="THM"></a>
+            <div class="project-side-meta">
+                <span><strong>Rôle</strong> · Administrateur Sys/Sec</span>
+                <span><strong>Durée</strong> · 1 semaine</span>
+                <span><strong>Statut</strong> · Terminé ✅</span>
+                <a href="https://github.com/astropathe" target="_blank" class="source-link hoverable">Voir les scripts →</a>
             </div>
-        </aside>
 
-        <main class="content">
-            <header>
-                <a class="upper-path-links" href="../../index.html">Home</a> > <a class="upper-path-links" href="../projets.html">Projets</a> > Writeup Lab
-            </header>
+            <p class="project-intro" data-reveal>
+                L'objectif de ce projet était de mettre en place un conteneur Honeypot SSH (Cowrie) isolé au sein d'un cluster Proxmox afin d'analyser les comportements d'attaquants en temps réel et de centraliser les métriques.
+            </p>
 
-            <article class="project-article">
-                <h1 class="project-title" data-reveal="lines">Déploiement d'un Honeypot & Analyse des logs d'attaque</h1>
+            <div class="demo-box info-alert" data-reveal>
+                <div class="demo-title">⚠️ Isolation Réseau (⚠️ Crucial)</div>
+                <p>Le conteneur a été déployé dans une DMZ dédiée avec des règles de pare-feu strictes empêchant tout trafic sortant vers le LAN principal pour éviter les pivots.</p>
+            </div>
 
-                <div class="project-meta-tags">
-                    <span class="tag">#Proxmox</span>
-                    <span class="tag">#Linux</span>
-                    <span class="tag">#Splunk</span>
-                    <span class="tag">#Cyber</span>
+            <h2 data-reveal>1. Architecture du Lab</h2>
+            <p data-reveal>Voici la topologie réseau implémentée pour la capture de paquets malveillants :</p>
+
+            <div class="demo-box visual-demo" data-reveal>
+                <div class="demo-title">📷 Topologie ou Capture d'écran du Dashboard</div>
+                <div class="media-container">
+                    <img src="../../photo/projets/demo-lab.jpg" alt="Aperçu du projet" class="demo-img-fallback">
                 </div>
+            </div>
 
-                <p class="project-intro" data-reveal>
-                    L'objectif de ce projet était de mettre en place un conteneur Honeypot SSH (Cowrie) isolé au sein d'un cluster Proxmox afin d'analyser les comportements d'attaquants en temps réel et de centraliser les métriques.
-                </p>
+            <h2 data-reveal>2. Script de monitoring des connexions</h2>
+            <p data-reveal>Ce script Bash permet d'extraire rapidement les adresses IP des attaquants qui tentent de forcer l'accès bruteforce :</p>
 
-                <div data-reveal class="demo-box info-alert">
-                    <div class="demo-title">⚠️ Isolation Réseau (⚠️ Crucial)</div>
-                    <p>Le conteneur a été déployé dans une DMZ dédiée avec des règles de pare-feu strictes empéchant tout trafic sortant vers le LAN principal pour éviter les pivots.</p>
-                </div>
-
-                <h2>1. Architecture du Lab</h2>
-                <p>Voici la topologie réseau implémentée pour la capture de paquets malveillants :</p>
-
-                <div data-reveal class="demo-box visual-demo">
-                    <div class="demo-title">📷 Topologie ou Capture d'écran du Dashboard</div>
-                    <div class="media-container">
-                        <img src="../../photo/projets/demo-lab.jpg" alt="Aperçu du projet" class="demo-img-fallback">
-                    </div>
-                </div>
-
-                <h2>2. Script de monitoring des connexions</h2>
-                <p>Ce script Bash permet d'extraire rapidement les adresses IP des attaquants qui tentent de forcer l'accès bruteforce :</p>
-
-                <div data-reveal class="demo-box code-demo">
-                    <div class="demo-title">📄 auth_parser.sh</div>
-                    <pre><code>#!/bin/bash
+            <div class="demo-box code-demo" data-reveal>
+                <div class="demo-title">📄 auth_parser.sh</div>
+                <pre><code>#!/bin/bash
 # Extraction des IP uniques tentant des connexions Root
 LOG_FILE="/var/log/cowrie/cowrie.log"
 
@@ -109,36 +108,39 @@ if [ -f "$LOG_FILE" ]; then
 else
     echo "Fichier de log introuvable."
 fi</code></pre>
-                </div>
-
-                <h2>3. Résultats obtenus</h2>
-                <p>En l'espace de 48 heures d'exposition sur l'adresse IP publique du Lab, nous avons recensé plus de 12 000 tentatives d'authentification infructueuses, principalement en provenance de bots automatisés.</p>
-            </article>
-        </main>
-
-        <aside class="right-sidebar" id="rightSidebar">
-            <div class="widget">
-                <h3>Détails Projet</h3>
-                <div class="status-box">
-                    <p><strong>Rôle :</strong> Administrateur Sys/Sec</p>
-                    <p><strong>Durée :</strong> 1 semaine</p>
-                    <p><strong>Statut :</strong> Terminé ✅</p>
-                </div>
             </div>
-            <br>
-            <div class="widget">
-                <h3>Dépôt</h3>
-                <a href="https://github.com/astropathe" target="_blank" class="source-link">
-                    <img src="../../photo/github.png" style="width:16px; filter:invert(100%); vertical-align:middle; margin-right:5px;"> Voir les scripts
-                </a>
+
+            <h2 data-reveal>3. Résultats obtenus</h2>
+            <p data-reveal>En l'espace de 48 heures d'exposition sur l'adresse IP publique du Lab, nous avons recensé plus de 12 000 tentatives d'authentification infructueuses, principalement en provenance de bots automatisés.</p>
+        </article>
+    </section>
+
+    <footer class="site-footer" id="contact">
+        <div class="top">
+            <p class="label mono">( CONTACT )</p>
+            <h2 data-reveal>Un stage à pourvoir ? <span class="dim">Parlons-en.</span></h2>
+            <div class="hero-cta">
+                <a href="mailto:paulmanoha1106@gmail.com" class="pill hoverable">Me contacter →</a>
+                <a href="../../Doc/CV_Paul_Manoha_2026.pdf" target="_blank" download="CV_Paul_Manoha.pdf" class="pill ghost hoverable">Télécharger le CV</a>
             </div>
-        </aside>
-    </div>
+        </div>
+        <div class="foot-bottom">
+            <div class="foot-wordmark">MANOHA</div>
+            <div class="foot-meta mono">
+                <a href="https://github.com/astropathe" target="_blank" class="hoverable">GITHUB</a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" class="hoverable">LINKEDIN</a>
+                <a href="https://www.root-me.org/astropathe" target="_blank" class="hoverable">ROOT-ME</a>
+                <a href="https://tryhackme.com/p/astropathe" target="_blank" class="hoverable">TRYHACKME</a>
+            </div>
+        </div>
+        <p class="copyright mono">
+            <span>© 2026 — Paul Manoha, BTS SIO SISR</span>
+            <a href="../mentions-legales.html" class="hoverable">Mentions légales</a>
+        </p>
+    </footer>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/06/24/18/20260624180205-LDJTCTBS.js" defer></script>
     <script src="../../script.js"></script>

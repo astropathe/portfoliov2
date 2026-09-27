@@ -3,168 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Paul Manoha</title>
+    <title>Projets | Paul Manoha</title>
 
     <meta http-equiv="X-Frame-Options" content="DENY">
-
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
-
     <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.gstatic.com;
-    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.googleapis.com;
-    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud;
+    font-src 'self' https://fonts.gstatic.com https://cdn.botpress.cloud;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.botpress.cloud;
+    img-src 'self' data: https://cdn.botpress.cloud https://files.bpcontent.cloud;
     script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud https://cdnjs.cloudflare.com;
     connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud;
     frame-src 'self' https://cdn.botpress.cloud;">
+
     <link rel="icon" type="image/png" href="../photo/avatar.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <div class="cursor-dot" id="cdot"></div>
+    <div class="cursor-ring" id="cring"></div>
 
-    <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-    </button>
+    <header class="site-header" id="mainHeader">
+        <div class="logo">PM.</div>
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="../index.html" class="hoverable">Home</a></li>
+                <li><a href="projets.html" class="active hoverable">Projets</a></li>
+                <li><a href="about.html" class="hoverable">About</a></li>
+                <li><a href="veilles.html" class="hoverable">Veilles</a></li>
+                <li><a href="writeups.html" class="hoverable">Writeups</a></li>
+                <li><a href="#contact" class="hoverable">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-toggle" id="hamburgerBtn" aria-label="Ouvrir le menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="../index.html">Home</a>
+        <a href="projets.html" class="active">Projets</a>
+        <a href="about.html">About</a>
+        <a href="veilles.html">Veilles</a>
+        <a href="writeups.html">Writeups</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-    <div class="container">
-        <aside class="left-sidebar" id="leftSidebar">
-            <div class="profile-section">
-                <img src="../photo/avatar.jpeg" alt="Avatar" class="avatar">
-                <h1>Paul Manoha</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="../index.html">HOME</a></li>
-                    <li><a href="experiences.html">EXPERIENCES</a></li>
-                    <li><a href="projets.html" class="active">PROJETS</a></li>
-                    <li><a href="about.html">ABOUT</a></li>
-                    <li><a href="veilles.html">VEILLES</a></li>
-                    <li><a href="writeups.html">WRITEUPS</a></li>
-                </ul>
-            </nav>
-
-            <div class="social-links">
-                <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="../photo/github.png" alt="GH"></a>
-                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../photo/linkedin.svg" alt="LinkedIn"></a>
-                <a href="mailto:paulmanoha1106@gmail.com" title="Email"><img class="social-icons" src="../photo/mail.png" alt="@"></a>
-                <a href="https://www.root-me.org/astropathe" target="_blank" title="Root-Me"><img src="../photo/rootme.svg" alt="RM"></a>
-                <a href="https://tryhackme.com/p/astropathe" target="_blank" title="TryHackMe"><img src="../photo/tryhackme.svg" alt="THM"></a>
-            </div>
-        </aside>
-
-        <main class="content">
-            <header data-reveal><a class="upper-path-links" href="../index.html">Home</a> > Projets</header>
-            <section class="post-list" data-reveal-group>
-                <article class="post-card">
-                    <a href="projets/debaising.html">
-                    <div class="post-content">
-                        <h2>Developpement d'une extension firefox</h2>
-                        <p>Extension permetant de croiser ses sources automatiquement sur un site de news (LeMonde, BFMTV...)</p>
-                        <div class="post-meta">
-                            <span class="date">15 Mai 2026</span>
-                            <span class="category">#Dev #Projet</span>
-                        </div>
-                    </div>
-                    <div class="post-image">
-                        <img src="../photo/debAIsing.png" alt="Aperçu projet">
-                    </div>
-                    </a>
-                </article>
-
-                <article class="post-card">
-                    <a href="projets/gophish.html">
-                    <div class="post-content">
-                        <h2>Simulation de Phishing</h2>
-                        <p>Mise en place d'envois de mails de phishing dans mon établissement via le framework Gopish</p>
-                        <div class="post-meta">
-                            <span class="date">15 Mai 2026</span>
-                            <span class="category">#Cyber #Projet</span>
-                        </div>
-                    </div>
-                    <div class="post-image">
-                        <img src="../photo/phishing.png" alt="Aperçu projet">
-                    </div>
-                </a>
-                </article>
-
-                <article class="post-card">
-                    <a href="projets/cve-tracker.html">
-                    <div class="post-content">
-                        <h2>CVE Tracker</h2>
-                        <p>Création d'une application en Flask permettant de scanner les CVE récentes des outils/services utilisés par une entreprise</p>
-                        <div class="post-meta">
-                            <span class="date">19 Mai 2026</span>
-                            <span class="category">#Dev #Stage #Projet</span>
-                        </div>
-                    </div>
-                    <div class="post-image">
-                        <img src="../photo/cve-tracker.png" alt="Aperçu projet">
-                    </div>
-                    </a>
-                </article>
-            </section>
-        </main>
-
-        <aside class="right-sidebar" id="rightSidebar">
-            <div class="search-bar">
-                <input type="text" id="searchBar" placeholder="Search...">
-            </div>
-            <div class="widget">
-                <h3>Technical Stack</h3>
-                <div class="tag-cloud">
-                    <span class="tag">Linux</span>
-                    <span class="tag">Windows</span>
-                    <span class="tag">Cisco IOS</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Wireshark</span>
-                    <span class="tag">Nmap</span>
-                    <span class="tag">Metasploit</span>
-                    <span class="tag">Hashcat</span>
-                    <span class="tag">Active Directory</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Bash</span>
-                    <span class="tag">C#</span>
-                </div>
-            </div>
-            <br>
-            <div class="widget">
-                <h3>En cours</h3>
-                <div class="status-box">
-                    <p>Certification <strong>Cisco CyberOps Associate</strong></p>
-                    <p>Lab personnel : Cluster <strong>Proxmox</strong></p>
-                    <p>Lecture : <em>Technopolitique</em>, Asma Mhalla</p>
-                </div>
-            </div>
-            <br>
-            <div class="widget">
-                <h3>Certifications</h3>
-                <ul class="cert-list">
-                    <li>Cyber Security 101 (THM)</li>
-                    <li>À venir...</li>
-                </ul>
-            </div>
-        </aside>
+    <div class="page-hero">
+        <p class="breadcrumb mono"><a href="../index.html" class="hoverable">Home</a> / Projets</p>
+        <h1 data-reveal>Projets</h1>
+        <p class="page-intro" data-reveal>Extension navigateur, simulation de phishing, veille CVE — des projets menés seul ou en équipe.</p>
+        <div class="toolbar">
+            <input type="text" id="searchBar" class="search-input mono" placeholder="Rechercher un projet...">
+        </div>
     </div>
 
+    <section style="background:var(--bg); padding-top:0;">
+        <div class="proj-list">
+            <article class="post-card">
+                <a href="projets/debaising.html" class="proj-row hoverable">
+                    <div class="pr-left">
+                        <span class="pn mono">01</span>
+                        <h3>Développement d'une extension Firefox
+                            <span class="pr-sub">Extension permettant de croiser ses sources automatiquement sur un site de news (Le Monde, BFMTV...)</span>
+                        </h3>
+                    </div>
+                    <div class="pr-meta">
+                        <span class="tag-sm">#Dev #Projet</span>
+                        <img src="../photo/debAIsing.png" alt="Aperçu DebAIsing" class="pr-thumb">
+                    </div>
+                </a>
+            </article>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js"></script>
+            <article class="post-card">
+                <a href="projets/gophish.html" class="proj-row hoverable">
+                    <div class="pr-left">
+                        <span class="pn mono">02</span>
+                        <h3>Simulation de phishing
+                            <span class="pr-sub">Mise en place d'envois de mails de phishing dans mon établissement via le framework Gophish</span>
+                        </h3>
+                    </div>
+                    <div class="pr-meta">
+                        <span class="tag-sm">#Cyber #Projet</span>
+                        <img src="../photo/phishing.png" alt="Aperçu phishing" class="pr-thumb">
+                    </div>
+                </a>
+            </article>
+
+            <article class="post-card">
+                <a href="projets/cve-tracker.html" class="proj-row hoverable">
+                    <div class="pr-left">
+                        <span class="pn mono">03</span>
+                        <h3>CVE Tracker
+                            <span class="pr-sub">Application Flask permettant de scanner les CVE récentes des outils/services utilisés par une entreprise</span>
+                        </h3>
+                    </div>
+                    <div class="pr-meta">
+                        <span class="tag-sm">#Dev #Stage #Projet</span>
+                        <img src="../photo/cve-tracker.png" alt="Aperçu CVE Tracker" class="pr-thumb">
+                    </div>
+                </a>
+            </article>
+        </div>
+    </section>
+
+    <footer class="site-footer" id="contact">
+        <div class="top">
+            <p class="label mono">( CONTACT )</p>
+            <h2 data-reveal>Un stage à pourvoir ? <span class="dim">Parlons-en.</span></h2>
+            <div class="hero-cta">
+                <a href="mailto:paulmanoha1106@gmail.com" class="pill hoverable">Me contacter →</a>
+                <a href="../Doc/CV_Paul_Manoha_2026.pdf" target="_blank" download="CV_Paul_Manoha.pdf" class="pill ghost hoverable">Télécharger le CV</a>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <div class="foot-wordmark">MANOHA</div>
+            <div class="foot-meta mono">
+                <a href="https://github.com/astropathe" target="_blank" class="hoverable">GITHUB</a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" class="hoverable">LINKEDIN</a>
+                <a href="https://www.root-me.org/astropathe" target="_blank" class="hoverable">ROOT-ME</a>
+                <a href="https://tryhackme.com/p/astropathe" target="_blank" class="hoverable">TRYHACKME</a>
+            </div>
+        </div>
+        <p class="copyright mono">
+            <span>© 2026 — Paul Manoha, BTS SIO SISR</span>
+            <a href="mentions-legales.html" class="hoverable">Mentions légales</a>
+        </p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/06/24/18/20260624180205-LDJTCTBS.js" defer></script>
     <script src="../script.js"></script>

@@ -3,184 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Paul Manoha</title>
+    <title>Veilles | Paul Manoha</title>
 
     <meta http-equiv="X-Frame-Options" content="DENY">
-
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
-
     <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.gstatic.com;
-    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.googleapis.com;
-    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud;
+    font-src 'self' https://fonts.gstatic.com https://cdn.botpress.cloud;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.botpress.cloud;
+    img-src 'self' data: https://cdn.botpress.cloud https://files.bpcontent.cloud;
     script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud https://cdnjs.cloudflare.com;
     connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud;
     frame-src 'self' https://cdn.botpress.cloud;">
+
     <link rel="icon" type="image/png" href="../photo/avatar.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <div class="cursor-dot" id="cdot"></div>
+    <div class="cursor-ring" id="cring"></div>
 
-    <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-    </button>
+    <header class="site-header" id="mainHeader">
+        <div class="logo">PM.</div>
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="../index.html" class="hoverable">Home</a></li>
+                <li><a href="projets.html" class="hoverable">Projets</a></li>
+                <li><a href="about.html" class="hoverable">About</a></li>
+                <li><a href="veilles.html" class="active hoverable">Veilles</a></li>
+                <li><a href="writeups.html" class="hoverable">Writeups</a></li>
+                <li><a href="#contact" class="hoverable">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-toggle" id="hamburgerBtn" aria-label="Ouvrir le menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="../index.html">Home</a>
+        <a href="projets.html">Projets</a>
+        <a href="about.html">About</a>
+        <a href="veilles.html" class="active">Veilles</a>
+        <a href="writeups.html">Writeups</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-    <div class="container">
-        <aside class="left-sidebar" id="leftSidebar">
-            <div class="profile-section">
-                <img src="../photo/avatar.jpeg" alt="Avatar" class="avatar">
-                <h1>Paul Manoha</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="../index.html">HOME</a></li>
-                    <li><a href="experiences.html">EXPERIENCES</a></li>
-                    <li><a href="projets.html">PROJETS</a></li>
-                    <li><a href="about.html">ABOUT</a></li>
-                    <li><a href="veilles.html" class="active">VEILLES</a></li>
-                    <li><a href="writeups.html">WRITEUPS</a></li>
-                </ul>
-            </nav>
-
-            <div class="social-links">
-                <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="../photo/github.png" alt="GH"></a>
-                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../photo/linkedin.svg" alt="LinkedIn"></a>
-                <a href="mailto:paulmanoha1106@gmail.com" title="Email"><img class="social-icons" src="../photo/mail.png" alt="@"></a>
-                <a href="https://www.root-me.org/astropathe" target="_blank" title="Root-Me"><img src="../photo/rootme.svg" alt="RM"></a>
-                <a href="https://tryhackme.com/p/astropathe" target="_blank" title="TryHackMe"><img src="../photo/tryhackme.svg" alt="THM"></a>
-            </div>
-        </aside>
-
-        <main class="content">
-            <header data-reveal><a class="upper-path-links" href="../index.html">Home</a> > Veilles technologiques</header>
-            <section class="post-list" data-reveal-group>
-                <article class="post-card">
-                    <a href="veilles/2026-03-11-Palantir.html">
-                        <div class="post-content">
-                            <h2>De l’Iran à la surveillance de masse : la double guerre de Palantir</h2>
-                            <p>Le rôle de Palantir a radicalement basculé avec l’escalade des tensions entre les États-Unis et l’Iran. Le logiciel n’est plus un simple assistant, mais le « cerveau » des opérations</p>
-                            <div class="post-meta">
-                                <span class="date">11 Mars 2026</span>
-                                <span class="category">#Cyber #Palantir #Veille</span>
-                            </div>
-                        </div>
-                        <div class="post-image">
-                            <img src="../photo/veilles/palantir.jpg" alt="Palantir">
-                        </div>
-                    </a>
-                </article>
-
-                <article class="post-card">
-                    <a href="veilles/2026-02-25-WindowsMAJ.html">
-                        <div class="post-content">
-                            <h2>Nouveautés de la mise à jour Windows 11 KB5077241</h2>
-                            <p>Cette version se concentre sur l’amélioration de l’expérience utilisateur, la fiabilité du système et l’ajout d’outils de diagnostic.</p>
-                            <div class="post-meta">
-                                <span class="date">25 Février 2026</span>
-                                <span class="category">#Cyber #Windows #Veille</span>
-                            </div>
-                        </div>
-                        <div class="post-image">
-                            <img src="../photo/veilles/windows11.webp" alt="WindowsMAJ">
-                        </div>
-                    </a>
-                </article>
-
-                <article class="post-card">
-                    <a href="veilles/2026-02-04-USACYBER.html">
-                        <div class="post-content">
-                            <h2>Les États-Unis veulent imposer leur vision des normes de cybersécurité de l’IA au reste du monde</h2>
-                            <p>Cette initiative s’inscrit dans une volonté de leadership technologique, visant à faire des standards américains la référence internationale pour sécuriser les infrastructures numériques face aux menaces émergentes.</p>
-                            <div class="post-meta">
-                                <span class="date">25 Février 2026</span>
-                                <span class="category">#Cyber #USA #Veille</span>
-                            </div>
-                        </div>
-                        <div class="post-image">
-                            <img src="../photo/veilles/us.jpg" alt="usa">
-                        </div>
-                    </a>
-                </article>
-
-                <article class="post-card">
-                    <a href="veilles/2026-01-21-UK.html">
-                        <div class="post-content">
-                            <h2>Le gouvernement britannique met en garde contre les attaques de groupes de hacktivistes russes en cours</h2>
-                            <p>Le Centre national de cybersécurité du Royaume-Uni (NCSC) a émis une mise en garde officielle concernant des attaques informatiques menées par des groupes de hacktivistes pro-russes. Ces attaques ciblent principalement les infrastructures critiques et les organisations gouvernementales locales.</p>
-                            <div class="post-meta">
-                                <span class="date">21 Janvier 2026</span>
-                                <span class="category">#Cyber #U #Veille</span>
-                            </div>
-                        </div>
-                        <div class="post-image">
-                            <img src="../photo/veilles/uk_ncsc.webp" alt="uk_ncsc">
-                        </div>
-                    </a>
-                </article>
-            </section>
-        </main>
-
-        <aside class="right-sidebar" id="rightSidebar">
-            <div class="search-bar">
-                <input type="text" id="searchBar" placeholder="Search...">
-            </div>
-            <div class="widget">
-                <h3>Technical Stack</h3>
-                <div class="tag-cloud">
-                    <span class="tag">Linux</span>
-                    <span class="tag">Windows</span>
-                    <span class="tag">Cisco IOS</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Wireshark</span>
-                    <span class="tag">Nmap</span>
-                    <span class="tag">Metasploit</span>
-                    <span class="tag">Hashcat</span>
-                    <span class="tag">Active Directory</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Bash</span>
-                    <span class="tag">C#</span>
-                </div>
-            </div>
-            <br>
-            <div class="widget">
-                <h3>En cours</h3>
-                <div class="status-box">
-                    <p>Certification <strong>Cisco CyberOps Associate</strong></p>
-                    <p>Lab personnel : Cluster <strong>Proxmox</strong></p>
-                    <p>Lecture : <em>Technopolitique</em>, Asma Mhalla</p>
-                </div>
-            </div>
-            <br>
-            <div class="widget">
-                <h3>Certifications</h3>
-                <ul class="cert-list">
-                    <li>Cyber Security 101 (THM)</li>
-                    <li>À venir...</li>
-                </ul>
-            </div>
-        </aside>
+    <div class="page-hero">
+        <p class="breadcrumb mono"><a href="../index.html" class="hoverable">Home</a> / Veilles</p>
+        <h1 data-reveal>Veille technologique</h1>
+        <p class="page-intro" data-reveal>Ingénierie sociale, sécurité des identités numériques, et actualité cyber au sens large.</p>
+        <div class="toolbar">
+            <input type="text" id="searchBar" class="search-input mono" placeholder="Rechercher un article...">
+            <a href="veilles/tags.html" class="pill ghost hoverable" style="padding:0.55rem 1.2rem; font-size:0.78rem;">Parcourir par tag →</a>
+        </div>
     </div>
 
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js"></script>
+    <section style="background:var(--bg); padding-top:0;">
+        <div class="proj-list">
+            <article class="post-card">
+                <a href="veilles/2026-03-11-Palantir.html" class="proj-row hoverable">
+                    <div class="pr-left">
+                        <span class="pn mono">11.03</span>
+                        <h3>De l'Iran à la surveillance de masse : la double guerre de Palantir
+                            <span class="pr-sub">Le rôle de Palantir a radicalement basculé avec l'escalade des tensions entre les États-Unis et l'Iran.</span>
+                        </h3>
+                    </div>
+                    <div class="pr-meta">
+                        <span class="tag-sm">#Palantir #Veille</span>
+                        <img src="../photo/veilles/palantir.jpg" alt="Palantir" class="pr-thumb">
+                    </div>
+                </a>
+            </article>
+
+            <article class="post-card">
+                <a href="veilles/2026-02-25-WindowsMAJ.html" class="proj-row hoverable">
+                    <div class="pr-left">
+                        <span class="pn mono">25.02</span>
+                        <h3>Nouveautés de la mise à jour Windows 11 KB5077241
+                            <span class="pr-sub">Amélioration de l'expérience utilisateur, fiabilité du système et outils de diagnostic.</span>
+                        </h3>
+                    </div>
+                    <div class="pr-meta">
+                        <span class="tag-sm">#Windows #Veille</span>
+                        <img src="../photo/veilles/windows11.webp" alt="Windows" class="pr-thumb">
+                    </div>
+                </a>
+            </article>
+
+            <article class="post-card">
+                <a href="veilles/2026-02-04-USACYBER.html" class="proj-row hoverable">
+                    <div class="pr-left">
+                        <span class="pn mono">04.02</span>
+                        <h3>Les États-Unis veulent imposer leur vision des normes de cybersécurité de l'IA
+                            <span class="pr-sub">Une volonté de leadership technologique face aux menaces émergentes.</span>
+                        </h3>
+                    </div>
+                    <div class="pr-meta">
+                        <span class="tag-sm">#USA #Veille</span>
+                        <img src="../photo/veilles/us.jpg" alt="USA" class="pr-thumb">
+                    </div>
+                </a>
+            </article>
+
+            <article class="post-card">
+                <a href="veilles/2026-01-21-UK.html" class="proj-row hoverable">
+                    <div class="pr-left">
+                        <span class="pn mono">21.01</span>
+                        <h3>Le gouvernement britannique met en garde contre des hacktivistes russes
+                            <span class="pr-sub">Le NCSC alerte sur des attaques ciblant les infrastructures critiques.</span>
+                        </h3>
+                    </div>
+                    <div class="pr-meta">
+                        <span class="tag-sm">#UK #Veille</span>
+                        <img src="../photo/veilles/uk_ncsc.webp" alt="UK NCSC" class="pr-thumb">
+                    </div>
+                </a>
+            </article>
+        </div>
+    </section>
+
+    <footer class="site-footer" id="contact">
+        <div class="top">
+            <p class="label mono">( CONTACT )</p>
+            <h2 data-reveal>Un stage à pourvoir ? <span class="dim">Parlons-en.</span></h2>
+            <div class="hero-cta">
+                <a href="mailto:paulmanoha1106@gmail.com" class="pill hoverable">Me contacter →</a>
+                <a href="../Doc/CV_Paul_Manoha_2026.pdf" target="_blank" download="CV_Paul_Manoha.pdf" class="pill ghost hoverable">Télécharger le CV</a>
+            </div>
+        </div>
+        <div class="foot-bottom">
+            <div class="foot-wordmark">MANOHA</div>
+            <div class="foot-meta mono">
+                <a href="https://github.com/astropathe" target="_blank" class="hoverable">GITHUB</a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" class="hoverable">LINKEDIN</a>
+                <a href="https://www.root-me.org/astropathe" target="_blank" class="hoverable">ROOT-ME</a>
+                <a href="https://tryhackme.com/p/astropathe" target="_blank" class="hoverable">TRYHACKME</a>
+            </div>
+        </div>
+        <p class="copyright mono">
+            <span>© 2026 — Paul Manoha, BTS SIO SISR</span>
+            <a href="mentions-legales.html" class="hoverable">Mentions légales</a>
+        </p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/06/24/18/20260624180205-LDJTCTBS.js" defer></script>
     <script src="../script.js"></script>

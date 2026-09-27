@@ -2,14 +2,10 @@
    Includes: STATS data, cert cards generation and lightbox handling */
 
 const STATS = {
-    bio: "Passionné de sécurité offensive et défensive, j'explore les réseaux, le pentest et l'administration système. En train de monter un lab Proxmox et de préparer la certification Cisco CyberOps Associate.",
-    role: "Étudiant en cybersécurité · CTF Player · SysAdmin",
-
     thm: {
         logo:  "photo/tryhackme.svg",
         rank:  "Top 9%",
         rooms: 72,
-        issuerLogo: "photo/cisco.png",
     },
     rootme: {
         logo:       "photo/rootme.svg",
@@ -24,33 +20,27 @@ const STATS = {
 
     certifications: [
         {
-            name:       "Ethical Hacker",
-            issuer:     "Cisco Networking Academy",
-            issuerLogo: "photo/cisco.png",
-            status:     "done",
-            badge:      "photo/ethical-hacker.png",
-            cert:       "photo/certificatEHCisco.png",
+            name:   "Ethical Hacker",
+            issuer: "Cisco Networking Academy",
+            status: "done",
+            cert:   "photo/certificatEHCisco.png",
         },
         {
-            name:       "Introduction to Cybersecurity",
-            issuer:     "Cisco Networking Academy",
-            issuerLogo: "photo/cisco.png",
-            status:     "done",
-            badge:      "photo/introduction-to-cybersecurity.png",
-            cert:       "photo/certificatINTROCYBERcisco.png",
+            name:   "Introduction to Cybersecurity",
+            issuer: "Cisco Networking Academy",
+            status: "done",
+            cert:   "photo/certificatINTROCYBERcisco.png",
         },
         {
-            name:       "Pre Security",
-            issuer:     "TryHackMe",
-            issuerLogo: "photo/tryhackme.svg",
-            status:     "done",
-            cert:       "photo/presecuritypath.png",
+            name:   "Pre Security",
+            issuer: "TryHackMe",
+            status: "done",
+            cert:   "photo/presecuritypath.png",
         },
         {
-            name:       "CyberOps Associate",
-            issuer:     "Cisco",
-            issuerLogo: "photo/cisco.png",
-            status:     "wip",
+            name:   "CyberOps Associate",
+            issuer: "Cisco",
+            status: "wip",
         }
     ]
 };
@@ -61,14 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const el = document.getElementById(id);
         if (el) el.textContent = value;
     };
-
-    setText('js-role', STATS.role);
-    setText('js-bio', STATS.bio);
-
     const setSrc = (id, src) => {
         const el = document.getElementById(id);
         if (el) el.src = src;
     };
+
     setSrc('js-thm-logo', STATS.thm.logo);
     setSrc('js-rm-logo', STATS.rootme.logo);
     setSrc('js-htb-logo', STATS.htb.logo);
@@ -80,53 +67,28 @@ document.addEventListener('DOMContentLoaded', () => {
     setText('js-htb-machines', STATS.htb.machines + ' machines');
     setText('js-htb-rank', STATS.htb.rank);
 
-    /* ── Génération des cartes certifs ── */
+    /* ── Génération des lignes certifications ── */
     const certContainer = document.getElementById('js-certs');
     if (certContainer) {
         STATS.certifications.forEach(cert => {
-            const hasBadge      = !!cert.badge;
-            const hasCert       = !!cert.cert;
-            const hasCertUrl    = !!cert.certUrl;
-            const hasIssuerLogo = !!cert.issuerLogo;
-            const isDone        = cert.status === 'done';
-            const isWip         = cert.status === 'wip';
+            const isDone = cert.status === 'done';
+            const label = isDone ? 'Obtenu' : 'En cours';
 
-            const label      = isDone ? 'Obtenu' : isWip ? 'En cours' : 'Prévu';
-            const badgeClass = isDone ? 'cert-badge-done' : isWip ? 'cert-badge-wip' : 'cert-badge-planned';
-
-            const card = document.createElement('div');
-            card.className = 'home-cert-card' + (hasBadge ? ' has-badge' : '');
-
-            const main = document.createElement('div');
-            main.className = 'cert-card-main';
-            main.innerHTML = `
-                <div class="cert-card-left">
-                    ${hasIssuerLogo ? `<img src="${cert.issuerLogo}" alt="${cert.issuer}" class="cert-issuer-logo">` : ''}
-                    <div class="cert-card-info">
+            const item = document.createElement('div');
+            item.className = 'cert-item';
+            item.innerHTML = `
+                <div class="cert-item-info">
+                    <div>
                         <span class="cert-name">${cert.name}</span>
                         <span class="cert-issuer">${cert.issuer}</span>
                     </div>
                 </div>
-                <div class="cert-card-actions">
-                    ${hasCert ? `<button class="cert-view-btn" data-img="${cert.cert}" title="Voir le certificat">
-                        <i class="fa fa-file" aria-hidden="true"></i> Certificat
-                    </button>` : ''}
-                    ${hasCertUrl ? `<a class="cert-view-btn" href="${cert.certUrl}" target="_blank" rel="noopener" title="Voir le certificat">
-                        <i class="fa fa-external-link" aria-hidden="true"></i> Certificat
-                    </a>` : ''}
-                    <span class="cert-badge ${badgeClass}">${label}</span>
+                <div style="display:flex; align-items:center; gap:0.6rem;">
+                    ${cert.cert ? `<button class="cert-view-btn hoverable" data-img="${cert.cert}" title="Voir le certificat">Voir</button>` : ''}
+                    <span class="cert-status${isDone ? ' done' : ''}">${label}</span>
                 </div>
             `;
-            card.appendChild(main);
-
-            if (hasBadge) {
-                const badgeWrap = document.createElement('div');
-                badgeWrap.className = 'cert-credly-wrap';
-                badgeWrap.innerHTML = `<img src="${cert.badge}" alt="Badge ${cert.name}" class="cert-badge-img">`;
-                card.appendChild(badgeWrap);
-            }
-
-            certContainer.appendChild(card);
+            certContainer.appendChild(item);
         });
     }
 
@@ -136,10 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxClose = document.getElementById('certLightboxClose');
     const lightboxBackdrop = document.getElementById('certLightboxBackdrop');
 
-    if (document.getElementById('js-certs')) {
-        document.getElementById('js-certs').addEventListener('click', e => {
+    if (certContainer) {
+        certContainer.addEventListener('click', e => {
             const btn = e.target.closest('.cert-view-btn');
-            if (!btn || btn.tagName === 'A') return;
+            if (!btn) return;
             if (lightboxImg) lightboxImg.src = btn.dataset.img;
             if (lightbox) lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';

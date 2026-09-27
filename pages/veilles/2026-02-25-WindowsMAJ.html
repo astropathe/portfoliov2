@@ -3,339 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Paul Manoha</title>
+    <title>Windows 11 KB5077241 | Paul Manoha</title>
 
     <meta http-equiv="X-Frame-Options" content="DENY">
-
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.gstatic.com;
-    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.googleapis.com;
-    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud;
+    font-src 'self' https://fonts.gstatic.com https://cdn.botpress.cloud;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.botpress.cloud;
+    img-src 'self' data: https://cdn.botpress.cloud https://files.bpcontent.cloud;
     script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud https://cdnjs.cloudflare.com;
     connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud;
     frame-src 'self' https://cdn.botpress.cloud;">
+
     <link rel="icon" type="image/png" href="../../photo/avatar.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* ── Styles spécifiques à la page article ── */
-
-        .article-header {
-            margin-bottom: 2rem;
-        }
-
-        .article-header h1 {
-            font-size: clamp(1.75rem, 4vw, 2.75rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--fg);
-            line-height: 1.15;
-            margin-bottom: 0.8rem;
-        }
-
-        .article-meta {
-            font-size: 0.82rem;
-            color: var(--dim);
-            display: flex;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .article-meta span { display: flex; align-items: center; gap: 4px; }
-        .article-meta .cat { color: var(--accent); }
-
-        /* Image hero pleine largeur */
-        .article-hero {
-            width: 100%;
-            max-height: 380px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 2.5rem;
-            border: 1px solid var(--border);
-        }
-
-        /* Séparateur */
-        .article-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 2rem 0;
-        }
-
-        /* Corps de l'article */
-        .article-body h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--fg);
-            margin: 2rem 0 0.8rem;
-        }
-
-        .article-body p {
-            color: var(--muted);
-            font-size: 0.97rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .article-body ul, .article-body ol {
-            margin: 0.5rem 0 1.2rem 1.5rem;
-        }
-
-        .article-body li {
-            color: var(--muted);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 0.4rem;
-        }
-
-        .article-body li strong {
-            color: var(--fg);
-        }
-
-        /* Citation */
-        .article-body blockquote {
-            border-left: 3px solid var(--accent);
-            margin: 1.5rem 0;
-            padding: 0.8rem 1.2rem;
-            background: var(--bg-elevated);
-            border-radius: 0 8px 8px 0;
-            color: var(--muted);
-            font-style: italic;
-        }
-
-        /* Tags en bas */
-        .article-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 2.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-        }
-
-        /* Bouton retour */
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-            padding: 6px 14px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-pill);
-            background: transparent;
-            transition: 0.2s ease;
-        }
-
-        .back-btn:hover {
-            color: var(--fg);
-            border-color: var(--accent);
-        }
-
-        @media (max-width: 768px) {
-            .article-header h1 { font-size: 1.4rem; }
-            .article-hero { max-height: 220px; }
-        }
-    </style>
 </head>
 <body>
 
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
-        <span></span><span></span><span></span>
-    </button>
+    <div class="cursor-dot" id="cdot"></div>
+    <div class="cursor-ring" id="cring"></div>
 
-    <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-    </button>
+    <header class="site-header" id="mainHeader">
+        <div class="logo">PM.</div>
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="../../index.html" class="hoverable">Home</a></li>
+                <li><a href="../projets.html" class="hoverable">Projets</a></li>
+                <li><a href="../about.html" class="hoverable">About</a></li>
+                <li><a href="../veilles.html" class="active hoverable">Veilles</a></li>
+                <li><a href="../writeups.html" class="hoverable">Writeups</a></li>
+                <li><a href="#contact" class="hoverable">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-toggle" id="hamburgerBtn" aria-label="Ouvrir le menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="../../index.html">Home</a>
+        <a href="../projets.html">Projets</a>
+        <a href="../about.html">About</a>
+        <a href="../veilles.html" class="active">Veilles</a>
+        <a href="../writeups.html">Writeups</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-    <div class="container">
+    <div class="page-hero" style="padding-bottom:0;">
+        <p class="breadcrumb mono"><a href="../../index.html" class="hoverable">Home</a> / <a href="../veilles.html" class="hoverable">Veilles</a> / Windows</p>
+    </div>
 
-        <!-- SIDEBAR GAUCHE -->
-        <aside class="left-sidebar" id="leftSidebar">
-            <div class="profile-section">
-                <img src="../../photo/avatar.jpeg" alt="Avatar" class="avatar">
-                <h1>Paul Manoha</h1>
+    <section style="padding-top:1rem;">
+        <a href="../veilles.html" class="back-btn hoverable">← Retour aux veilles</a>
+
+        <div class="article-header">
+            <h1 data-reveal>Nouveautés de la mise à jour Windows 11 KB5077241</h1>
+            <div class="article-meta">
+                <span>25 Février 2026</span>
+                <span class="cat">#Cyber</span>
+                <span class="cat">#Windows</span>
+                <span class="cat">#Veille</span>
+                <span>Paul Manoha</span>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="../../index.html">HOME</a></li>
-                    <li><a href="../experiences.html">EXPERIENCES</a></li>
-                    <li><a href="../projets.html">PROJETS</a></li>
-                    <li><a href="../about.html">ABOUT</a></li>
-                    <li><a href="../veilles.html" class="active">VEILLES</a></li>
-                    <li><a href="../writeups.html">WRITEUPS</a></li>
-                </ul>
-            </nav>
+        </div>
 
-            <div class="social-links">
-                <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="../../photo/github.png" alt="GH"></a>
-                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../../photo/linkedin.svg" alt="LinkedIn"></a>
-                <a href="mailto:paulmanoha1106@gmail.com" title="Email"><img class="social-icons" src="../../photo/mail.png" alt="@"></a>
-                <a href="https://www.root-me.org/astropathe" target="_blank" title="Root-Me"><img src="../../photo/rootme.svg" alt="RM"></a>
-                <a href="https://tryhackme.com/p/astropathe" target="_blank" title="TryHackMe"><img src="../../photo/tryhackme.svg" alt="THM"></a>
-            </div>
-        </aside>
+        <img src="../../photo/veilles/windows11.webp" alt="Windows" class="article-hero" data-reveal>
 
-        <!-- CONTENU CENTRAL -->
-        <main class="content">
-            <header>
-                <a class="upper-path-links" href="../../index.html">Home</a> >
-                <a class="upper-path-links" href="../veilles.html">Veilles</a> >
-                Windows
-            </header>
+        <hr class="article-divider">
 
-            <!-- Bouton retour -->
-            <a href="../veilles.html" class="back-btn">← Retour aux veilles</a>
-
-            <!-- En-tête de l'article -->
-            <div class="article-header">
-                <h1 data-reveal="lines">Nouveautés de la mise à jour Windows 11 KB5077241</h1>
-                <div class="article-meta">
-                    <span>25 Février 2026</span>
-                    <span class="cat">#Cyber</span>
-                    <span class="cat">#Windows</span>
-                    <span class="cat">#Veille</span>
-                    <span>Paul Manoha</span>
-                </div>
-            </div>
-
-            <!-- Image hero -->
-            <img src="../../photo/veilles/windows11.webp" alt="Windows" class="article-hero" data-reveal>
+        <div class="article-body">
+            <h2 data-reveal>Introduction</h2>
+            <p data-reveal>
+                Microsoft a déployé la mise à jour cumulative facultative <strong>KB5077241</strong> pour Windows 11 en février 2026. Ce correctif de type « aperçu » (preview) permet aux utilisateurs et aux administrateurs système de tester de nouvelles fonctionnalités et des améliorations de performance avant leur déploiement général lors du prochain « Patch Tuesday ». Cette version se concentre sur l'amélioration de l'expérience utilisateur, la fiabilité du système et l'ajout d'outils de diagnostic.
+            </p>
 
             <hr class="article-divider">
 
-            <!-- Corps de l'article -->
-            <div class="article-body">
+            <h2 data-reveal>Résumé</h2>
+            <p data-reveal>
+                L'article source met en avant plusieurs changements significatifs :
+            </p>
+            <ul data-reveal>
+                <li>
+                    <strong>Amélioration de BitLocker </strong>: La mise à jour corrige un bug critique où les appareils pouvaient se figer après la saisie de la clé de récupération, améliorant ainsi la fiabilité globale du chiffrement.
+                </li>
+                <li>
+                    <strong>Test de vitesse réseau intégré</strong> : Une nouvelle fonctionnalité permet de tester la vitesse de sa connexion (Ethernet, Wi-Fi ou cellulaire) directement depuis la barre des tâches ou les paramètres rapides.
+                </li>
+                <li>
+                    <strong>Intégration de Sysmon</strong> : Windows 11 inclut désormais nativement l'outil System Monitor (Sysmon), bien qu'il soit désactivé par défaut.
+                </li>
+                <li>
+                    <strong>Optimisation du mode veille</strong> : Le PC sort plus rapidement de veille, même lorsqu'il est soumis à une charge de travail importante.
+                </li>
+                <li>
+                    <strong>Évolutions de l'interface </strong>: Il est désormais possible d'utiliser des images au format .webp comme fond d'écran. De plus, la gestion des fenêtres dans la barre des tâches (mode non combiné) a été optimisée pour mieux utiliser l'espace.
+                </li>
+                <li>
+                    <strong>Support pour les administrateurs IT</strong> : Les outils d'administration de serveur distant (RSAT) sont désormais compatibles avec les appareils Windows 11 équipés de processeurs Arm64.
+                </li>
+            </ul>
 
-                <h2 data-reveal>Introduction</h2>
-                <p>
-                    Microsoft a déployé la mise à jour cumulative facultative <strong>KB5077241</strong> pour Windows 11 en février 2026. Ce correctif de type « aperçu » (preview) permet aux utilisateurs et aux administrateurs système de tester de nouvelles fonctionnalités et des améliorations de performance avant leur déploiement général lors du prochain « Patch Tuesday ». Cette version se concentre sur l’amélioration de l’expérience utilisateur, la fiabilité du système et l’ajout d’outils de diagnostic.
-                </p>
+            <hr class="article-divider">
 
-                <hr class="article-divider">
+            <blockquote data-reveal>
+                « La sécurité d'un système d'exploitation ne se mesure pas à ses promesses, mais à sa capacité à corriger ses vulnérabilités et à armer les utilisateurs face aux menaces modernes. »
+                — Guillaume Belfiore, Clubic
+            </blockquote>
 
-                <h2 data-reveal>Résumé</h2>
-                <p>
-                    L’article source met en avant plusieurs changements significatifs :
-                </p>
-                <ul>
-                    <li>
-                        <strong>Amélioration de BitLocker </strong>: La mise à jour corrige un bug critique où les appareils pouvaient se figer après la saisie de la clé de récupération, améliorant ainsi la fiabilité globale du chiffrement.
-                    </li>
-                    <li>
-                        <strong>Test de vitesse réseau intégré</strong> : Une nouvelle fonctionnalité permet de tester la vitesse de sa connexion (Ethernet, Wi-Fi ou cellulaire) directement depuis la barre des tâches ou les paramètres rapides.
-                    </li>
-                    <li>
-                        <strong>Intégration de Sysmon</strong> : Windows 11 inclut désormais nativement l’outil System Monitor (Sysmon), bien qu’il soit désactivé par défaut.
-                    </li>
-                    <li>
-                        <strong>Optimisation du mode veille</strong> : Le PC sort plus rapidement de veille, même lorsqu’il est soumis à une charge de travail importante.
-                    </li>
-                    <li>
-                        <strong>Évolutions de l’interface </strong>: Il est désormais possible d’utiliser des images au format .webp comme fond d’écran. De plus, la gestion des fenêtres dans la barre des tâches (mode non combiné) a été optimisée pour mieux utiliser l’espace.
-                    </li>
-                    <li>
-                        <strong>Support pour les administrateurs IT</strong> : Les outils d’administration de serveur distant (RSAT) sont désormais compatibles avec les appareils Windows 11 équipés de processeurs Arm64.
-                    </li>
-                </ul>
+            <hr class="article-divider">
 
-                <hr class="article-divider">
+            <h2 data-reveal>Définitions clées</h2>
+            <ul data-reveal>
+                <li>
+                    <strong>Mise à jour d'aperçu (Preview Update) </strong>: Une mise à jour mensuelle facultative qui contient des améliorations de qualité et de nouvelles fonctionnalités, mais ne comporte pas de correctifs de sécurité.
+                </li>
+                <li><strong>BitLocker </strong>: Un outil de protection des données intégré à Windows qui chiffre les disques durs pour empêcher l'accès non autorisé aux fichiers.
+                </li>
+                <li><strong>Sysmon (System Monitor)</strong> : Un outil de surveillance système avancé qui enregistre les activités (processus, connexions réseau) dans le journal d'événements Windows pour aider à la détection d'intrusions ou au dépannage.
+                </li>
+                <li><strong>RSAT (Remote Server Administration Tools)</strong> : Un ensemble d'outils permettant aux administrateurs informatiques de gérer à distance les fonctionnalités de Windows Server depuis un poste client Windows 11.
+                </li>
+                <li><strong>Quick Machine Recovery (QMR)</strong> : Une fonctionnalité (activée automatiquement sur les appareils Windows Pro non gérés par une entreprise) facilitant la récupération rapide du système en cas de problème majeur.
+                </li>
+            </ul>
 
-                <blockquote>
-                    « La sécurité d'un système d'exploitation ne se mesure pas à ses promesses, mais à sa capacité à corriger ses vulnérabilités et à armer les utilisateurs face aux menaces modernes. »
-                    — Guillaume Belfiore, Clubic
-                </blockquote>
-
-                <hr class="article-divider">
-
-                <h2 data-reveal>Définitions clées</h2>
-                <p>
-                  <li>
-                    <strong>Mise à jour d’aperçu (Preview Update) </strong>: Une mise à jour mensuelle facultative qui contient des améliorations de qualité et de nouvelles fonctionnalités, mais ne comporte pas de correctifs de sécurité.
-                  </li>
-
-                    <li><strong>BitLocker </strong>: Un outil de protection des données intégré à Windows qui chiffre les disques durs pour empêcher l’accès non autorisé aux fichiers.
-                    </li>
-                    <li><strong>Sysmon (System Monitor)</strong> : Un outil de surveillance système avancé qui enregistre les activités (processus, connexions réseau) dans le journal d’événements Windows pour aider à la détection d’intrusions ou au dépannage.
-                    </li>
-                    <li><strong>RSAT (Remote Server Administration Tools)</strong> : Un ensemble d’outils permettant aux administrateurs informatiques de gérer à distance les fonctionnalités de Windows Server depuis un poste client Windows 11.
-                    </li>
-                    <li><strong>Quick Machine Recovery (QMR)</strong> : Une fonctionnalité (activée automatiquement sur les appareils Windows Pro non gérés par une entreprise) facilitant la récupération rapide du système en cas de problème majeur.
-                    </li>
-                </p>
-
-                <!-- Tags -->
-                <!-- Dans 2026-03-11-Palantir.html, remplace les tags par : -->
-                <div class="article-tags">
-                    <a href="../veilles/tags.html" class="tag">#Cyber</a>
-                    <a href="../veilles/tags.html?tag=Veille" class="tag">#Veille</a>
-                    <a href="../veilles/tags.html?tag=Windows" class="tag">#Windows</a>
-                    <a href="../veilles/tags.html?tag=MAJ" class="tag">#MAJ</a>
-                </div>
-
+            <div class="article-tags">
+                <a href="tags.html" class="tag hoverable">#Cyber</a>
+                <a href="tags.html?tag=Veille" class="tag hoverable">#Veille</a>
+                <a href="tags.html?tag=Windows" class="tag hoverable">#Windows</a>
+                <a href="tags.html?tag=MAJ" class="tag hoverable">#MAJ</a>
             </div>
-        </main>
+        </div>
+    </section>
 
-        <!-- SIDEBAR DROITE -->
-        <aside class="right-sidebar" id="rightSidebar">
-            <div class="search-bar">
-                <input type="text" id="searchBar" placeholder="Search...">
+    <footer class="site-footer" id="contact">
+        <div class="top">
+            <p class="label mono">( CONTACT )</p>
+            <h2 data-reveal>Un stage à pourvoir ? <span class="dim">Parlons-en.</span></h2>
+            <div class="hero-cta">
+                <a href="mailto:paulmanoha1106@gmail.com" class="pill hoverable">Me contacter →</a>
+                <a href="../../Doc/CV_Paul_Manoha_2026.pdf" target="_blank" download="CV_Paul_Manoha.pdf" class="pill ghost hoverable">Télécharger le CV</a>
             </div>
-            <div class="widget">
-                <h3>Technical Stack</h3>
-                <div class="tag-cloud">
-                    <span class="tag">Linux</span>
-                    <span class="tag">Windows</span>
-                    <span class="tag">Cisco IOS</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Wireshark</span>
-                    <span class="tag">Nmap</span>
-                    <span class="tag">Metasploit</span>
-                    <span class="tag">Hashcat</span>
-                    <span class="tag">Active Directory</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Bash</span>
-                    <span class="tag">C#</span>
-                    <span class="tag">Git</span>
-                </div>
+        </div>
+        <div class="foot-bottom">
+            <div class="foot-wordmark">MANOHA</div>
+            <div class="foot-meta mono">
+                <a href="https://github.com/astropathe" target="_blank" class="hoverable">GITHUB</a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" class="hoverable">LINKEDIN</a>
+                <a href="https://www.root-me.org/astropathe" target="_blank" class="hoverable">ROOT-ME</a>
+                <a href="https://tryhackme.com/p/astropathe" target="_blank" class="hoverable">TRYHACKME</a>
             </div>
-            <br>
-            <div class="widget">
-                <h3>En cours</h3>
-                <div class="status-box">
-                    <p>Certification <strong>Cisco CyberOps Associate</strong></p>
-                    <p>Lab personnel : Cluster <strong>Proxmox</strong></p>
-                    <p>Lecture : <em>Technopolitique</em>, Asma Mhalla</p>
-                </div>
-            </div>
-            <br>
-            <div class="widget">
-                <h3>Certifications</h3>
-                <ul class="cert-list">
-                    <li>Cyber Security 101 (THM)</li>
-                    <li>À venir...</li>
-                </ul>
-            </div>
-        </aside>
+        </div>
+        <p class="copyright mono">
+            <span>© 2026 — Paul Manoha, BTS SIO SISR</span>
+            <a href="../mentions-legales.html" class="hoverable">Mentions légales</a>
+        </p>
+    </footer>
 
-    </div>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/06/24/18/20260624180205-LDJTCTBS.js" defer></script>
     <script src="../../script.js"></script>

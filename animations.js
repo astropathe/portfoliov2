@@ -1,186 +1,132 @@
 /* ========================================================
-   ANIMATIONS.JS — GSAP / ScrollTrigger / SplitText
-   Chargé après script.js sur chaque page. Ne fait rien si
-   GSAP n'a pas pu charger (CDN bloqué / hors-ligne) ou si
-   l'utilisateur préfère un mouvement réduit : le contenu
-   reste visible et statique dans ces cas (voir style.css,
-   section "REVEAL AU SCROLL", état par défaut opacity:1).
+   ANIMATIONS.JS — curseur, header réactif, menu mobile, reveal GSAP
+   Chargé après script.js sur chaque page.
    ======================================================== */
 (function () {
     'use strict';
 
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var gsapReady = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
-
-    if (reduceMotion || !gsapReady) {
-        return;
-    }
-
-    var hasSplitText = typeof window.SplitText !== 'undefined';
-
-    gsap.registerPlugin(ScrollTrigger);
-    if (hasSplitText) {
-        gsap.registerPlugin(SplitText);
-    }
-
-    document.documentElement.classList.add('gsap-ready');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
     document.addEventListener('DOMContentLoaded', function () {
-        initRevealOnScroll();
-        initHeroIntro();
-        initReactiveSidebar();
-        initCustomCursor();
+        initHeaderScroll();
+        initMobileNav();
+        initCursor();
+        initGsapReveal();
     });
 
-    /* ----------------------------------------------------
-       1. REVEAL AU SCROLL — [data-reveal]
-       data-reveal="lines"  -> titres, découpés en lignes (SplitText si dispo)
-       data-reveal (seul)   -> fade + translateY simple (paragraphes, cards)
-       data-reveal="hero"   -> ignoré ici, géré par initHeroIntro() au chargement
-       ---------------------------------------------------- */
-    function initRevealOnScroll() {
-        var nodes = document.querySelectorAll('[data-reveal]:not([data-reveal="hero"])');
-
-        nodes.forEach(function (el) {
-            if (el.getAttribute('data-reveal') === 'lines') {
-                revealLines(el, { scroll: true });
-            } else {
-                gsap.set(el, { opacity: 0, y: 24 });
-                ScrollTrigger.create({
-                    trigger: el,
-                    start: 'top 85%',
-                    once: true,
-                    onEnter: function () {
-                        gsap.to(el, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' });
-                    }
-                });
-            }
-        });
-
-        // Groupes de cards : stagger léger entre les cartes d'une même liste
-        document.querySelectorAll('[data-reveal-group]').forEach(function (group) {
-            var items = group.querySelectorAll(':scope > *');
-            if (!items.length) return;
-            gsap.set(items, { opacity: 0, y: 24 });
-            ScrollTrigger.create({
-                trigger: group,
-                start: 'top 85%',
-                once: true,
-                onEnter: function () {
-                    gsap.to(items, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.08 });
-                }
-            });
-        });
-    }
-
-    function revealLines(el, opts) {
-        opts = opts || {};
-        var targets;
-        var split;
-
-        if (hasSplitText) {
-            split = new SplitText(el, { type: 'lines', linesClass: 'reveal-line' });
-            targets = split.lines;
-        } else {
-            // Repli sans SplitText : on anime le bloc entier comme une seule "ligne"
-            el.classList.add('is-split');
-            targets = [el];
-        }
-
-        gsap.set(targets, { opacity: 0, y: '100%' });
-
-        var play = function () {
-            gsap.to(targets, { opacity: 1, y: '0%', duration: 0.8, ease: 'power3.out', stagger: 0.06 });
-        };
-
-        if (opts.scroll) {
-            ScrollTrigger.create({
-                trigger: el,
-                start: 'top 85%',
-                once: true,
-                onEnter: play
-            });
-        } else {
-            play();
-        }
-    }
-
-    /* ----------------------------------------------------
-       2. INTRO HERO (page d'accueil) — au chargement, sans scroll
-       ---------------------------------------------------- */
-    function initHeroIntro() {
-        var heroNodes = document.querySelectorAll('[data-reveal="hero"]');
-        if (!heroNodes.length) return;
-
-        heroNodes.forEach(function (el, i) {
-            if (el.tagName === 'H2' || el.tagName === 'H1') {
-                revealLines(el, { scroll: false });
-            } else {
-                gsap.set(el, { opacity: 0, y: 16 });
-                gsap.to(el, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', delay: 0.15 + i * 0.12 });
-            }
-        });
-    }
-
-    /* ----------------------------------------------------
-       3. SIDEBAR RÉACTIVE AU SCROLL
-       ---------------------------------------------------- */
-    function initReactiveSidebar() {
-        var sidebar = document.getElementById('leftSidebar');
-        if (!sidebar) return;
-
+    /* ── Header qui réagit au scroll ── */
+    function initHeaderScroll() {
+        var header = document.getElementById('mainHeader');
+        if (!header) return;
         var ticking = false;
         function update() {
-            sidebar.classList.toggle('is-scrolled', window.scrollY > 60);
+            header.classList.toggle('scrolled', window.scrollY > 40);
             ticking = false;
         }
         window.addEventListener('scroll', function () {
-            if (!ticking) {
-                requestAnimationFrame(update);
-                ticking = true;
-            }
+            if (!ticking) { requestAnimationFrame(update); ticking = true; }
         }, { passive: true });
         update();
     }
 
-    /* ----------------------------------------------------
-       4. CURSEUR PERSONNALISÉ (desktop uniquement)
-       ---------------------------------------------------- */
-    function initCustomCursor() {
-        var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-        if (!canHover) return;
+    /* ── Menu mobile plein écran ── */
+    function initMobileNav() {
+        var toggle = document.getElementById('hamburgerBtn');
+        var nav = document.getElementById('mobileNav');
+        if (!toggle || !nav) return;
 
-        document.documentElement.classList.add('custom-cursor-active');
+        function close() {
+            toggle.classList.remove('open');
+            nav.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function open() {
+            toggle.classList.add('open');
+            nav.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
 
-        var dot = document.createElement('div');
-        dot.id = 'cursor-dot';
-        var ring = document.createElement('div');
-        ring.id = 'cursor-ring';
-        document.body.appendChild(dot);
-        document.body.appendChild(ring);
+        toggle.addEventListener('click', function () {
+            nav.classList.contains('open') ? close() : open();
+        });
+        nav.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', close);
+        });
+    }
 
-        var moveDot = gsap.quickTo(dot, 'x', { duration: 0.1, ease: 'power3.out' });
-        var moveDotY = gsap.quickTo(dot, 'y', { duration: 0.1, ease: 'power3.out' });
-        var moveRing = gsap.quickTo(ring, 'x', { duration: 0.35, ease: 'power3.out' });
-        var moveRingY = gsap.quickTo(ring, 'y', { duration: 0.35, ease: 'power3.out' });
+    /* ── Curseur personnalisé (indépendant de GSAP, pour rester robuste) ── */
+    function initCursor() {
+        if (!fine || reduced) return;
 
+        var dot = document.getElementById('cdot');
+        var ring = document.getElementById('cring');
+        if (!dot || !ring) return;
+
+        var mx = 0, my = 0, rx = 0, ry = 0;
         window.addEventListener('mousemove', function (e) {
-            moveDot(e.clientX);
-            moveDotY(e.clientY);
-            moveRing(e.clientX);
-            moveRingY(e.clientY);
+            mx = e.clientX; my = e.clientY;
+            dot.style.transform = 'translate(' + mx + 'px,' + my + 'px) translate(-50%,-50%)';
         });
 
-        var hoverTargets = 'a, button, .interactive-box, .post-card, .cv-download-card, .cert-view-btn, .filter-btn, .tag-filter';
+        (function loop() {
+            rx += (mx - rx) * 0.18;
+            ry += (my - ry) * 0.18;
+            ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px) translate(-50%,-50%)';
+            requestAnimationFrame(loop);
+        })();
+
         document.addEventListener('mouseover', function (e) {
-            if (e.target.closest(hoverTargets)) {
-                ring.classList.add('cursor-hover');
-            }
+            if (e.target.closest('.hoverable')) ring.classList.add('hovered');
         });
         document.addEventListener('mouseout', function (e) {
-            if (e.target.closest(hoverTargets)) {
-                ring.classList.remove('cursor-hover');
-            }
+            if (e.target.closest('.hoverable')) ring.classList.remove('hovered');
         });
+    }
+
+    /* ── Reveal au scroll (GSAP + ScrollTrigger) ── */
+    function initGsapReveal() {
+        var gsapReady = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+
+        if (reduced || !gsapReady) {
+            document.querySelectorAll('[data-reveal]').forEach(function (el) {
+                el.style.opacity = 1;
+                el.style.transform = 'none';
+            });
+            return;
+        }
+
+        document.documentElement.classList.add('gsap-ready');
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.querySelectorAll('[data-reveal]').forEach(function (el) {
+            gsap.to(el, {
+                opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+                scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+            });
+        });
+
+        gsap.utils.toArray('.stat-card, .cert-item, .tag-article-card').forEach(function (el, i) {
+            gsap.from(el, {
+                opacity: 0, y: 20, duration: 0.7, delay: i * 0.08, ease: 'power2.out',
+                scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+            });
+        });
+
+        gsap.utils.toArray('.proj-row').forEach(function (el, i) {
+            gsap.from(el, {
+                opacity: 0, x: -16, duration: 0.6, delay: (i % 6) * 0.08, ease: 'power2.out',
+                scrollTrigger: { trigger: el, start: 'top 92%', once: true }
+            });
+        });
+
+        var heroTitle = document.querySelector('.hero-title');
+        if (heroTitle) {
+            gsap.from(heroTitle, { opacity: 0, y: 30, duration: 1, ease: 'power3.out', delay: 0.1 });
+            var heroTag = document.querySelector('.hero-tag');
+            if (heroTag) gsap.from(heroTag, { opacity: 0, y: 10, duration: 0.8, delay: 0.05 });
+            var heroPills = document.querySelectorAll('.hero-cta .pill');
+            if (heroPills.length) gsap.from(heroPills, { opacity: 0, y: 10, duration: 0.6, stagger: 0.1, delay: 0.45 });
+        }
     }
 })();

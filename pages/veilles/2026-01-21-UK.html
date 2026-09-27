@@ -3,352 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Paul Manoha</title>
+    <title>Hacktivistes russes — UK | Paul Manoha</title>
 
     <meta http-equiv="X-Frame-Options" content="DENY">
-
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
-
     <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.gstatic.com;
-    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.googleapis.com;
-    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud;
+    font-src 'self' https://fonts.gstatic.com https://cdn.botpress.cloud;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.botpress.cloud;
+    img-src 'self' data: https://cdn.botpress.cloud https://files.bpcontent.cloud;
     script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud https://cdnjs.cloudflare.com;
     connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud;
     frame-src 'self' https://cdn.botpress.cloud;">
+
     <link rel="icon" type="image/png" href="../../photo/avatar.jpeg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* ── Styles spécifiques à la page article ── */
-
-        .article-header {
-            margin-bottom: 2rem;
-        }
-
-        .article-header h1 {
-            font-size: clamp(1.75rem, 4vw, 2.75rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--fg);
-            line-height: 1.15;
-            margin-bottom: 0.8rem;
-        }
-
-        .article-meta {
-            font-size: 0.82rem;
-            color: var(--dim);
-            display: flex;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .article-meta span { display: flex; align-items: center; gap: 4px; }
-        .article-meta .cat { color: var(--accent); }
-
-        /* Image hero pleine largeur */
-        .article-hero {
-            width: 100%;
-            max-height: 380px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 2.5rem;
-            border: 1px solid var(--border);
-        }
-
-        /* Séparateur */
-        .article-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 2rem 0;
-        }
-
-        /* Corps de l'article */
-        .article-body h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--fg);
-            margin: 2rem 0 0.8rem;
-        }
-
-        .article-body p {
-            color: var(--muted);
-            font-size: 0.97rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .article-body ul, .article-body ol {
-            margin: 0.5rem 0 1.2rem 1.5rem;
-        }
-
-        .article-body li {
-            color: var(--muted);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 0.4rem;
-        }
-
-        .article-body li strong {
-            color: var(--fg);
-        }
-
-        /* Citation */
-        .article-body blockquote {
-            border-left: 3px solid var(--accent);
-            margin: 1.5rem 0;
-            padding: 0.8rem 1.2rem;
-            background: var(--bg-elevated);
-            border-radius: 0 8px 8px 0;
-            color: var(--muted);
-            font-style: italic;
-        }
-
-        /* Tags en bas */
-        .article-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 2.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-        }
-
-        /* Bouton retour */
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: var(--muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-            padding: 6px 14px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-pill);
-            background: transparent;
-            transition: 0.2s ease;
-        }
-
-        .back-btn:hover {
-            color: var(--fg);
-            border-color: var(--accent);
-        }
-
-        @media (max-width: 768px) {
-            .article-header h1 { font-size: 1.4rem; }
-            .article-hero { max-height: 220px; }
-        }
-    </style>
 </head>
 <body>
 
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Ouvrir le menu">
-        <span></span><span></span><span></span>
-    </button>
+    <div class="cursor-dot" id="cdot"></div>
+    <div class="cursor-ring" id="cring"></div>
 
-    <button class="search-btn" id="searchBtn" aria-label="Ouvrir les widgets">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-    </button>
+    <header class="site-header" id="mainHeader">
+        <div class="logo">PM.</div>
+        <nav class="desktop-nav">
+            <ul>
+                <li><a href="../../index.html" class="hoverable">Home</a></li>
+                <li><a href="../projets.html" class="hoverable">Projets</a></li>
+                <li><a href="../about.html" class="hoverable">About</a></li>
+                <li><a href="../veilles.html" class="active hoverable">Veilles</a></li>
+                <li><a href="../writeups.html" class="hoverable">Writeups</a></li>
+                <li><a href="#contact" class="hoverable">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="mobile-nav-toggle" id="hamburgerBtn" aria-label="Ouvrir le menu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="../../index.html">Home</a>
+        <a href="../projets.html">Projets</a>
+        <a href="../about.html">About</a>
+        <a href="../veilles.html" class="active">Veilles</a>
+        <a href="../writeups.html">Writeups</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-    <div class="container">
+    <div class="page-hero" style="padding-bottom:0;">
+        <p class="breadcrumb mono"><a href="../../index.html" class="hoverable">Home</a> / <a href="../veilles.html" class="hoverable">Veilles</a> / UK</p>
+    </div>
 
-        <!-- SIDEBAR GAUCHE -->
-        <aside class="left-sidebar" id="leftSidebar">
-            <div class="profile-section">
-                <img src="../../photo/avatar.jpeg" alt="Avatar" class="avatar">
-                <h1>Paul Manoha</h1>
+    <section style="padding-top:1rem;">
+        <a href="../veilles.html" class="back-btn hoverable">← Retour aux veilles</a>
+
+        <div class="article-header">
+            <h1 data-reveal>Le gouvernement britannique met en garde contre les attaques de groupes de hacktivistes russes en cours</h1>
+            <div class="article-meta">
+                <span>21 Janvier 2026</span>
+                <span class="cat">#Cyber</span>
+                <span class="cat">#UK</span>
+                <span class="cat">#Veille</span>
+                <span class="cat">#Géopolitique</span>
+                <span>Paul Manoha</span>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="../../index.html">HOME</a></li>
-                    <li><a href="../experiences.html">EXPERIENCES</a></li>
-                    <li><a href="../projets.html">PROJETS</a></li>
-                    <li><a href="../about.html">ABOUT</a></li>
-                    <li><a href="../veilles.html" class="active">VEILLES</a></li>
-                    <li><a href="../writeups.html">WRITEUPS</a></li>
-                </ul>
-            </nav>
+        </div>
 
-            <div class="social-links">
-                <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="../../photo/github.png" alt="GH"></a>
-                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../../photo/linkedin.svg" alt="LinkedIn"></a>
-                <a href="mailto:paulmanoha1106@gmail.com" title="Email"><img class="social-icons" src="../../photo/mail.png" alt="@"></a>
-                <a href="https://www.root-me.org/astropathe" target="_blank" title="Root-Me"><img src="../../photo/rootme.svg" alt="RM"></a>
-                <a href="https://tryhackme.com/p/astropathe" target="_blank" title="TryHackMe"><img src="../../photo/tryhackme.svg" alt="THM"></a>
-            </div>
-        </aside>
+        <img src="../../photo/veilles/uk_ncsc.webp" alt="UK NCSC" class="article-hero" data-reveal>
 
-        <!-- CONTENU CENTRAL -->
-        <main class="content">
-            <header>
-                <a class="upper-path-links" href="../../index.html">Home</a> >
-                <a class="upper-path-links" href="../veilles.html">Veilles</a> >
-                UK
-            </header>
+        <hr class="article-divider">
 
-            <!-- Bouton retour -->
-            <a href="../veilles.html" class="back-btn">← Retour aux veilles</a>
-
-            <!-- En-tête de l'article -->
-            <div class="article-header">
-                <h1 data-reveal="lines">Le gouvernement britannique met en garde contre les attaques de groupes de hacktivistes russes en cours</h1>
-                <div class="article-meta">
-                    <span>4 Février 2026</span>
-                    <span class="cat">#Cyber</span>
-                    <span class="cat">#UK</span>
-                    <span class="cat">#Veille</span>
-                    <span class="cat">#Géopolitique</span>
-                    <span>Paul Manoha</span>
-                </div>
-            </div>
-
-            <!-- Image hero -->
-            <img src="../../photo/veilles/uk_ncsc.webp" alt="USA" class="article-hero" data-reveal>
+        <div class="article-body">
+            <h2 data-reveal>Introduction</h2>
+            <p data-reveal>
+                Le Centre national de cybersécurité du Royaume-Uni (NCSC) a émis une mise en garde officielle concernant des attaques informatiques menées par des groupes de hacktivistes pro-russes. Ces attaques ciblent principalement les infrastructures critiques et les organisations gouvernementales locales.
+            </p>
 
             <hr class="article-divider">
 
-            <!-- Corps de l'article -->
-            <div class="article-body">
+            <h2 data-reveal>Résumé</h2>
+            <ul data-reveal>
+                <li>
+                    Attaques DDoS : La menace principale réside dans des attaques par déni de service distribué (DDoS). Bien que peu sophistiquées techniquement, elles sont capables de mettre hors ligne des sites web essentiels et de désactiver des services, entraînant des coûts financiers et opérationnels importants.
+                </li>
+                <li>
+                    Le groupe NoName057(16) : L'alerte identifie spécifiquement ce groupe, actif depuis mars 2022. Ils utilisent une plateforme nommée DDoSia pour recruter des volontaires qui prêtent leur puissance informatique en échange de récompenses financières ou de reconnaissance.
+                </li>
+                <li>
+                    Motivation idéologique : Contrairement aux cybercriminels classiques, ces hacktivistes agissent pour des motifs géopolitiques, visant les pays membres de l'OTAN et ceux qui s'opposent aux ambitions russes.
+                </li>
+            </ul>
+            <hr class="article-divider">
 
-                <h2 data-reveal>Introduction</h2>
-                <p>
-                    Le Centre national de cybersécurité du Royaume-Uni (NCSC) a émis une mise en garde officielle concernant des attaques informatiques menées par des groupes de hacktivistes pro-russes. Ces attaques ciblent principalement les infrastructures critiques et les organisations gouvernementales locales.
-                </p>
+            <blockquote data-reveal>
+                « La nation qui fixera les règles du jeu et les normes de sécurité pour l'intelligence artificielle contrôlera non seulement la technologie, mais aussi l'avenir de la sécurité mondiale. »
+                — Kevin Mandia, Expert en cybersécurité
+            </blockquote>
 
-                <hr class="article-divider">
+            <hr class="article-divider">
+            <p data-reveal>
+                Pour contrer ces menaces, les autorités britanniques préconisent plusieurs mesures :
+            </p>
+            <ul data-reveal>
+                <li>
+                    Renforcement des défenses : Utiliser des services de protection DDoS tiers et des réseaux de diffusion de contenu (CDN).
+                </li>
+                <li>
+                    Capacité de montée en charge : Concevoir des systèmes capables de s'adapter rapidement (auto-scaling) face à un pic de trafic artificiel.
+                </li>
+                <li>
+                    Plan de réponse : Définir et tester des procédures de dégradation gracieuse des services (prioriser les fonctions essentielles en cas d'attaque).
+                </li>
+            </ul>
+            <p data-reveal>
+                Malgré une opération policière internationale en 2025 (« Operation Eastwood ») qui a permis des arrestations et la fermeture de serveurs, les opérateurs principaux resteraient basés en Russie, ce qui leur a permis de reprendre rapidement leurs activités malveillantes.
+            </p>
 
-                <h2 data-reveal>Résumé</h2>
-                <ul>
-                    <li>
-                        Attaques DDoS : La menace principale réside dans des attaques par déni de service distribué (DDoS). Bien que peu sophistiquées techniquement, elles sont capables de mettre hors ligne des sites web essentiels et de désactiver des services, entraînant des coûts financiers et opérationnels importants.
-                    </li>
-                    <li>
-                        Le groupe NoName057(16) : L’alerte identifie spécifiquement ce groupe, actif depuis mars 2022. Ils utilisent une plateforme nommée DDoSia pour recruter des volontaires qui prêtent leur puissance informatique en échange de récompenses financières ou de reconnaissance.
-                    </li>
-                    <li>
-                        Motivation idéologique : Contrairement aux cybercriminels classiques, ces hacktivistes agissent pour des motifs géopolitiques, visant les pays membres de l’OTAN et ceux qui s’opposent aux ambitions russes.
-                    </li>
+            <h2 data-reveal>Définitions clées</h2>
+            <ul data-reveal>
+                <li>
+                    <strong>Hacktivisme </strong>: Contraction de « hacker » et « activisme ». Il s'agit de l'utilisation de techniques de piratage informatique pour promouvoir une cause politique, sociale ou idéologique.
+                </li>
+                <li><strong>DDoS </strong>: Attaque par déni de service distribué. Elle consiste à inonder un serveur ou un site web de trafic provenant de multiples sources pour le saturer et le rendre inaccessible aux utilisateurs légitimes.
+                </li>
+                <li><strong>NCSC</strong> : L'organisme gouvernemental britannique chargé de fournir des conseils et un soutien au secteur public et privé pour éviter les menaces de cybersécurité.
+                </li>
+                <li><strong>OT (Operation Technology)</strong> : Technologies opérationnelles. Il s'agit du matériel et des logiciels qui surveillent ou contrôlent des équipements physiques (comme les réseaux électriques ou les systèmes de gestion de l'eau), par opposition à l'informatique de bureau classique (IT).
+                </li>
+            </ul>
 
-                    </li>
-                </ul>
-                <hr class="article-divider">
-
-                <blockquote>
-                    « La nation qui fixera les règles du jeu et les normes de sécurité pour l'intelligence artificielle contrôlera non seulement la technologie, mais aussi l'avenir de la sécurité mondiale. »
-                    — Kevin Mandia, Expert en cybersécurité
-                </blockquote>
-
-                <hr class="article-divider">
-                <p>
-                    Pour contrer ces menaces, les autorités britanniques préconisent plusieurs mesures :
-                </p>
-                <ul>
-                    <li>
-                        Renforcement des défenses : Utiliser des services de protection DDoS tiers et des réseaux de diffusion de contenu (CDN).
-                    </li>
-                    <li>
-                        Capacité de montée en charge : Concevoir des systèmes capables de s’adapter rapidement (auto-scaling) face à un pic de trafic artificiel.
-                    </li>
-                    <li>
-                        Plan de réponse : Définir et tester des procédures de dégradation gracieuse des services (prioriser les fonctions essentielles en cas d’attaque).
-                    </li>
-                </ul>
-                <p>
-                    Malgré une opération policière internationale en 2025 (« Operation Eastwood ») qui a permis des arrestations et la fermeture de serveurs, les opérateurs principaux resteraient basés en Russie, ce qui leur a permis de reprendre rapidement leurs activités malveillantes.
-                </p>
-
-                <h2 data-reveal>Définitions clées</h2>
-                <p>
-                  <li>
-                    <strong>Hacktivisme </strong>: Contraction de « hacker » et « activisme ». Il s’agit de l’utilisation de techniques de piratage informatique pour promouvoir une cause politique, sociale ou idéologique.
-                  </li>
-
-                    <li><strong>DDoS </strong>:  Attaque par déni de service distribué. Elle consiste à inonder un serveur ou un site web de trafic provenant de multiples sources pour le saturer et le rendre inaccessible aux utilisateurs légitimes.
-                    </li>
-                    <li><strong>NCSC</strong> : L’organisme gouvernemental britannique chargé de fournir des conseils et un soutien au secteur public et privé pour éviter les menaces de cybersécurité.
-                    </li>
-                    <li><strong>OT (Operation Technology)</strong> : Technologies opérationnelles. Il s’agit du matériel et des logiciels qui surveillent ou contrôlent des équipements physiques (comme les réseaux électriques ou les systèmes de gestion de l’eau), par opposition à l’informatique de bureau classique (IT).
-                    </li>
-                </p>
-
-                <h2 data-reveal>Source</h2>
-                <p>
-                <a href="https://www.bleepingcomputer.com/news/security/uk-govt-warns-about-ongoing-russian-hacktivist-group-attacks/" class="source-link" target="_blank" rel="noopener noreferrer">
+            <h2 data-reveal>Source</h2>
+            <p data-reveal>
+                <a href="https://www.bleepingcomputer.com/news/security/uk-govt-warns-about-ongoing-russian-hacktivist-group-attacks/" class="source-link hoverable" target="_blank" rel="noopener noreferrer">
                     Article original : UK govt. warns about ongoing Russian hacktivist group attacks
-                </a>– BleepingComputer, par Bill Toulas (19 janvier 2026)
-                </p>
+                </a> — BleepingComputer, par Bill Toulas (19 janvier 2026)
+            </p>
 
-                <!-- Tags -->
-
-                <div class="article-tags">
-                    <a href="../veilles/tags.html" class="tag">#Cyber</a>
-                    <a href="../veilles/tags.html?tag=Veille" class="tag">#Veille</a>
-                    <a href="../veilles/tags.html?tag=UK" class="tag">#UK</a>
-                    <a href="../veilles/tags.html?tag=Geopolitique" class="tag">#Geopolitique</a>
-                </div>
-
+            <div class="article-tags">
+                <a href="tags.html" class="tag hoverable">#Cyber</a>
+                <a href="tags.html?tag=Veille" class="tag hoverable">#Veille</a>
+                <a href="tags.html?tag=UK" class="tag hoverable">#UK</a>
+                <a href="tags.html?tag=Geopolitique" class="tag hoverable">#Geopolitique</a>
             </div>
-        </main>
+        </div>
+    </section>
 
-        <!-- SIDEBAR DROITE -->
-        <aside class="right-sidebar" id="rightSidebar">
-            <div class="search-bar">
-                <input type="text" id="searchBar" placeholder="Search...">
+    <footer class="site-footer" id="contact">
+        <div class="top">
+            <p class="label mono">( CONTACT )</p>
+            <h2 data-reveal>Un stage à pourvoir ? <span class="dim">Parlons-en.</span></h2>
+            <div class="hero-cta">
+                <a href="mailto:paulmanoha1106@gmail.com" class="pill hoverable">Me contacter →</a>
+                <a href="../../Doc/CV_Paul_Manoha_2026.pdf" target="_blank" download="CV_Paul_Manoha.pdf" class="pill ghost hoverable">Télécharger le CV</a>
             </div>
-            <div class="widget">
-                <h3>Technical Stack</h3>
-                <div class="tag-cloud">
-                    <span class="tag">Linux</span>
-                    <span class="tag">Windows</span>
-                    <span class="tag">Cisco IOS</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Wireshark</span>
-                    <span class="tag">Nmap</span>
-                    <span class="tag">Metasploit</span>
-                    <span class="tag">Hashcat</span>
-                    <span class="tag">Active Directory</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Bash</span>
-                    <span class="tag">C#</span>
-                    <span class="tag">Git</span>
-                </div>
+        </div>
+        <div class="foot-bottom">
+            <div class="foot-wordmark">MANOHA</div>
+            <div class="foot-meta mono">
+                <a href="https://github.com/astropathe" target="_blank" class="hoverable">GITHUB</a>
+                <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" class="hoverable">LINKEDIN</a>
+                <a href="https://www.root-me.org/astropathe" target="_blank" class="hoverable">ROOT-ME</a>
+                <a href="https://tryhackme.com/p/astropathe" target="_blank" class="hoverable">TRYHACKME</a>
             </div>
-            <br>
-            <div class="widget">
-                <h3>En cours</h3>
-                <div class="status-box">
-                    <p>Certification <strong>Cisco CyberOps Associate</strong></p>
-                    <p>Lab personnel : Cluster <strong>Proxmox</strong></p>
-                    <p>Lecture : <em>Technopolitique</em>, Asma Mhalla</p>
-                </div>
-            </div>
-            <br>
-            <div class="widget">
-                <h3>Certifications</h3>
-                <ul class="cert-list">
-                    <li>Cyber Security 101 (THM)</li>
-                    <li>À venir...</li>
-                </ul>
-            </div>
-        </aside>
+        </div>
+        <p class="copyright mono">
+            <span>© 2026 — Paul Manoha, BTS SIO SISR</span>
+            <a href="../mentions-legales.html" class="hoverable">Mentions légales</a>
+        </p>
+    </footer>
 
-    </div>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/06/24/18/20260624180205-LDJTCTBS.js" defer></script>
     <script src="../../script.js"></script>

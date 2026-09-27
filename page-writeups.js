@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
         cards.forEach(card => {
             const matchesPlatform = (currentPlatform === 'all' || card.getAttribute('data-platform') === currentPlatform);
             const matchesType = (currentType === 'all' || card.getAttribute('data-category') === currentType);
-            const title = card.querySelector('h2').textContent.toLowerCase();
-            const description = card.querySelector('p').textContent.toLowerCase();
+            const title = card.querySelector('h3, h2').textContent.toLowerCase();
+            const description = card.querySelector('.pr-sub, p').textContent.toLowerCase();
             const matchesSearch = title.includes(searchText) || description.includes(searchText);
-            card.style.display = (matchesPlatform && matchesType && matchesSearch) ? 'block' : 'none';
+            card.style.display = (matchesPlatform && matchesType && matchesSearch) ? '' : 'none';
         });
     }
 
