@@ -124,11 +124,16 @@
     }
     window.addEventListener('resize', resize);
 
-    /* ── Logique de rotation partagée (idle + scroll + parallaxe souris) ──
-       Réutilisable pour n'importe quel THREE.Object3D, pas seulement
-       l'icosaèdre par défaut. */
-    var lastScrollY = window.scrollY;
+    /* ── Logique "fermé → ouvert" pilotée par le scroll ──
+       Réutilisable pour n'importe quel THREE.Object3D. L'objet démarre
+       incliné et réduit (position "refermé"), puis pivote et grossit
+       jusqu'à sa taille/orientation normale au fil du scroll dans le hero
+       (barre de progression 0 → 1 sur ~90% de la hauteur de la fenêtre).
+       Une fois ouvert, un très léger tournoiement continu + une parallaxe
+       souris lui donnent un peu de vie sans que ça tourne dans tous les
+       sens. Remonter en haut de page referme l'objet (animation réversible). */
     var mouseX = 0;
+    var idleSpin = 0;
     var coarsePointer = !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
     if (!coarsePointer) {
@@ -137,14 +142,27 @@
         });
     }
 
-    function applyRotationLogic(object3D) {
-        var sy = window.scrollY;
-        var delta = sy - lastScrollY;
-        lastScrollY = sy;
+    var CLOSED_TILT_X = 1.4;   // objet incliné, vu presque de profil
+    var OPEN_TILT_X = -0.12;   // orientation normale, légèrement penchée
+    var CLOSED_SCALE = 0.55;
 
-        object3D.rotation.y += 0.0022 + delta * 0.0016;
-        object3D.rotation.x += 0.0009 + delta * 0.0008;
-        object3D.rotation.z += (-mouseX * 0.15 - object3D.rotation.z) * 0.02;
+    function smoothstep(t) {
+        return t * t * (3 - 2 * t);
+    }
+
+    function applyRotationLogic(object3D) {
+        var progress = window.scrollY / (window.innerHeight * 0.9);
+        progress = Math.min(Math.max(progress, 0), 1);
+        var eased = smoothstep(progress);
+
+        object3D.rotation.x = CLOSED_TILT_X + (OPEN_TILT_X - CLOSED_TILT_X) * eased;
+
+        var scale = CLOSED_SCALE + (1 - CLOSED_SCALE) * eased;
+        object3D.scale.setScalar(scale);
+
+        idleSpin += 0.0015 * eased;
+        object3D.rotation.y = idleSpin;
+        object3D.rotation.z += ((-mouseX * 0.12 * eased) - object3D.rotation.z) * 0.05;
     }
 
     function animate() {
