@@ -10,14 +10,17 @@
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
 
     <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self'; 
-    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud; 
-    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud; 
-    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud; 
-    script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud; 
-    connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud; 
+    default-src 'self';
+    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.gstatic.com;
+    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.googleapis.com;
+    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud;
+    script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud https://cdnjs.cloudflare.com;
+    connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud;
     frame-src 'self' https://cdn.botpress.cloud;">
     <link rel="icon" type="image/png" href="../../photo/avatar.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -28,8 +31,10 @@
         }
 
         .tags-hero h2 {
-            color: #ffffff;
-            font-size: 1.1rem;
+            color: var(--fg);
+            font-weight: 700;
+            font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+            letter-spacing: -0.02em;
             margin-bottom: 1.2rem;
         }
 
@@ -42,32 +47,32 @@
         }
 
         .tag-filter {
-            background: #2d2d30;
-            color: #9da5b4;
-            padding: 6px 14px;
-            border-radius: 20px;
+            background: transparent;
+            color: var(--muted);
+            padding: 6px 16px;
+            border-radius: var(--radius-pill);
             font-size: 0.82rem;
-            border: 1px solid #3e3e42;
+            border: 1px solid var(--border);
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.2s ease;
             user-select: none;
         }
 
         .tag-filter:hover {
-            color: #ffffff;
-            border-color: #58a6ff;
+            color: var(--fg);
+            border-color: var(--accent);
         }
 
         .tag-filter.active {
-            background: #1c3a5e;
-            color: #58a6ff;
-            border-color: #58a6ff;
+            background: var(--accent);
+            color: var(--accent-contrast);
+            border-color: var(--accent);
             font-weight: bold;
         }
 
         .tag-filter .count {
-            background: #3e3e42;
-            color: #6a737d;
+            background: var(--bg-elevated-2);
+            color: var(--dim);
             font-size: 0.7rem;
             padding: 1px 6px;
             border-radius: 10px;
@@ -75,28 +80,28 @@
         }
 
         .tag-filter.active .count {
-            background: #2a5080;
-            color: #58a6ff;
+            background: rgba(3, 20, 11, 0.25);
+            color: var(--accent-contrast);
         }
 
         /* Section résultats */
         .results-header {
             font-size: 0.82rem;
-            color: #6a737d;
+            color: var(--dim);
             margin-bottom: 1.2rem;
             min-height: 1.2rem;
         }
 
         .results-header span {
-            color: #58a6ff;
+            color: var(--accent);
             font-weight: bold;
         }
 
         /* Carte article dans la page tags */
         .tag-article-card {
-            background-color: #252529;
-            border: 1px solid #3e3e42;
-            border-radius: 12px;
+            background-color: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-card);
             margin-bottom: 1.2rem;
             overflow: hidden;
             transition: transform 0.2s ease, border-color 0.2s ease;
@@ -105,8 +110,8 @@
 
         .tag-article-card:hover {
             transform: translateY(-3px);
-            border-color: #58a6ff;
-            background-color: #2a2a2e;
+            border-color: var(--accent);
+            background-color: var(--bg-elevated-2);
         }
 
         .tag-article-card a {
@@ -136,21 +141,22 @@
 
         .tag-article-card .card-type {
             font-size: 0.72rem;
-            color: #6a737d;
+            color: var(--dim);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 4px;
         }
 
         .tag-article-card h3 {
-            color: #ffffff;
+            color: var(--fg);
+            font-weight: 700;
             font-size: 1rem;
             margin-bottom: 0.4rem;
             line-height: 1.4;
         }
 
         .tag-article-card p {
-            color: #9da5b4;
+            color: var(--muted);
             font-size: 0.82rem;
             margin-bottom: 0.6rem;
             display: -webkit-box;
@@ -166,25 +172,25 @@
         }
 
         .card-tag {
-            background: #2d2d30;
-            color: #9da5b4;
-            padding: 2px 8px;
-            border-radius: 4px;
+            background: var(--bg-elevated-2);
+            color: var(--muted);
+            padding: 2px 10px;
+            border-radius: var(--radius-pill);
             font-size: 0.7rem;
-            border: 1px solid #3e3e42;
+            border: 1px solid var(--border);
         }
 
         .card-tag.highlighted {
-            background: #1c3a5e;
-            color: #58a6ff;
-            border-color: #58a6ff;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-color: var(--accent);
         }
 
         /* Message "aucun résultat" */
         .no-results {
             display: none;
             text-align: center;
-            color: #6a737d;
+            color: var(--dim);
             padding: 3rem 1rem;
         }
 
@@ -235,15 +241,6 @@
                 </ul>
             </nav>
 
-            <!-- BOUTON SÉLECTEUR DE THÈME -->
-            <div class="theme-toggle-container">
-                <button id="theme-toggle" class="theme-btn" aria-label="Changer de thème">
-                    <div class="theme-btn-slider"></div>
-                    <span class="theme-icon icon-sun"><i class="fa fa-sun-o"></i></span>
-                    <span class="theme-icon icon-moon"><i class="fa fa-moon"></i></span>
-                </button>
-            </div>
-
             <div class="social-links">
                 <a href="https://github.com/astropathe" target="_blank" title="GitHub"><img src="../../photo/github.png" alt="GH"></a>
                 <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank" title="LinkedIn"><img src="../../photo/linkedin.svg" alt="LinkedIn"></a>
@@ -255,13 +252,13 @@
 
         <!-- CONTENU CENTRAL -->
         <main class="content">
-            <header>
-                <a class="upper-path-links" href="../index.html">Home</a> > Tags
+            <header data-reveal>
+                <a class="upper-path-links" href="../../index.html">Home</a> > Tags
             </header>
 
             <!-- Nuage de tous les tags -->
             <div class="tags-hero">
-                <h2>Parcourir par tag</h2>
+                <h2 data-reveal="lines">Parcourir par tag</h2>
                 <div class="tag-filter-cloud" id="tagCloud">
                     <!-- Généré par JS -->
                 </div>
@@ -270,7 +267,7 @@
             <!-- Résultats filtrés -->
             <div class="results-header" id="resultsHeader"></div>
 
-            <div id="articleList">
+            <div id="articleList" data-reveal-group>
                 <!-- Généré par JS -->
             </div>
 
@@ -325,10 +322,13 @@
     </div>
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/06/24/18/20260624180205-LDJTCTBS.js" defer></script>
-    <script src="../script.js"></script>
+    <script src="../../script.js"></script>
     <script src="../../page-tags.js"></script>
-    
+    <script src="../../animations.js"></script>
 </body>
 </html>

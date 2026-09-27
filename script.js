@@ -1,29 +1,3 @@
-/* ========================================================
-   GESTION DU THÈME GLOBAL (À exécuter sur toutes les pages)
-   ======================================================== */
-
-// Appliqué immédiatement (avant DOMContentLoaded) pour éviter le flash du mauvais thème
-if (localStorage.getItem('theme') === 'light') {
-    document.body.classList.add('light-mode');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggleBtn = document.getElementById('theme-toggle');
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-
-            // On sauvegarde le choix de l'utilisateur dans le stockage local du navigateur
-            if (document.body.classList.contains('light-mode')) {
-                localStorage.setItem('theme', 'light');
-            } else {
-                localStorage.setItem('theme', 'dark');
-            }
-        });
-    }
-});
-
 // Recherche dans les cartes de posts (si présent sur la page)
 document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.getElementById('searchBar');

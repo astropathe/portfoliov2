@@ -10,14 +10,17 @@
     <meta name="Referrer-Policy" content="strict-origin-when-cross-origin">
 
     <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self'; 
-    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud; 
-    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud; 
-    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud; 
-    script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud; 
-    connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud; 
+    default-src 'self';
+    font-src 'self' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.gstatic.com;
+    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.botpress.cloud https://fonts.googleapis.com;
+    img-src 'self' data: https://img.icons8.com https://cdn.botpress.cloud https://files.bpcontent.cloud;
+    script-src 'self' 'unsafe-inline' https://cdn.botpress.cloud https://files.bpcontent.cloud https://cdnjs.cloudflare.com;
+    connect-src 'self' https://*.botpress.cloud https://*.bpcontent.cloud;
     frame-src 'self' https://cdn.botpress.cloud;">
     <link rel="icon" type="image/png" href="../../photo/avatar.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -49,15 +52,6 @@
                 </ul>
             </nav>
 
-            <!-- BOUTON SÉLECTEUR DE THÈME -->
-            <div class="theme-toggle-container">
-                <button id="theme-toggle" class="theme-btn" aria-label="Changer de thème">
-                    <div class="theme-btn-slider"></div>
-                    <span class="theme-icon icon-sun"><i class="fa fa-sun-o"></i></span>
-                    <span class="theme-icon icon-moon"><i class="fa fa-moon"></i></span>
-                </button>
-            </div>
-
             <div class="social-links">
                 <a href="https://github.com/astropathe" target="_blank"><img src="../../photo/github.png" alt="GH"></a>
                 <a href="https://www.linkedin.com/in/paul-manoha-71aab434a/" target="_blank"><img src="../../photo/linkedin.svg" alt="LI"></a>
@@ -73,7 +67,7 @@
             </header>
 
             <article class="project-article">
-                <h1 class="project-title">Campagne de Phishing Pédagogique & Sensibilisation</h1>
+                <h1 class="project-title" data-reveal="lines">Campagne de Phishing Pédagogique & Sensibilisation</h1>
 
                 <div class="project-meta-tags">
                     <span class="tag">#Gophish</span>
@@ -83,11 +77,11 @@
                     <span class="tag">#Cybersecurity</span>
                 </div>
 
-                <p class="project-intro">
+                <p class="project-intro" data-reveal>
                     L'objectif de ce projet mené en équipe était de concevoir, déployer et analyser une campagne de simulation d'attaque par ingénierie sociale (Phishing) au sein d'un établissement d'enseignement afin de mesurer la vulnérabilité des utilisateurs et d'éditer un support concret de prévention.
                 </p>
 
-                <div class="demo-box info-alert">
+                <div data-reveal class="demo-box info-alert">
                     <div class="demo-title">⚠️ Éthique & Confidentialité (RGPD)</div>
                     <p>Conformément à la réglementation, aucune donnée d'authentification (mot de passe) n'a été interceptée ni stockée en clair. Le framework a été configuré pour capturer uniquement l'événement de soumission du formulaire pour des besoins statistiques anonymes.</p>
                 </div>
@@ -100,7 +94,7 @@
                     <li><strong>Administration Distante :</strong> Configuration d'un VPN Mesh avec <strong>Tailscale</strong> pour manager l'infrastructure SSH et superviser l'outil d'administration Gophish de façon isolée.</li>
                 </ul>
 
-                <div class="demo-box visual-demo">
+                <div data-reveal class="demo-box visual-demo">
                     <div class="demo-title">📷 Supervision du Dashboard Gophish (Analyse en Temps Réel)</div>
                     <div class="media-container">
                         <img src="../../photo/phishing.png" alt="Dashboard Gophish" class="demo-img-fallback">
@@ -114,7 +108,7 @@
                     <li><strong>La Landing Page :</strong> Clone de la page d'authentification officielle <code>login.live.com</code>. J'ai importé et nettoyé le code source HTML/CSS original pour assurer un rendu graphique identique sur navigateur (desktop et mobile) et optimiser le taux de conversion de la simulation.</li>
                 </ul>
 
-                <div class="demo-box visual-demo">
+                <div data-reveal class="demo-box visual-demo">
                     <div class="demo-title">📷 Aperçu des Modèles (Email Microsoft & Page de Connexion Clônée)</div>
                     <div class="media-container" style="display: flex; gap: 10px; flex-wrap: wrap;">
                         <img src="../../photo/projets/gophish/mail.png" alt="Template Email Phishing" class="demo-img-fallback" style="flex: 1; min-width: 250px;">
@@ -125,7 +119,7 @@
                 <h2>3. Automatisation & Résilience : Script de Sauvegarde</h2>
                 <p>La base de données Gophish reposant sur un fichier de type <strong>SQLite</strong> (<code>gophish.db</code>), j'ai écrit et planifié un script Bash pour automatiser l'arrêt propre du service et la sauvegarde à chaud afin de prévenir toute corruption de données :</p>
 
-                <div class="demo-box code-demo">
+                <div data-reveal class="demo-box code-demo">
                     <div class="demo-title">📄 backup_gophish.sh</div>
                     <pre><code>#!/bin/bash
 # Automatisation de l'archivage de la base de données Gophish
@@ -178,9 +172,12 @@ sudo systemctl start gophish</code></pre>
     </div>
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2026/06/24/18/20260624180205-LDJTCTBS.js" defer></script>
     <script src="../../script.js"></script>
-    
+    <script src="../../animations.js"></script>
 </body>
 </html>
