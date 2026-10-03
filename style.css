@@ -196,10 +196,8 @@ section { position: relative; padding: clamp(6rem, 10vh, 9rem) clamp(1.25rem, 5v
     object-fit: cover; background: #000; pointer-events: none;
 }
 
-.hero-media::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.6) 100%);
-}
+.hero .hero-text,
+.hero .scroll-cue { display: none; }
 
 .hero-tag { max-width: 520px; color: var(--muted); font-size: clamp(0.85rem, 1.2vw, 1rem); margin-bottom: 1.6rem; }
 
